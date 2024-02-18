@@ -46,16 +46,43 @@
             textBox = new TextBox();
             listBoxValues = new ListBox();
             listBoxEnums = new ListBox();
+            tabPageClasses = new TabPage();
+            groupBoxMovies = new GroupBox();
+            button1 = new Button();
+            labelMovieYear = new Label();
+            labelMovieDuration = new Label();
+            textBoxYear = new TextBox();
+            textBoxDuration = new TextBox();
+            labelMovieRating = new Label();
+            labelMovieName = new Label();
+            labelMovieGenre = new Label();
+            textBoxRating = new TextBox();
+            textBoxGenre = new TextBox();
+            textBoxName = new TextBox();
+            listBoxMovies = new ListBox();
+            groupBoxRectangles = new GroupBox();
+            buttonRectFind = new Button();
+            labelRectColor = new Label();
+            labelRectLength = new Label();
+            labelRectWidth = new Label();
+            textBoxColor = new TextBox();
+            textBoxWidth = new TextBox();
+            textBoxLength = new TextBox();
+            listBoxRectangles = new ListBox();
             tabControl.SuspendLayout();
             tabPage.SuspendLayout();
             groupBoxSeason.SuspendLayout();
             groupBoxParsing.SuspendLayout();
             groupBoxEnum.SuspendLayout();
+            tabPageClasses.SuspendLayout();
+            groupBoxMovies.SuspendLayout();
+            groupBoxRectangles.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl
             // 
             tabControl.Controls.Add(tabPage);
+            tabControl.Controls.Add(tabPageClasses);
             tabControl.Dock = DockStyle.Fill;
             tabControl.Location = new Point(0, 0);
             tabControl.Name = "tabControl";
@@ -249,6 +276,253 @@
             listBoxEnums.TabIndex = 0;
             listBoxEnums.SelectedIndexChanged += listBoxEnums_SelectedIndexChanged;
             // 
+            // tabPageClasses
+            // 
+            tabPageClasses.Controls.Add(groupBoxMovies);
+            tabPageClasses.Controls.Add(groupBoxRectangles);
+            tabPageClasses.Location = new Point(4, 24);
+            tabPageClasses.Name = "tabPageClasses";
+            tabPageClasses.Padding = new Padding(3);
+            tabPageClasses.Size = new Size(792, 422);
+            tabPageClasses.TabIndex = 1;
+            tabPageClasses.Text = "Classes";
+            tabPageClasses.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxMovies
+            // 
+            groupBoxMovies.Controls.Add(button1);
+            groupBoxMovies.Controls.Add(labelMovieYear);
+            groupBoxMovies.Controls.Add(labelMovieDuration);
+            groupBoxMovies.Controls.Add(textBoxYear);
+            groupBoxMovies.Controls.Add(textBoxDuration);
+            groupBoxMovies.Controls.Add(labelMovieRating);
+            groupBoxMovies.Controls.Add(labelMovieName);
+            groupBoxMovies.Controls.Add(labelMovieGenre);
+            groupBoxMovies.Controls.Add(textBoxRating);
+            groupBoxMovies.Controls.Add(textBoxGenre);
+            groupBoxMovies.Controls.Add(textBoxName);
+            groupBoxMovies.Controls.Add(listBoxMovies);
+            groupBoxMovies.Location = new Point(384, 3);
+            groupBoxMovies.Name = "groupBoxMovies";
+            groupBoxMovies.Size = new Size(405, 416);
+            groupBoxMovies.TabIndex = 1;
+            groupBoxMovies.TabStop = false;
+            groupBoxMovies.Text = "Movies";
+            // 
+            // button1
+            // 
+            button1.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.Location = new Point(143, 377);
+            button1.Name = "button1";
+            button1.Size = new Size(100, 23);
+            button1.TabIndex = 17;
+            button1.Text = "Find";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // labelMovieYear
+            // 
+            labelMovieYear.AutoSize = true;
+            labelMovieYear.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            labelMovieYear.Location = new Point(143, 192);
+            labelMovieYear.Name = "labelMovieYear";
+            labelMovieYear.Size = new Size(69, 13);
+            labelMovieYear.TabIndex = 16;
+            labelMovieYear.Text = "Release Year";
+            // 
+            // labelMovieDuration
+            // 
+            labelMovieDuration.AutoSize = true;
+            labelMovieDuration.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            labelMovieDuration.Location = new Point(143, 150);
+            labelMovieDuration.Name = "labelMovieDuration";
+            labelMovieDuration.Size = new Size(53, 13);
+            labelMovieDuration.TabIndex = 15;
+            labelMovieDuration.Text = "Duration";
+            // 
+            // textBoxYear
+            // 
+            textBoxYear.BorderStyle = BorderStyle.FixedSingle;
+            textBoxYear.Location = new Point(143, 208);
+            textBoxYear.Name = "textBoxYear";
+            textBoxYear.Size = new Size(100, 23);
+            textBoxYear.TabIndex = 14;
+            textBoxYear.TextChanged += textBoxYear_TextChanged;
+            // 
+            // textBoxDuration
+            // 
+            textBoxDuration.BorderStyle = BorderStyle.FixedSingle;
+            textBoxDuration.Location = new Point(143, 166);
+            textBoxDuration.Name = "textBoxDuration";
+            textBoxDuration.Size = new Size(100, 23);
+            textBoxDuration.TabIndex = 13;
+            textBoxDuration.TextChanged += textBoxDuration_TextChanged;
+            // 
+            // labelMovieRating
+            // 
+            labelMovieRating.AutoSize = true;
+            labelMovieRating.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            labelMovieRating.Location = new Point(143, 108);
+            labelMovieRating.Name = "labelMovieRating";
+            labelMovieRating.Size = new Size(41, 13);
+            labelMovieRating.TabIndex = 12;
+            labelMovieRating.Text = "Rating";
+            // 
+            // labelMovieName
+            // 
+            labelMovieName.AutoSize = true;
+            labelMovieName.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            labelMovieName.Location = new Point(143, 24);
+            labelMovieName.Name = "labelMovieName";
+            labelMovieName.Size = new Size(36, 13);
+            labelMovieName.TabIndex = 11;
+            labelMovieName.Text = "Name";
+            // 
+            // labelMovieGenre
+            // 
+            labelMovieGenre.AutoSize = true;
+            labelMovieGenre.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            labelMovieGenre.Location = new Point(143, 66);
+            labelMovieGenre.Name = "labelMovieGenre";
+            labelMovieGenre.Size = new Size(38, 13);
+            labelMovieGenre.TabIndex = 10;
+            labelMovieGenre.Text = "Genre";
+            // 
+            // textBoxRating
+            // 
+            textBoxRating.BorderStyle = BorderStyle.FixedSingle;
+            textBoxRating.Location = new Point(143, 124);
+            textBoxRating.Name = "textBoxRating";
+            textBoxRating.Size = new Size(100, 23);
+            textBoxRating.TabIndex = 9;
+            textBoxRating.TextChanged += textBoxRating_TextChanged;
+            // 
+            // textBoxGenre
+            // 
+            textBoxGenre.BorderStyle = BorderStyle.FixedSingle;
+            textBoxGenre.Location = new Point(143, 82);
+            textBoxGenre.Name = "textBoxGenre";
+            textBoxGenre.Size = new Size(100, 23);
+            textBoxGenre.TabIndex = 8;
+            textBoxGenre.TextChanged += textBoxGenre_TextChanged;
+            // 
+            // textBoxName
+            // 
+            textBoxName.BorderStyle = BorderStyle.FixedSingle;
+            textBoxName.Location = new Point(143, 40);
+            textBoxName.Name = "textBoxName";
+            textBoxName.Size = new Size(100, 23);
+            textBoxName.TabIndex = 7;
+            textBoxName.TextChanged += textBoxName_TextChanged;
+            // 
+            // listBoxMovies
+            // 
+            listBoxMovies.BorderStyle = BorderStyle.FixedSingle;
+            listBoxMovies.FormattingEnabled = true;
+            listBoxMovies.ItemHeight = 15;
+            listBoxMovies.Location = new Point(6, 22);
+            listBoxMovies.Name = "listBoxMovies";
+            listBoxMovies.Size = new Size(120, 377);
+            listBoxMovies.TabIndex = 1;
+            listBoxMovies.SelectedIndexChanged += listBoxMovies_SelectedIndexChanged;
+            // 
+            // groupBoxRectangles
+            // 
+            groupBoxRectangles.Controls.Add(buttonRectFind);
+            groupBoxRectangles.Controls.Add(labelRectColor);
+            groupBoxRectangles.Controls.Add(labelRectLength);
+            groupBoxRectangles.Controls.Add(labelRectWidth);
+            groupBoxRectangles.Controls.Add(textBoxColor);
+            groupBoxRectangles.Controls.Add(textBoxWidth);
+            groupBoxRectangles.Controls.Add(textBoxLength);
+            groupBoxRectangles.Controls.Add(listBoxRectangles);
+            groupBoxRectangles.Dock = DockStyle.Left;
+            groupBoxRectangles.Location = new Point(3, 3);
+            groupBoxRectangles.Name = "groupBoxRectangles";
+            groupBoxRectangles.Size = new Size(375, 416);
+            groupBoxRectangles.TabIndex = 0;
+            groupBoxRectangles.TabStop = false;
+            groupBoxRectangles.Text = "Rectangles";
+            // 
+            // buttonRectFind
+            // 
+            buttonRectFind.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonRectFind.Location = new Point(141, 377);
+            buttonRectFind.Name = "buttonRectFind";
+            buttonRectFind.Size = new Size(100, 23);
+            buttonRectFind.TabIndex = 7;
+            buttonRectFind.Text = "Find";
+            buttonRectFind.UseVisualStyleBackColor = true;
+            buttonRectFind.Click += buttonRectFind_Click;
+            // 
+            // labelRectColor
+            // 
+            labelRectColor.AutoSize = true;
+            labelRectColor.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            labelRectColor.Location = new Point(141, 108);
+            labelRectColor.Name = "labelRectColor";
+            labelRectColor.Size = new Size(35, 13);
+            labelRectColor.TabIndex = 6;
+            labelRectColor.Text = "Color";
+            // 
+            // labelRectLength
+            // 
+            labelRectLength.AutoSize = true;
+            labelRectLength.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            labelRectLength.Location = new Point(141, 24);
+            labelRectLength.Name = "labelRectLength";
+            labelRectLength.Size = new Size(43, 13);
+            labelRectLength.TabIndex = 5;
+            labelRectLength.Text = "Length";
+            // 
+            // labelRectWidth
+            // 
+            labelRectWidth.AutoSize = true;
+            labelRectWidth.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            labelRectWidth.Location = new Point(141, 66);
+            labelRectWidth.Name = "labelRectWidth";
+            labelRectWidth.Size = new Size(39, 13);
+            labelRectWidth.TabIndex = 4;
+            labelRectWidth.Text = "Width";
+            // 
+            // textBoxColor
+            // 
+            textBoxColor.BorderStyle = BorderStyle.FixedSingle;
+            textBoxColor.Location = new Point(141, 124);
+            textBoxColor.Name = "textBoxColor";
+            textBoxColor.Size = new Size(100, 23);
+            textBoxColor.TabIndex = 3;
+            textBoxColor.TextChanged += textBoxColor_TextChanged;
+            // 
+            // textBoxWidth
+            // 
+            textBoxWidth.BorderStyle = BorderStyle.FixedSingle;
+            textBoxWidth.Location = new Point(141, 82);
+            textBoxWidth.Name = "textBoxWidth";
+            textBoxWidth.Size = new Size(100, 23);
+            textBoxWidth.TabIndex = 2;
+            textBoxWidth.TextChanged += textBoxWidth_TextChanged;
+            // 
+            // textBoxLength
+            // 
+            textBoxLength.BorderStyle = BorderStyle.FixedSingle;
+            textBoxLength.Location = new Point(141, 40);
+            textBoxLength.Name = "textBoxLength";
+            textBoxLength.Size = new Size(100, 23);
+            textBoxLength.TabIndex = 1;
+            textBoxLength.TextChanged += textBoxLength_TextChanged;
+            // 
+            // listBoxRectangles
+            // 
+            listBoxRectangles.BorderStyle = BorderStyle.FixedSingle;
+            listBoxRectangles.FormattingEnabled = true;
+            listBoxRectangles.ItemHeight = 15;
+            listBoxRectangles.Location = new Point(6, 22);
+            listBoxRectangles.Name = "listBoxRectangles";
+            listBoxRectangles.Size = new Size(120, 377);
+            listBoxRectangles.TabIndex = 0;
+            listBoxRectangles.SelectedIndexChanged += listBoxRectangles_SelectedIndexChanged;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -265,6 +539,11 @@
             groupBoxParsing.PerformLayout();
             groupBoxEnum.ResumeLayout(false);
             groupBoxEnum.PerformLayout();
+            tabPageClasses.ResumeLayout(false);
+            groupBoxMovies.ResumeLayout(false);
+            groupBoxMovies.PerformLayout();
+            groupBoxRectangles.ResumeLayout(false);
+            groupBoxRectangles.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -288,5 +567,28 @@
         private Label labelSeason;
         private Button buttonGo;
         private ComboBox comboBoxSeason;
+        private TabPage tabPageClasses;
+        private GroupBox groupBoxRectangles;
+        private Label labelRectColor;
+        private Label labelRectLength;
+        private Label labelRectWidth;
+        private TextBox textBoxColor;
+        private TextBox textBoxWidth;
+        private TextBox textBoxLength;
+        private ListBox listBoxRectangles;
+        private Button buttonRectFind;
+        private GroupBox groupBoxMovies;
+        private ListBox listBoxMovies;
+        private Label labelMovieRating;
+        private Label labelMovieName;
+        private Label labelMovieGenre;
+        private TextBox textBoxRating;
+        private TextBox textBoxGenre;
+        private TextBox textBoxName;
+        private Button button1;
+        private Label labelMovieYear;
+        private Label labelMovieDuration;
+        private TextBox textBoxYear;
+        private TextBox textBoxDuration;
     }
 }
