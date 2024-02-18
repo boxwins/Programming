@@ -11,7 +11,7 @@
             get { return _passingScore; }
             set
             {
-                if (value < 0) throw new ArgumentException("Value cannot be negative");
+                Validator.OnlyPositive(value, nameof(PassingScore));
                 _passingScore = value;
             }
         }

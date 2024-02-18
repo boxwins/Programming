@@ -61,14 +61,18 @@
             textBoxName = new TextBox();
             listBoxMovies = new ListBox();
             groupBoxRectangles = new GroupBox();
+            labelCenter = new Label();
+            textBoxCenter = new TextBox();
             buttonRectFind = new Button();
             labelRectColor = new Label();
-            labelRectLength = new Label();
             labelRectWidth = new Label();
+            labelRectHeight = new Label();
             textBoxColor = new TextBox();
+            textBoxHeight = new TextBox();
             textBoxWidth = new TextBox();
-            textBoxLength = new TextBox();
             listBoxRectangles = new ListBox();
+            labelID = new Label();
+            textBoxID = new TextBox();
             tabControl.SuspendLayout();
             tabPage.SuspendLayout();
             groupBoxSeason.SuspendLayout();
@@ -428,13 +432,17 @@
             // 
             // groupBoxRectangles
             // 
+            groupBoxRectangles.Controls.Add(labelID);
+            groupBoxRectangles.Controls.Add(textBoxID);
+            groupBoxRectangles.Controls.Add(labelCenter);
+            groupBoxRectangles.Controls.Add(textBoxCenter);
             groupBoxRectangles.Controls.Add(buttonRectFind);
             groupBoxRectangles.Controls.Add(labelRectColor);
-            groupBoxRectangles.Controls.Add(labelRectLength);
             groupBoxRectangles.Controls.Add(labelRectWidth);
+            groupBoxRectangles.Controls.Add(labelRectHeight);
             groupBoxRectangles.Controls.Add(textBoxColor);
+            groupBoxRectangles.Controls.Add(textBoxHeight);
             groupBoxRectangles.Controls.Add(textBoxWidth);
-            groupBoxRectangles.Controls.Add(textBoxLength);
             groupBoxRectangles.Controls.Add(listBoxRectangles);
             groupBoxRectangles.Dock = DockStyle.Left;
             groupBoxRectangles.Location = new Point(3, 3);
@@ -443,6 +451,26 @@
             groupBoxRectangles.TabIndex = 0;
             groupBoxRectangles.TabStop = false;
             groupBoxRectangles.Text = "Rectangles";
+            // 
+            // labelCenter
+            // 
+            labelCenter.AutoSize = true;
+            labelCenter.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            labelCenter.Location = new Point(141, 150);
+            labelCenter.Name = "labelCenter";
+            labelCenter.Size = new Size(41, 13);
+            labelCenter.TabIndex = 9;
+            labelCenter.Text = "Center";
+            // 
+            // textBoxCenter
+            // 
+            textBoxCenter.BackColor = SystemColors.Window;
+            textBoxCenter.BorderStyle = BorderStyle.FixedSingle;
+            textBoxCenter.Location = new Point(141, 166);
+            textBoxCenter.Name = "textBoxCenter";
+            textBoxCenter.ReadOnly = true;
+            textBoxCenter.Size = new Size(100, 23);
+            textBoxCenter.TabIndex = 8;
             // 
             // buttonRectFind
             // 
@@ -465,25 +493,25 @@
             labelRectColor.TabIndex = 6;
             labelRectColor.Text = "Color";
             // 
-            // labelRectLength
-            // 
-            labelRectLength.AutoSize = true;
-            labelRectLength.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
-            labelRectLength.Location = new Point(141, 24);
-            labelRectLength.Name = "labelRectLength";
-            labelRectLength.Size = new Size(43, 13);
-            labelRectLength.TabIndex = 5;
-            labelRectLength.Text = "Length";
-            // 
             // labelRectWidth
             // 
             labelRectWidth.AutoSize = true;
             labelRectWidth.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
-            labelRectWidth.Location = new Point(141, 66);
+            labelRectWidth.Location = new Point(141, 24);
             labelRectWidth.Name = "labelRectWidth";
             labelRectWidth.Size = new Size(39, 13);
-            labelRectWidth.TabIndex = 4;
+            labelRectWidth.TabIndex = 5;
             labelRectWidth.Text = "Width";
+            // 
+            // labelRectHeight
+            // 
+            labelRectHeight.AutoSize = true;
+            labelRectHeight.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            labelRectHeight.Location = new Point(141, 66);
+            labelRectHeight.Name = "labelRectHeight";
+            labelRectHeight.Size = new Size(42, 13);
+            labelRectHeight.TabIndex = 4;
+            labelRectHeight.Text = "Height";
             // 
             // textBoxColor
             // 
@@ -494,23 +522,23 @@
             textBoxColor.TabIndex = 3;
             textBoxColor.TextChanged += textBoxColor_TextChanged;
             // 
+            // textBoxHeight
+            // 
+            textBoxHeight.BorderStyle = BorderStyle.FixedSingle;
+            textBoxHeight.Location = new Point(141, 82);
+            textBoxHeight.Name = "textBoxHeight";
+            textBoxHeight.Size = new Size(100, 23);
+            textBoxHeight.TabIndex = 2;
+            textBoxHeight.TextChanged += textBoxHeight_TextChanged;
+            // 
             // textBoxWidth
             // 
             textBoxWidth.BorderStyle = BorderStyle.FixedSingle;
-            textBoxWidth.Location = new Point(141, 82);
+            textBoxWidth.Location = new Point(141, 40);
             textBoxWidth.Name = "textBoxWidth";
             textBoxWidth.Size = new Size(100, 23);
-            textBoxWidth.TabIndex = 2;
+            textBoxWidth.TabIndex = 1;
             textBoxWidth.TextChanged += textBoxWidth_TextChanged;
-            // 
-            // textBoxLength
-            // 
-            textBoxLength.BorderStyle = BorderStyle.FixedSingle;
-            textBoxLength.Location = new Point(141, 40);
-            textBoxLength.Name = "textBoxLength";
-            textBoxLength.Size = new Size(100, 23);
-            textBoxLength.TabIndex = 1;
-            textBoxLength.TextChanged += textBoxLength_TextChanged;
             // 
             // listBoxRectangles
             // 
@@ -522,6 +550,26 @@
             listBoxRectangles.Size = new Size(120, 377);
             listBoxRectangles.TabIndex = 0;
             listBoxRectangles.SelectedIndexChanged += listBoxRectangles_SelectedIndexChanged;
+            // 
+            // labelID
+            // 
+            labelID.AutoSize = true;
+            labelID.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            labelID.Location = new Point(141, 192);
+            labelID.Name = "labelID";
+            labelID.Size = new Size(18, 13);
+            labelID.TabIndex = 11;
+            labelID.Text = "ID";
+            // 
+            // textBoxID
+            // 
+            textBoxID.BackColor = SystemColors.Window;
+            textBoxID.BorderStyle = BorderStyle.FixedSingle;
+            textBoxID.Location = new Point(141, 208);
+            textBoxID.Name = "textBoxID";
+            textBoxID.ReadOnly = true;
+            textBoxID.Size = new Size(100, 23);
+            textBoxID.TabIndex = 10;
             // 
             // MainForm
             // 
@@ -570,11 +618,11 @@
         private TabPage tabPageClasses;
         private GroupBox groupBoxRectangles;
         private Label labelRectColor;
-        private Label labelRectLength;
         private Label labelRectWidth;
+        private Label labelRectHeight;
         private TextBox textBoxColor;
+        private TextBox textBoxHeight;
         private TextBox textBoxWidth;
-        private TextBox textBoxLength;
         private ListBox listBoxRectangles;
         private Button buttonRectFind;
         private GroupBox groupBoxMovies;
@@ -590,5 +638,9 @@
         private Label labelMovieDuration;
         private TextBox textBoxYear;
         private TextBox textBoxDuration;
+        private Label labelCenter;
+        private TextBox textBoxCenter;
+        private Label labelID;
+        private TextBox textBoxID;
     }
 }

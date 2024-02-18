@@ -122,23 +122,11 @@ namespace Programming
         {
             _currentRectangle = _rectangles[listBoxRectangles.SelectedIndex];
 
-            textBoxLength.Text = _currentRectangle.Height.ToString();
             textBoxWidth.Text = _currentRectangle.Width.ToString();
+            textBoxHeight.Text = _currentRectangle.Height.ToString();
             textBoxColor.Text = _currentRectangle.Color.Name;
-        }
-
-        private void textBoxLength_TextChanged(object sender, EventArgs e)
-        {
-            if (_currentRectangle == null) return;
-            try
-            {
-                _currentRectangle.Height = int.Parse(textBoxLength.Text);
-                textBoxLength.BackColor = _normalColor;
-            }
-            catch (Exception)
-            {
-                textBoxLength.BackColor = _errorColor;
-            }
+            textBoxCenter.Text = _currentRectangle.Center.ToString();
+            textBoxID.Text = _currentRectangle.ID.ToString();
         }
 
         private void textBoxWidth_TextChanged(object sender, EventArgs e)
@@ -146,12 +134,26 @@ namespace Programming
             if (_currentRectangle == null) return;
             try
             {
-                _currentRectangle.Height = int.Parse(textBoxWidth.Text);
+                _currentRectangle.Width = int.Parse(textBoxWidth.Text);
                 textBoxWidth.BackColor = _normalColor;
             }
             catch (Exception)
             {
                 textBoxWidth.BackColor = _errorColor;
+            }
+        }
+
+        private void textBoxHeight_TextChanged(object sender, EventArgs e)
+        {
+            if (_currentRectangle == null) return;
+            try
+            {
+                _currentRectangle.Height = int.Parse(textBoxHeight.Text);
+                textBoxHeight.BackColor = _normalColor;
+            }
+            catch (Exception)
+            {
+                textBoxHeight.BackColor = _errorColor;
             }
         }
 

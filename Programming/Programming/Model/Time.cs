@@ -11,8 +11,7 @@
             get { return _hours; }
             set
             {
-                if (value < 0) throw new ArgumentException("Value cannot be negative");
-                if (value > 24) throw new ArgumentException("Value cannot be higher than 24");
+                Validator.OnlyInRange(0, 24, value, nameof(Hours));
                 _hours = value;
             }
         }
@@ -22,8 +21,7 @@
             get { return _minutes; }
             set
             {
-                if (value < 0) throw new ArgumentException("Value cannot be negative");
-                if (value > 60) throw new ArgumentException("Value cannot be higher than 60");
+                Validator.OnlyInRange(0, 60, value, nameof(Minutes));
                 _minutes = value;
             }
         }
@@ -33,8 +31,7 @@
             get { return _seconds; }
             set
             {
-                if (value < 0) throw new ArgumentException("Value cannot be negative");
-                if (value > 60) throw new ArgumentException("Value cannot be higher than 60");
+                Validator.OnlyInRange(0, 60, value, nameof(Seconds));
                 _seconds = value;
             }
         }

@@ -13,8 +13,7 @@
             get { return _rating; }
             set
             {
-                if (value < 0) throw new ArgumentException("Value cannot be negative");
-                if (value > 10) throw new ArgumentException("Value cannot be higher than 10");
+                Validator.OnlyInRange(0, 10, value, nameof(Rating));
                 _rating = value;
             }
         }
@@ -24,7 +23,7 @@
             get { return _duration; }
             set
             {
-                if (value < 0) throw new ArgumentException("Value cannot be negative");
+                Validator.OnlyPositive(value, nameof(Duration));
                 _duration = value;
             }
         }
@@ -34,7 +33,7 @@
             get { return _releaseYear; }
             set
             {
-                if (value <= 1900) throw new ArgumentException("Value cannot be lower than 1900");
+                Validator.BottomLimit(1900, value, nameof(Duration));
                 _releaseYear = value;
             }
         }
