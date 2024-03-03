@@ -1,4 +1,4 @@
-﻿namespace Programming.Model
+﻿namespace Programming.Model.Geometry
 {
     public static class CollisionManager
     {
@@ -13,7 +13,7 @@
 
             Point2D minRegion = rect1Half + rect2Half;
 
-            return region.X < minRegion.X || region.Y < minRegion.Y;
+            return region.X < minRegion.X && region.Y < minRegion.Y;
         }
 
         public static bool IsCollision(Ring ring1, Ring ring2)
@@ -28,8 +28,8 @@
             if (distance >= minDistance) return false;
 
             return
-                (ring1.OuterRadius + distance) < ring2.InnerRadius ||
-                (ring2.OuterRadius + distance) < ring1.InnerRadius;
+                ring1.OuterRadius + distance < ring2.InnerRadius ||
+                ring2.OuterRadius + distance < ring1.InnerRadius;
         }
     }
 }

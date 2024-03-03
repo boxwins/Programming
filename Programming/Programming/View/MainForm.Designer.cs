@@ -61,6 +61,8 @@
             textBoxName = new TextBox();
             listBoxMovies = new ListBox();
             groupBoxRectangles = new GroupBox();
+            labelID = new Label();
+            textBoxID = new TextBox();
             labelCenter = new Label();
             textBoxCenter = new TextBox();
             buttonRectFind = new Button();
@@ -71,8 +73,23 @@
             textBoxHeight = new TextBox();
             textBoxWidth = new TextBox();
             listBoxRectangles = new ListBox();
-            labelID = new Label();
-            textBoxID = new TextBox();
+            tabPageRectangles = new TabPage();
+            pictureBoxRemove = new PictureBox();
+            pictureBoxAdd = new PictureBox();
+            label1 = new Label();
+            panelCanvas = new Panel();
+            labelSelectedID = new Label();
+            textBoxSelectedID = new TextBox();
+            labelSelectedCenter = new Label();
+            textBoxSelectedCenter = new TextBox();
+            labelSelectedColor = new Label();
+            labelSelectedWidth = new Label();
+            labelSelectedHeight = new Label();
+            textBoxSelectedColor = new TextBox();
+            textBoxSelectedHeight = new TextBox();
+            textBoxSelectedWidth = new TextBox();
+            labelRectangles = new Label();
+            rectangleBox = new ListBox();
             tabControl.SuspendLayout();
             tabPage.SuspendLayout();
             groupBoxSeason.SuspendLayout();
@@ -81,12 +98,16 @@
             tabPageClasses.SuspendLayout();
             groupBoxMovies.SuspendLayout();
             groupBoxRectangles.SuspendLayout();
+            tabPageRectangles.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxRemove).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAdd).BeginInit();
             SuspendLayout();
             // 
             // tabControl
             // 
             tabControl.Controls.Add(tabPage);
             tabControl.Controls.Add(tabPageClasses);
+            tabControl.Controls.Add(tabPageRectangles);
             tabControl.Dock = DockStyle.Fill;
             tabControl.Location = new Point(0, 0);
             tabControl.Name = "tabControl";
@@ -452,6 +473,26 @@
             groupBoxRectangles.TabStop = false;
             groupBoxRectangles.Text = "Rectangles";
             // 
+            // labelID
+            // 
+            labelID.AutoSize = true;
+            labelID.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            labelID.Location = new Point(141, 192);
+            labelID.Name = "labelID";
+            labelID.Size = new Size(18, 13);
+            labelID.TabIndex = 11;
+            labelID.Text = "ID";
+            // 
+            // textBoxID
+            // 
+            textBoxID.BackColor = SystemColors.Window;
+            textBoxID.BorderStyle = BorderStyle.FixedSingle;
+            textBoxID.Location = new Point(141, 208);
+            textBoxID.Name = "textBoxID";
+            textBoxID.ReadOnly = true;
+            textBoxID.Size = new Size(100, 23);
+            textBoxID.TabIndex = 10;
+            // 
             // labelCenter
             // 
             labelCenter.AutoSize = true;
@@ -551,25 +592,214 @@
             listBoxRectangles.TabIndex = 0;
             listBoxRectangles.SelectedIndexChanged += listBoxRectangles_SelectedIndexChanged;
             // 
-            // labelID
+            // tabPageRectangles
             // 
-            labelID.AutoSize = true;
-            labelID.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
-            labelID.Location = new Point(141, 192);
-            labelID.Name = "labelID";
-            labelID.Size = new Size(18, 13);
-            labelID.TabIndex = 11;
-            labelID.Text = "ID";
+            tabPageRectangles.Controls.Add(pictureBoxRemove);
+            tabPageRectangles.Controls.Add(pictureBoxAdd);
+            tabPageRectangles.Controls.Add(label1);
+            tabPageRectangles.Controls.Add(panelCanvas);
+            tabPageRectangles.Controls.Add(labelSelectedID);
+            tabPageRectangles.Controls.Add(textBoxSelectedID);
+            tabPageRectangles.Controls.Add(labelSelectedCenter);
+            tabPageRectangles.Controls.Add(textBoxSelectedCenter);
+            tabPageRectangles.Controls.Add(labelSelectedColor);
+            tabPageRectangles.Controls.Add(labelSelectedWidth);
+            tabPageRectangles.Controls.Add(labelSelectedHeight);
+            tabPageRectangles.Controls.Add(textBoxSelectedColor);
+            tabPageRectangles.Controls.Add(textBoxSelectedHeight);
+            tabPageRectangles.Controls.Add(textBoxSelectedWidth);
+            tabPageRectangles.Controls.Add(labelRectangles);
+            tabPageRectangles.Controls.Add(rectangleBox);
+            tabPageRectangles.Location = new Point(4, 24);
+            tabPageRectangles.Name = "tabPageRectangles";
+            tabPageRectangles.Padding = new Padding(3);
+            tabPageRectangles.Size = new Size(792, 422);
+            tabPageRectangles.TabIndex = 2;
+            tabPageRectangles.Text = "Rectangles";
+            tabPageRectangles.UseVisualStyleBackColor = true;
             // 
-            // textBoxID
+            // pictureBoxRemove
             // 
-            textBoxID.BackColor = SystemColors.Window;
-            textBoxID.BorderStyle = BorderStyle.FixedSingle;
-            textBoxID.Location = new Point(141, 208);
-            textBoxID.Name = "textBoxID";
-            textBoxID.ReadOnly = true;
-            textBoxID.Size = new Size(100, 23);
-            textBoxID.TabIndex = 10;
+            pictureBoxRemove.Image = Properties.Resources.remove_normal;
+            pictureBoxRemove.ImageLocation = "";
+            pictureBoxRemove.Location = new Point(149, 183);
+            pictureBoxRemove.Name = "pictureBoxRemove";
+            pictureBoxRemove.Size = new Size(40, 40);
+            pictureBoxRemove.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBoxRemove.TabIndex = 27;
+            pictureBoxRemove.TabStop = false;
+            pictureBoxRemove.Click += pictureBoxRemove_Click;
+            pictureBoxRemove.MouseDown += pictureBoxRemove_MouseDown;
+            pictureBoxRemove.MouseEnter += pictureBoxRemove_MouseEnter;
+            pictureBoxRemove.MouseLeave += pictureBoxRemove_MouseLeave;
+            pictureBoxRemove.MouseUp += pictureBoxRemove_MouseUp;
+            // 
+            // pictureBoxAdd
+            // 
+            pictureBoxAdd.BackColor = Color.Transparent;
+            pictureBoxAdd.Image = Properties.Resources.add_normal;
+            pictureBoxAdd.ImageLocation = "";
+            pictureBoxAdd.Location = new Point(88, 183);
+            pictureBoxAdd.Name = "pictureBoxAdd";
+            pictureBoxAdd.Size = new Size(40, 40);
+            pictureBoxAdd.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBoxAdd.TabIndex = 26;
+            pictureBoxAdd.TabStop = false;
+            pictureBoxAdd.Click += pictureBoxAdd_Click;
+            pictureBoxAdd.MouseDown += pictureBoxAdd_MouseDown;
+            pictureBoxAdd.MouseEnter += pictureBoxAdd_MouseEnter;
+            pictureBoxAdd.MouseLeave += pictureBoxAdd_MouseLeave;
+            pictureBoxAdd.MouseUp += pictureBoxAdd_MouseUp;
+            // 
+            // label1
+            // 
+            label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(88, 229);
+            label1.Name = "label1";
+            label1.Size = new Size(101, 13);
+            label1.TabIndex = 25;
+            label1.Text = "Selected rectangle";
+            // 
+            // panelCanvas
+            // 
+            panelCanvas.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panelCanvas.BackColor = SystemColors.Window;
+            panelCanvas.BorderStyle = BorderStyle.FixedSingle;
+            panelCanvas.Location = new Point(289, 9);
+            panelCanvas.Name = "panelCanvas";
+            panelCanvas.Size = new Size(495, 405);
+            panelCanvas.TabIndex = 22;
+            // 
+            // labelSelectedID
+            // 
+            labelSelectedID.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelSelectedID.AutoSize = true;
+            labelSelectedID.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            labelSelectedID.Location = new Point(67, 366);
+            labelSelectedID.Name = "labelSelectedID";
+            labelSelectedID.Size = new Size(18, 13);
+            labelSelectedID.TabIndex = 21;
+            labelSelectedID.Text = "ID";
+            // 
+            // textBoxSelectedID
+            // 
+            textBoxSelectedID.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            textBoxSelectedID.BackColor = SystemColors.Window;
+            textBoxSelectedID.BorderStyle = BorderStyle.FixedSingle;
+            textBoxSelectedID.Location = new Point(88, 361);
+            textBoxSelectedID.Name = "textBoxSelectedID";
+            textBoxSelectedID.ReadOnly = true;
+            textBoxSelectedID.Size = new Size(100, 23);
+            textBoxSelectedID.TabIndex = 20;
+            // 
+            // labelSelectedCenter
+            // 
+            labelSelectedCenter.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelSelectedCenter.AutoSize = true;
+            labelSelectedCenter.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            labelSelectedCenter.Location = new Point(44, 337);
+            labelSelectedCenter.Name = "labelSelectedCenter";
+            labelSelectedCenter.Size = new Size(41, 13);
+            labelSelectedCenter.TabIndex = 19;
+            labelSelectedCenter.Text = "Center";
+            // 
+            // textBoxSelectedCenter
+            // 
+            textBoxSelectedCenter.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            textBoxSelectedCenter.BackColor = SystemColors.Window;
+            textBoxSelectedCenter.BorderStyle = BorderStyle.FixedSingle;
+            textBoxSelectedCenter.Location = new Point(88, 332);
+            textBoxSelectedCenter.Name = "textBoxSelectedCenter";
+            textBoxSelectedCenter.Size = new Size(100, 23);
+            textBoxSelectedCenter.TabIndex = 18;
+            textBoxSelectedCenter.TextChanged += textBoxSelectedCenter_TextChanged;
+            // 
+            // labelSelectedColor
+            // 
+            labelSelectedColor.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelSelectedColor.AutoSize = true;
+            labelSelectedColor.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            labelSelectedColor.Location = new Point(50, 308);
+            labelSelectedColor.Name = "labelSelectedColor";
+            labelSelectedColor.Size = new Size(35, 13);
+            labelSelectedColor.TabIndex = 17;
+            labelSelectedColor.Text = "Color";
+            // 
+            // labelSelectedWidth
+            // 
+            labelSelectedWidth.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelSelectedWidth.AutoSize = true;
+            labelSelectedWidth.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            labelSelectedWidth.Location = new Point(46, 250);
+            labelSelectedWidth.Name = "labelSelectedWidth";
+            labelSelectedWidth.Size = new Size(39, 13);
+            labelSelectedWidth.TabIndex = 16;
+            labelSelectedWidth.Text = "Width";
+            // 
+            // labelSelectedHeight
+            // 
+            labelSelectedHeight.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelSelectedHeight.AutoSize = true;
+            labelSelectedHeight.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            labelSelectedHeight.Location = new Point(43, 279);
+            labelSelectedHeight.Name = "labelSelectedHeight";
+            labelSelectedHeight.Size = new Size(42, 13);
+            labelSelectedHeight.TabIndex = 15;
+            labelSelectedHeight.Text = "Height";
+            // 
+            // textBoxSelectedColor
+            // 
+            textBoxSelectedColor.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            textBoxSelectedColor.BorderStyle = BorderStyle.FixedSingle;
+            textBoxSelectedColor.Location = new Point(88, 303);
+            textBoxSelectedColor.Name = "textBoxSelectedColor";
+            textBoxSelectedColor.Size = new Size(100, 23);
+            textBoxSelectedColor.TabIndex = 14;
+            textBoxSelectedColor.TextChanged += textBoxSelectedColor_TextChanged;
+            // 
+            // textBoxSelectedHeight
+            // 
+            textBoxSelectedHeight.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            textBoxSelectedHeight.BorderStyle = BorderStyle.FixedSingle;
+            textBoxSelectedHeight.Location = new Point(88, 274);
+            textBoxSelectedHeight.Name = "textBoxSelectedHeight";
+            textBoxSelectedHeight.Size = new Size(100, 23);
+            textBoxSelectedHeight.TabIndex = 13;
+            textBoxSelectedHeight.TextChanged += textBoxSelectedHeight_TextChanged;
+            // 
+            // textBoxSelectedWidth
+            // 
+            textBoxSelectedWidth.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            textBoxSelectedWidth.BorderStyle = BorderStyle.FixedSingle;
+            textBoxSelectedWidth.Location = new Point(88, 245);
+            textBoxSelectedWidth.Name = "textBoxSelectedWidth";
+            textBoxSelectedWidth.Size = new Size(100, 23);
+            textBoxSelectedWidth.TabIndex = 12;
+            textBoxSelectedWidth.TextChanged += textBoxSelectedWidth_TextChanged;
+            // 
+            // labelRectangles
+            // 
+            labelRectangles.AutoSize = true;
+            labelRectangles.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            labelRectangles.Location = new Point(8, 9);
+            labelRectangles.Name = "labelRectangles";
+            labelRectangles.Size = new Size(63, 13);
+            labelRectangles.TabIndex = 2;
+            labelRectangles.Text = "Rectangles";
+            // 
+            // rectangleBox
+            // 
+            rectangleBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            rectangleBox.BorderStyle = BorderStyle.FixedSingle;
+            rectangleBox.FormattingEnabled = true;
+            rectangleBox.ItemHeight = 15;
+            rectangleBox.Location = new Point(8, 25);
+            rectangleBox.Name = "rectangleBox";
+            rectangleBox.Size = new Size(275, 152);
+            rectangleBox.TabIndex = 1;
+            rectangleBox.SelectedIndexChanged += rectangleBox_SelectedIndexChanged;
             // 
             // MainForm
             // 
@@ -592,6 +822,10 @@
             groupBoxMovies.PerformLayout();
             groupBoxRectangles.ResumeLayout(false);
             groupBoxRectangles.PerformLayout();
+            tabPageRectangles.ResumeLayout(false);
+            tabPageRectangles.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxRemove).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAdd).EndInit();
             ResumeLayout(false);
         }
 
@@ -642,5 +876,22 @@
         private TextBox textBoxCenter;
         private Label labelID;
         private TextBox textBoxID;
+        private TabPage tabPageRectangles;
+        private Panel panelCanvas;
+        private Label labelSelectedID;
+        private TextBox textBoxSelectedID;
+        private Label labelSelectedCenter;
+        private TextBox textBoxSelectedCenter;
+        private Label labelSelectedColor;
+        private Label labelSelectedWidth;
+        private Label labelSelectedHeight;
+        private TextBox textBoxSelectedColor;
+        private TextBox textBoxSelectedHeight;
+        private TextBox textBoxSelectedWidth;
+        private Label labelRectangles;
+        private ListBox rectangleBox;
+        private Label label1;
+        private PictureBox pictureBoxAdd;
+        private PictureBox pictureBoxRemove;
     }
 }

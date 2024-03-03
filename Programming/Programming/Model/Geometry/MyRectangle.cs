@@ -1,4 +1,4 @@
-﻿namespace Programming.Model
+﻿namespace Programming.Model.Geometry
 {
     public class MyRectangle
     {
@@ -45,12 +45,12 @@
         {
             get { return _color; }
             set { _color = value; }
-        } 
+        }
 
         public Point2D Center
         {
             get { return _center; }
-            private set { _center = value; }
+            set { _center = value; }
         }
 
         public MyRectangle()
@@ -64,6 +64,11 @@
             Height = height;
             Color = color;
             Center = center;
+        }
+
+        public override string ToString()
+        {
+            return $"{_id}: (X={_center.X}; Y={_center.Y}; W={_width}; H={_height})";
         }
     }
 }

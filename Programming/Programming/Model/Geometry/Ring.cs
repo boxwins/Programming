@@ -1,4 +1,4 @@
-﻿namespace Programming.Model
+﻿namespace Programming.Model.Geometry
 {
     public class Ring
     {
@@ -38,7 +38,7 @@
         {
             get
             {
-                return (Math.PI * Math.Pow(_outerRadius, 2)) - (Math.PI * Math.Pow(_innerRadius, 2));
+                return Math.PI * Math.Pow(_outerRadius, 2) - Math.PI * Math.Pow(_innerRadius, 2);
             }
         }
 

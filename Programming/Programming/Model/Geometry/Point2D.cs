@@ -1,4 +1,4 @@
-﻿namespace Programming.Model
+﻿namespace Programming.Model.Geometry
 {
     public class Point2D
     {
@@ -23,6 +23,20 @@
         {
             X = x;
             Y = y;
+        }
+
+        public static bool TryParse(string str, out Point2D point)
+        {
+            point = Point2D.Empty;
+
+            string[] split = str.Split(',');
+            if (split.Length != 2) return false;
+
+            if (!int.TryParse(split[0].Replace("X:", string.Empty), out int x)) return false;
+            if (!int.TryParse(split[1].Replace("Y:", string.Empty), out int y)) return false;
+
+            point = new Point2D(x, y);
+            return true;
         }
 
         public override string ToString()
