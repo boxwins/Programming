@@ -66,6 +66,34 @@
             Center = center;
         }
 
+        public static MyRectangle GetRandomRentangle()
+        {
+            Random random = new Random();
+
+            int x = random.Next(0, 100);
+            int y = random.Next(0, 100);
+            int width = random.Next(10, 100);
+            int height = random.Next(10, 100);
+
+            return new MyRectangle(new Point2D(x, y), width, height, Color.White);
+        }
+
+        public static MyRectangle GetRandomAtBounds(Rectangle bounds, int border)
+        {
+            Random random = new Random();
+
+            int width = random.Next(20, 200);
+            int height = random.Next(20, 200);
+
+            int widthHalf = width / 2;
+            int heightHalf = height / 2;
+
+            int x = random.Next(border + widthHalf, bounds.Width - border * 2 - widthHalf);
+            int y = random.Next(border + heightHalf, bounds.Height - border * 2 - heightHalf);
+
+            return new MyRectangle(new Point2D(x, y), width, height, Color.White);
+        }
+
         public override string ToString()
         {
             return $"{_id}: (X={_center.X}; Y={_center.Y}; W={_width}; H={_height})";
