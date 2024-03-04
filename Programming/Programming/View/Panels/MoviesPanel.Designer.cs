@@ -51,7 +51,7 @@
             buttonFind.TabIndex = 29;
             buttonFind.Text = "Find";
             buttonFind.UseVisualStyleBackColor = true;
-            buttonFind.Click += buttonFind_Click;
+            buttonFind.Click += ButtonFind_Click;
             // 
             // labelMovieYear
             // 
@@ -80,7 +80,7 @@
             textBoxYear.Name = "textBoxYear";
             textBoxYear.Size = new Size(100, 23);
             textBoxYear.TabIndex = 26;
-            textBoxYear.TextChanged += textBoxYear_TextChanged;
+            textBoxYear.TextChanged += TextBoxYear_TextChanged;
             // 
             // textBoxDuration
             // 
@@ -89,7 +89,7 @@
             textBoxDuration.Name = "textBoxDuration";
             textBoxDuration.Size = new Size(100, 23);
             textBoxDuration.TabIndex = 25;
-            textBoxDuration.TextChanged += textBoxDuration_TextChanged;
+            textBoxDuration.TextChanged += TextBoxDuration_TextChanged;
             // 
             // labelMovieRating
             // 
@@ -128,7 +128,7 @@
             textBoxRating.Name = "textBoxRating";
             textBoxRating.Size = new Size(100, 23);
             textBoxRating.TabIndex = 21;
-            textBoxRating.TextChanged += textBoxRating_TextChanged;
+            textBoxRating.TextChanged += TextBoxRating_TextChanged;
             // 
             // textBoxGenre
             // 
@@ -137,7 +137,7 @@
             textBoxGenre.Name = "textBoxGenre";
             textBoxGenre.Size = new Size(100, 23);
             textBoxGenre.TabIndex = 20;
-            textBoxGenre.TextChanged += textBoxGenre_TextChanged;
+            textBoxGenre.TextChanged += TextBoxGenre_TextChanged;
             // 
             // textBoxName
             // 
@@ -146,7 +146,7 @@
             textBoxName.Name = "textBoxName";
             textBoxName.Size = new Size(100, 23);
             textBoxName.TabIndex = 19;
-            textBoxName.TextChanged += textBoxName_TextChanged;
+            textBoxName.TextChanged += TextBoxName_TextChanged;
             // 
             // listBoxMovies
             // 
@@ -157,7 +157,7 @@
             listBoxMovies.Name = "listBoxMovies";
             listBoxMovies.Size = new Size(120, 377);
             listBoxMovies.TabIndex = 18;
-            listBoxMovies.SelectedIndexChanged += listBoxMovies_SelectedIndexChanged;
+            listBoxMovies.SelectedIndexChanged += ListBoxMovies_SelectedIndexChanged;
             // 
             // MoviesPanel
             // 

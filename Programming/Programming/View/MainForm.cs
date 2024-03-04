@@ -2,6 +2,9 @@ using Programming.Model.Enums;
 
 namespace Programming
 {
+    /// <summary>
+    /// Главное окно программы.
+    /// </summary>
     public partial class MainForm : Form
     {
         public MainForm()
@@ -11,6 +14,9 @@ namespace Programming
             this.seasonParsingPanel.SeasonGoPressed += OnSeasonGoPressed;
         }
 
+        /// <summary>
+        /// Обработчик события SeasonGoPressed панели <see cref="seasonParsingPanel"/>.
+        /// </summary>
         private void OnSeasonGoPressed(Season season)
         {
             switch (season)

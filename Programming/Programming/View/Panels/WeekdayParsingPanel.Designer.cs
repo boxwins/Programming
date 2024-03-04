@@ -53,7 +53,7 @@
             buttonParse.TabIndex = 12;
             buttonParse.Text = "Parse";
             buttonParse.UseVisualStyleBackColor = true;
-            buttonParse.Click += buttonParse_Click;
+            buttonParse.Click += ButtonParse_Click;
             // 
             // textBoxParsing
             // 

@@ -87,7 +87,7 @@
             listBoxValues.Name = "listBoxValues";
             listBoxValues.Size = new Size(120, 152);
             listBoxValues.TabIndex = 7;
-            listBoxValues.SelectedIndexChanged += listBoxValues_SelectedIndexChanged;
+            listBoxValues.SelectedIndexChanged += ListBoxValues_SelectedIndexChanged;
             // 
             // listBoxEnums
             // 
@@ -98,7 +98,7 @@
             listBoxEnums.Name = "listBoxEnums";
             listBoxEnums.Size = new Size(120, 152);
             listBoxEnums.TabIndex = 6;
-            listBoxEnums.SelectedIndexChanged += listBoxEnums_SelectedIndexChanged;
+            listBoxEnums.SelectedIndexChanged += ListBoxEnums_SelectedIndexChanged;
             // 
             // EnumerationPanel
             // 

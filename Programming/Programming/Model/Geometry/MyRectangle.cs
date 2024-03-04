@@ -1,5 +1,8 @@
 ﻿namespace Programming.Model.Geometry
 {
+    /// <summary>
+    /// Прямоугольник.
+    /// </summary>
     public class MyRectangle
     {
         private static int _rectanglesCount = 0;
@@ -10,17 +13,26 @@
         private Color _color = Color.White;
         private Point2D _center = Point2D.Empty;
 
+        /// <summary>
+        /// [GET] Количество созданных экземпляров класса <see cref="MyRectangle"/>.
+        /// </summary>
         public static int RectanglesCount
         {
             get { return _rectanglesCount; }
         }
 
+        /// <summary>
+        /// [GET] Идентификатор прямоугольника.
+        /// </summary>
         public int ID
         {
             get { return _id; }
             private set { _id = value; }
         }
 
+        /// <summary>
+        /// [GET / SET] Ширина прямоугольника.
+        /// </summary>
         public int Width
         {
             get { return _width; }
@@ -31,6 +43,9 @@
             }
         }
 
+        /// <summary>
+        /// [GET / SET] Высота прямоугольника.
+        /// </summary>
         public int Height
         {
             get { return _height; }
@@ -41,12 +56,18 @@
             }
         }
 
+        /// <summary>
+        /// [GET / SET] Цвет прямоугольника.
+        /// </summary>
         public Color Color
         {
             get { return _color; }
             set { _color = value; }
         }
 
+        /// <summary>
+        /// [GET / SET] Центр прямоугольника.
+        /// </summary>
         public Point2D Center
         {
             get { return _center; }
@@ -58,6 +79,10 @@
             ID = _rectanglesCount++;
         }
 
+        /// <param name="center"><see cref="Center"/>.</param>
+        /// <param name="width"><see cref="Width"/>.</param>
+        /// <param name="height"><see cref="Height"/>.</param>
+        /// <param name="color"><see cref="Color"/>.</param>
         public MyRectangle(Point2D center, int width, int height, Color color) : this()
         {
             Width = width;
@@ -66,6 +91,10 @@
             Center = center;
         }
 
+        /// <summary>
+        /// Создает случайный прямоугольник.
+        /// </summary>
+        /// <returns>Прямоугольник со случайным размером и центром.</returns>
         public static MyRectangle GetRandomRentangle()
         {
             Random random = new Random();
@@ -78,6 +107,12 @@
             return new MyRectangle(new Point2D(x, y), width, height, Color.White);
         }
 
+        /// <summary>
+        /// Создает случайный прямоугольник в указанном пределе, с указанным минимальным отступом от края.
+        /// </summary>
+        /// <param name="bounds">Область создания прямоугольника.</param>
+        /// <param name="border">Минимальный отступ от края.</param>
+        /// <returns>Прямоугольник со случайным размером и центром, внутри указанной области.</returns>
         public static MyRectangle GetRandomAtBounds(Rectangle bounds, int border)
         {
             Random random = new Random();

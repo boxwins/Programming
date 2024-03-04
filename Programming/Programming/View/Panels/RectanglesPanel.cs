@@ -2,6 +2,9 @@
 
 namespace Programming.View.Panels
 {
+    /// <summary>
+    /// Панель прямоугольников.
+    /// </summary>
     public partial class RectanglesPanel : UserControl
     {
         private MyRectangle[] _rectangles = null;
@@ -16,6 +19,11 @@ namespace Programming.View.Panels
             this.listBoxRectangles.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Создает массив прямоугольников указанного размера.
+        /// </summary>
+        /// <param name="count">Количество прямоугольников в массиве.</param>
+        /// <returns>Массив прямоугольников.</returns>
         private MyRectangle[] GetRectangles(int count)
         {
             MyRectangle[] result = new MyRectangle[count];
@@ -26,6 +34,10 @@ namespace Programming.View.Panels
             return result;
         }
 
+        /// <summary>
+        /// Обновляет элемент <see cref="listBoxRectangles"/> заполняя его указанным количеством прямоугольников.
+        /// </summary>
+        /// <param name="count">Количество прямоугольников.</param>
         private void UpdateListBoxRectangles(int count)
         {
             this.listBoxRectangles.Items.Clear();
@@ -36,7 +48,10 @@ namespace Programming.View.Panels
             }
         }
 
-        private void listBoxRectangles_SelectedIndexChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Обработчик события SelectedIndexChanged элемента <see cref="listBoxRectangles"/>.
+        /// </summary>
+        private void ListBoxRectangles_SelectedIndexChanged(object sender, EventArgs e)
         {
             _currentRectangle = _rectangles[listBoxRectangles.SelectedIndex];
 
@@ -47,7 +62,10 @@ namespace Programming.View.Panels
             textBoxID.Text = _currentRectangle.ID.ToString();
         }
 
-        private void textBoxWidth_TextChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Обработчик события TextChanged элемента <see cref="textBoxWidth"/>.
+        /// </summary>
+        private void TextBoxWidth_TextChanged(object sender, EventArgs e)
         {
             if (_currentRectangle == null) return;
             try
@@ -61,7 +79,10 @@ namespace Programming.View.Panels
             }
         }
 
-        private void textBoxHeight_TextChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Обработчик события TextChanged элемента <see cref="textBoxHeight"/>.
+        /// </summary>
+        private void TextBoxHeight_TextChanged(object sender, EventArgs e)
         {
             if (_currentRectangle == null) return;
             try
@@ -75,7 +96,10 @@ namespace Programming.View.Panels
             }
         }
 
-        private void textBoxColor_TextChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Обработчик события TextChanged элемента <see cref="textBoxColor"/>.
+        /// </summary>
+        private void TextBoxColor_TextChanged(object sender, EventArgs e)
         {
             if (_currentRectangle == null) return;
             Color value = Color.FromName(textBoxColor.Text);
@@ -88,11 +112,20 @@ namespace Programming.View.Panels
             }
         }
 
-        private void buttonRectFind_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Обработчик события Click<see cref="buttonRectFind"/>.
+        /// </summary>
+        private void ButtonRectFind_Click(object sender, EventArgs e)
         {
             this.listBoxRectangles.SelectedIndex = FindMaxWidthIndex(_rectangles);
         }
 
+        /// <summary>
+        /// Находит прямоугольник с максимальной шириной в переданном массиве.
+        /// </summary>
+        /// <param name="rectangles">Массив прямоугольников.</param>
+        /// <returns>Индекс прямоугольника с максимальной шириной.</returns>
+        /// <exception cref="ArgumentException"></exception>
         private int FindMaxWidthIndex(MyRectangle[] rectangles)
         {
             if (rectangles == null && rectangles.Length < 1) throw new ArgumentException("rectangles");

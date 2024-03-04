@@ -2,6 +2,9 @@
 
 namespace Programming.View.Panels
 {
+    /// <summary>
+    /// Панель перечислений.
+    /// </summary>
     public partial class EnumerationPanel : UserControl
     {
         private static Type[] _enums = new Type[]
@@ -21,7 +24,10 @@ namespace Programming.View.Panels
             this.listBoxEnums.SelectedIndex = 0;
         }
 
-        private void listBoxEnums_SelectedIndexChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Обработчик события SelectedIndexChanged элемента <see cref="listBoxEnums"/>.
+        /// </summary>
+        private void ListBoxEnums_SelectedIndexChanged(object sender, EventArgs e)
         {
             Type selected = _enums[this.listBoxEnums.SelectedIndex];
 
@@ -29,7 +35,10 @@ namespace Programming.View.Panels
             this.listBoxValues.Items.AddRange(Enum.GetValues(selected).Cast<object>().ToArray());
         }
 
-        private void listBoxValues_SelectedIndexChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Обработчик события SelectedIndexChanged элемента <see cref="listBoxValues"/>.
+        /// </summary>
+        private void ListBoxValues_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.textBoxValue.Text = ((int)this.listBoxValues.SelectedItem).ToString();
         }

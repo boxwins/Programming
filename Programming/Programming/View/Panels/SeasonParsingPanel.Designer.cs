@@ -60,7 +60,7 @@
             buttonGo.TabIndex = 12;
             buttonGo.Text = "Go!";
             buttonGo.UseVisualStyleBackColor = true;
-            buttonGo.Click += buttonGo_Click;
+            buttonGo.Click += ButtonGo_Click;
             // 
             // SeasonParsingPanel
             // 

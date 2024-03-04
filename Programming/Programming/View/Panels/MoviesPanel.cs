@@ -2,6 +2,9 @@
 
 namespace Programming.View.Panels
 {
+    /// <summary>
+    /// Панель фильмов.
+    /// </summary>
     public partial class MoviesPanel : UserControl
     {
         private Movie[] _movies = null;
@@ -16,6 +19,11 @@ namespace Programming.View.Panels
             this.listBoxMovies.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Создает массив фильмов указанного размера.
+        /// </summary>
+        /// <param name="count">Количество фильмов в массиве.</param>
+        /// <returns>Массив фильмов.</returns>
         private Movie[] GetMovies(int count)
         {
             Random random = new Random();
@@ -38,6 +46,10 @@ namespace Programming.View.Panels
             return result;
         }
 
+        /// <summary>
+        /// Обновляет элемент <see cref="listBoxMovies"/> заполняя его указанным количеством фильмов.
+        /// </summary>
+        /// <param name="count">Количество фильмов.</param>
         private void UpdateMovieBox(int count)
         {
             this.listBoxMovies.Items.Clear();
@@ -48,7 +60,10 @@ namespace Programming.View.Panels
             }
         }
 
-        private void listBoxMovies_SelectedIndexChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Обработчик события SelectedIndexChanged элемента <see cref="listBoxMovies"/>.
+        /// </summary>
+        private void ListBoxMovies_SelectedIndexChanged(object sender, EventArgs e)
         {
             _currentMovie = _movies[listBoxMovies.SelectedIndex];
 
@@ -59,19 +74,28 @@ namespace Programming.View.Panels
             textBoxYear.Text = _currentMovie.ReleaseYear.ToString();
         }
 
-        private void textBoxName_TextChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Обработчик события TextChanged элемента <see cref="textBoxName"/>.
+        /// </summary>
+        private void TextBoxName_TextChanged(object sender, EventArgs e)
         {
             if (_currentMovie == null) return;
             _currentMovie.Name = textBoxName.Text;
         }
 
-        private void textBoxGenre_TextChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Обработчик события TextChanged элемента <see cref="textBoxGenre"/>.
+        /// </summary>
+        private void TextBoxGenre_TextChanged(object sender, EventArgs e)
         {
             if (_currentMovie == null) return;
             _currentMovie.Genre = textBoxGenre.Text;
         }
 
-        private void textBoxRating_TextChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Обработчик события TextChanged элемента <see cref="textBoxRating"/>.
+        /// </summary>
+        private void TextBoxRating_TextChanged(object sender, EventArgs e)
         {
             if (_currentMovie == null) return;
             try
@@ -85,7 +109,10 @@ namespace Programming.View.Panels
             }
         }
 
-        private void textBoxDuration_TextChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Обработчик события TextChanged элемента <see cref="textBoxDuration"/>.
+        /// </summary>
+        private void TextBoxDuration_TextChanged(object sender, EventArgs e)
         {
             if (_currentMovie == null) return;
             try
@@ -99,7 +126,10 @@ namespace Programming.View.Panels
             }
         }
 
-        private void textBoxYear_TextChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Обработчик события TextChanged элемента <see cref="textBoxYear"/>.
+        /// </summary>
+        private void TextBoxYear_TextChanged(object sender, EventArgs e)
         {
             if (_currentMovie == null) return;
             try
@@ -113,11 +143,20 @@ namespace Programming.View.Panels
             }
         }
 
-        private void buttonFind_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Обработчик события Click элемента <see cref="buttonFind"/>.
+        /// </summary>
+        private void ButtonFind_Click(object sender, EventArgs e)
         {
             this.listBoxMovies.SelectedIndex = FindMaxRatingIndex(_movies);
         }
 
+        /// <summary>
+        /// Находит фильм с максимальным рейтингом в переданном массиве.
+        /// </summary>
+        /// <param name="movies">Массив фильмов.</param>
+        /// <returns>Индекс фильма с максимальным рейтингом.</returns>
+        /// <exception cref="ArgumentException"></exception>
         private int FindMaxRatingIndex(Movie[] movies)
         {
             if (movies == null && movies.Length < 1) throw new ArgumentException("movies");

@@ -1,7 +1,16 @@
 ﻿namespace Programming.Model.Geometry
 {
+    /// <summary>
+    /// Вспомогательный класс для работы с коллизией.
+    /// </summary>
     public static class CollisionManager
     {
+        /// <summary>
+        /// Определяет пересекаются ли два прямоугольника.
+        /// </summary>
+        /// <param name="rectangle1">Первый прямоугольник.</param>
+        /// <param name="rectangle2">Второй прямоугольник.</param>
+        /// <returns>В случае пересечения <see langword="true"/>, иначе <see langword="false"/>.</returns>
         public static bool IsCollision(MyRectangle rectangle1, MyRectangle rectangle2)
         {
             Point2D region = new Point2D(
@@ -16,6 +25,12 @@
             return region.X < minRegion.X && region.Y < minRegion.Y;
         }
 
+        /// <summary>
+        /// Определяет пересекаются ли два кольца.
+        /// </summary>
+        /// <param name="ring1">Первое кольцо.</param>
+        /// <param name="ring2">Второе кольцо.</param>
+        /// <returns>В случае пересечения <see langword="true"/>, иначе <see langword="false"/>.</returns>
         public static bool IsCollision(Ring ring1, Ring ring2)
         {
             Point2D region = new Point2D(

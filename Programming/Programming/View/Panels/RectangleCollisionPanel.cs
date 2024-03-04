@@ -4,6 +4,9 @@ using System.Diagnostics;
 
 namespace Programming.View.Panels
 {
+    /// <summary>
+    /// Панель определяющая пересечение прямоугольников.
+    /// </summary>
     public partial class RectangleCollisionPanel : UserControl
     {
         private MyRectangle _selectedRectangle = null;
@@ -15,7 +18,10 @@ namespace Programming.View.Panels
             InitializeComponent();
         }
 
-        private void pictureBoxAdd_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Обработчик нажатия кнопки <see cref="pictureBoxAdd"/>.
+        /// </summary>
+        private void PictureBoxAdd_Click(object sender, EventArgs e)
         {
             MyRectangle rectangle = MyRectangle.GetRandomAtBounds(panelCanvas.Bounds, 15);
 
@@ -38,7 +44,10 @@ namespace Programming.View.Panels
             CollisionOnAdd(_rectangleList.Count - 1);
         }
 
-        private void pictureBoxRemove_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Обработчик события Click кнопки <see cref="pictureBoxRemove"/>.
+        /// </summary>
+        private void PictureBoxRemove_Click(object sender, EventArgs e)
         {
             int index = rectangleBox.SelectedIndex;
             if (index < 0) return;
@@ -52,7 +61,10 @@ namespace Programming.View.Panels
             rectangleBox.Items.RemoveAt(index);
         }
 
-        private void rectangleBox_SelectedIndexChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Обработчик события SelectedIndexChanged элемента <see cref="rectangleBox"/>.
+        /// </summary>
+        private void RectangleBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (rectangleBox.SelectedIndex < 0)
             {
@@ -78,7 +90,10 @@ namespace Programming.View.Panels
             HighlightAsync(_renctanglePanels[rectangleBox.SelectedIndex].Bounds, 500);
         }
 
-        private void textBoxSelectedWidth_TextChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Обработчик события TextChanged элемента <see cref="textBoxSelectedWidth"/>.
+        /// </summary>
+        private void TextBoxSelectedWidth_TextChanged(object sender, EventArgs e)
         {
             if (_selectedRectangle == null) return;
             try
@@ -102,7 +117,10 @@ namespace Programming.View.Panels
             }
         }
 
-        private void textBoxSelectedHeight_TextChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Обработчик события TextChanged элемента <see cref="textBoxSelectedHeight"/>.
+        /// </summary>
+        private void TextBoxSelectedHeight_TextChanged(object sender, EventArgs e)
         {
             if (_selectedRectangle == null) return;
             try
@@ -126,7 +144,10 @@ namespace Programming.View.Panels
             }
         }
 
-        private void textBoxSelectedColor_TextChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Обработчик события TextChanged элемента <see cref="textBoxSelectedColor"/>.
+        /// </summary>
+        private void TextBoxSelectedColor_TextChanged(object sender, EventArgs e)
         {
             if (_selectedRectangle == null) return;
             Color value = Color.FromName(textBoxSelectedColor.Text);
@@ -139,7 +160,10 @@ namespace Programming.View.Panels
             }
         }
 
-        private void textBoxSelectedCenter_TextChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Обработчик события TextChanged элемента <see cref="textBoxSelectedCenter"/>.
+        /// </summary>
+        private void TextBoxSelectedCenter_TextChanged(object sender, EventArgs e)
         {
             if (_selectedRectangle == null) return;
             if (Point2D.TryParse(textBoxSelectedCenter.Text, out Point2D point))
@@ -162,6 +186,11 @@ namespace Programming.View.Panels
             else textBoxSelectedCenter.BackColor = AppColors.ErrorColor;
         }
 
+        /// <summary>
+        /// Находит прямоугольники пересекающиеся с указанным прямоугольником.
+        /// </summary>
+        /// <param name="index">Индекс прямоугольника из списка <see cref="_rectangleList"/> для которого нужно найти пересечения.</param>
+        /// <returns>Массив индексов прямоугольников из списка <see cref="_rectangleList"/> которые пересекаются с указанным прямоугольником.</returns>
         private int[] GetIntersections(int index)
         {
             List<int> intersections = new List<int>();
@@ -177,6 +206,10 @@ namespace Programming.View.Panels
             return intersections.ToArray();
         }
 
+        /// <summary>
+        /// Обновляет коллизию прямоугольников после добавления указанного прямоугольника.
+        /// </summary>
+        /// <param name="index">Индекс прямоугольника из списка <see cref="_rectangleList"/> который был добавлен.</param>
         private void CollisionOnAdd(int index)
         {
             int[] intersections = GetIntersections(index);
@@ -186,6 +219,10 @@ namespace Programming.View.Panels
             if (intersections.Length > 0) _renctanglePanels[index].BackColor = AppColors.IntersectionColor;
         }
 
+        /// <summary>
+        /// Обновляет коллизию прямоугольников перед удалением указанного прямоугольника.
+        /// </summary>
+        /// <param name="index">Индекс прямоугольника из списка <see cref="_rectangleList"/> который будет удален.</param>
         private void CollisionOnRemove(int index)
         {
             int[] intersections = GetIntersections(index);
@@ -202,48 +239,77 @@ namespace Programming.View.Panels
 
         #region ButtonEvents
 
-        private void pictureBoxAdd_MouseEnter(object sender, EventArgs e)
+        /// <summary>
+        /// Обработчик события MouseEnter элемента <see cref="pictureBoxAdd"/>.
+        /// </summary>
+        private void PictureBoxAdd_MouseEnter(object sender, EventArgs e)
         {
             pictureBoxAdd.Image = Resources.add_hovered;
         }
 
-        private void pictureBoxAdd_MouseLeave(object sender, EventArgs e)
+        /// <summary>
+        /// Обработчик события MouseLeave элемента <see cref="pictureBoxAdd"/>.
+        /// </summary>
+        private void PictureBoxAdd_MouseLeave(object sender, EventArgs e)
         {
             pictureBoxAdd.Image = Resources.add_normal;
         }
 
-        private void pictureBoxAdd_MouseDown(object sender, MouseEventArgs e)
+        /// <summary>
+        /// Обработчик события MouseDown элемента <see cref="pictureBoxAdd"/>.
+        /// </summary>
+        private void PictureBoxAdd_MouseDown(object sender, MouseEventArgs e)
         {
             pictureBoxAdd.Image = Resources.add_pressed;
         }
 
-        private void pictureBoxAdd_MouseUp(object sender, MouseEventArgs e)
+        /// <summary>
+        /// Обработчик события MouseUp элемента <see cref="pictureBoxAdd"/>.
+        /// </summary>
+        private void PictureBoxAdd_MouseUp(object sender, MouseEventArgs e)
         {
             pictureBoxAdd.Image = Resources.add_hovered;
         }
 
-        private void pictureBoxRemove_MouseEnter(object sender, EventArgs e)
+        /// <summary>
+        /// Обработчик события MouseEnter элемента <see cref="pictureBoxRemove"/>.
+        /// </summary>
+        private void PictureBoxRemove_MouseEnter(object sender, EventArgs e)
         {
             pictureBoxRemove.Image = Resources.remove_hovered;
         }
 
-        private void pictureBoxRemove_MouseLeave(object sender, EventArgs e)
+        /// <summary>
+        /// Обработчик события MouseLeave элемента <see cref="pictureBoxRemove"/>.
+        /// </summary>
+        private void PictureBoxRemove_MouseLeave(object sender, EventArgs e)
         {
             pictureBoxRemove.Image = Resources.remove_normal;
         }
 
-        private void pictureBoxRemove_MouseDown(object sender, MouseEventArgs e)
+        /// <summary>
+        /// Обработчик события MouseDown элемента <see cref="pictureBoxRemove"/>.
+        /// </summary>
+        private void PictureBoxRemove_MouseDown(object sender, MouseEventArgs e)
         {
             pictureBoxRemove.Image = Resources.remove_pressed;
         }
 
-        private void pictureBoxRemove_MouseUp(object sender, MouseEventArgs e)
+        /// <summary>
+        /// Обработчик события MouseUp элемента <see cref="pictureBoxRemove"/>.
+        /// </summary>
+        private void PictureBoxRemove_MouseUp(object sender, MouseEventArgs e)
         {
             pictureBoxRemove.Image = Resources.remove_hovered;
         }
 
         #endregion
 
+        /// <summary>
+        /// Подсвечивает область на панели <see cref="panelCanvas"> за указанное время.
+        /// </summary>
+        /// <param name="area">Область панели которую необходимо подсветить.</param>
+        /// <param name="time">Время подсвечивания в миллисекундах.</param>
         private async void HighlightAsync(Rectangle area, int time)
         {
             await Task.Run(() =>

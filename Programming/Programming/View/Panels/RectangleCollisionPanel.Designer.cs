@@ -59,11 +59,11 @@
             pictureBoxRemove.SizeMode = PictureBoxSizeMode.AutoSize;
             pictureBoxRemove.TabIndex = 43;
             pictureBoxRemove.TabStop = false;
-            pictureBoxRemove.Click += pictureBoxRemove_Click;
-            pictureBoxRemove.MouseDown += pictureBoxRemove_MouseDown;
-            pictureBoxRemove.MouseEnter += pictureBoxRemove_MouseEnter;
-            pictureBoxRemove.MouseLeave += pictureBoxRemove_MouseLeave;
-            pictureBoxRemove.MouseUp += pictureBoxRemove_MouseUp;
+            pictureBoxRemove.Click += PictureBoxRemove_Click;
+            pictureBoxRemove.MouseDown += PictureBoxRemove_MouseDown;
+            pictureBoxRemove.MouseEnter += PictureBoxRemove_MouseEnter;
+            pictureBoxRemove.MouseLeave += PictureBoxRemove_MouseLeave;
+            pictureBoxRemove.MouseUp += PictureBoxRemove_MouseUp;
             // 
             // pictureBoxAdd
             // 
@@ -77,11 +77,11 @@
             pictureBoxAdd.SizeMode = PictureBoxSizeMode.AutoSize;
             pictureBoxAdd.TabIndex = 42;
             pictureBoxAdd.TabStop = false;
-            pictureBoxAdd.Click += pictureBoxAdd_Click;
-            pictureBoxAdd.MouseDown += pictureBoxAdd_MouseDown;
-            pictureBoxAdd.MouseEnter += pictureBoxAdd_MouseEnter;
-            pictureBoxAdd.MouseLeave += pictureBoxAdd_MouseLeave;
-            pictureBoxAdd.MouseUp += pictureBoxAdd_MouseUp;
+            pictureBoxAdd.Click += PictureBoxAdd_Click;
+            pictureBoxAdd.MouseDown += PictureBoxAdd_MouseDown;
+            pictureBoxAdd.MouseEnter += PictureBoxAdd_MouseEnter;
+            pictureBoxAdd.MouseLeave += PictureBoxAdd_MouseLeave;
+            pictureBoxAdd.MouseUp += PictureBoxAdd_MouseUp;
             // 
             // label1
             // 
@@ -146,7 +146,7 @@
             textBoxSelectedCenter.Name = "textBoxSelectedCenter";
             textBoxSelectedCenter.Size = new Size(100, 23);
             textBoxSelectedCenter.TabIndex = 36;
-            textBoxSelectedCenter.TextChanged += textBoxSelectedCenter_TextChanged;
+            textBoxSelectedCenter.TextChanged += TextBoxSelectedCenter_TextChanged;
             // 
             // labelSelectedColor
             // 
@@ -189,7 +189,7 @@
             textBoxSelectedColor.Name = "textBoxSelectedColor";
             textBoxSelectedColor.Size = new Size(100, 23);
             textBoxSelectedColor.TabIndex = 32;
-            textBoxSelectedColor.TextChanged += textBoxSelectedColor_TextChanged;
+            textBoxSelectedColor.TextChanged += TextBoxSelectedColor_TextChanged;
             // 
             // textBoxSelectedHeight
             // 
@@ -199,7 +199,7 @@
             textBoxSelectedHeight.Name = "textBoxSelectedHeight";
             textBoxSelectedHeight.Size = new Size(100, 23);
             textBoxSelectedHeight.TabIndex = 31;
-            textBoxSelectedHeight.TextChanged += textBoxSelectedHeight_TextChanged;
+            textBoxSelectedHeight.TextChanged += TextBoxSelectedHeight_TextChanged;
             // 
             // textBoxSelectedWidth
             // 
@@ -209,7 +209,7 @@
             textBoxSelectedWidth.Name = "textBoxSelectedWidth";
             textBoxSelectedWidth.Size = new Size(100, 23);
             textBoxSelectedWidth.TabIndex = 30;
-            textBoxSelectedWidth.TextChanged += textBoxSelectedWidth_TextChanged;
+            textBoxSelectedWidth.TextChanged += TextBoxSelectedWidth_TextChanged;
             // 
             // labelRectangles
             // 
@@ -231,7 +231,7 @@
             rectangleBox.Name = "rectangleBox";
             rectangleBox.Size = new Size(275, 197);
             rectangleBox.TabIndex = 28;
-            rectangleBox.SelectedIndexChanged += rectangleBox_SelectedIndexChanged;
+            rectangleBox.SelectedIndexChanged += RectangleBox_SelectedIndexChanged;
             // 
             // RectangleCollisionPanel
             // 

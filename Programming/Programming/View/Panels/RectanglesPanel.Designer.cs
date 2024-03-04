@@ -81,7 +81,7 @@
             textBoxCenter.ReadOnly = true;
             textBoxCenter.Size = new Size(100, 23);
             textBoxCenter.TabIndex = 20;
-            textBoxCenter.TextChanged += textBoxColor_TextChanged;
+            textBoxCenter.TextChanged += TextBoxColor_TextChanged;
             // 
             // buttonRectFind
             // 
@@ -92,7 +92,7 @@
             buttonRectFind.TabIndex = 19;
             buttonRectFind.Text = "Find";
             buttonRectFind.UseVisualStyleBackColor = true;
-            buttonRectFind.Click += buttonRectFind_Click;
+            buttonRectFind.Click += ButtonRectFind_Click;
             // 
             // labelRectColor
             // 
@@ -131,7 +131,7 @@
             textBoxColor.Name = "textBoxColor";
             textBoxColor.Size = new Size(100, 23);
             textBoxColor.TabIndex = 15;
-            textBoxColor.TextChanged += textBoxColor_TextChanged;
+            textBoxColor.TextChanged += TextBoxColor_TextChanged;
             // 
             // textBoxHeight
             // 
@@ -140,7 +140,7 @@
             textBoxHeight.Name = "textBoxHeight";
             textBoxHeight.Size = new Size(100, 23);
             textBoxHeight.TabIndex = 14;
-            textBoxHeight.TextChanged += textBoxHeight_TextChanged;
+            textBoxHeight.TextChanged += TextBoxHeight_TextChanged;
             // 
             // textBoxWidth
             // 
@@ -149,7 +149,7 @@
             textBoxWidth.Name = "textBoxWidth";
             textBoxWidth.Size = new Size(100, 23);
             textBoxWidth.TabIndex = 13;
-            textBoxWidth.TextChanged += textBoxWidth_TextChanged;
+            textBoxWidth.TextChanged += TextBoxWidth_TextChanged;
             // 
             // listBoxRectangles
             // 
@@ -160,7 +160,7 @@
             listBoxRectangles.Name = "listBoxRectangles";
             listBoxRectangles.Size = new Size(120, 377);
             listBoxRectangles.TabIndex = 12;
-            listBoxRectangles.SelectedIndexChanged += listBoxRectangles_SelectedIndexChanged;
+            listBoxRectangles.SelectedIndexChanged += ListBoxRectangles_SelectedIndexChanged;
             // 
             // RectanglesPanel
             // 
