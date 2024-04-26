@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DOCUMENT Type="Advanced Installer" CreateVersion="21.6.1" version="21.6.1" Modules="simple" RootPath="." Language="en" Id="{62F5A419-45BB-4042-BEFF-51D3CB9AC06D}">
+<DOCUMENT Type="Advanced Installer" CreateVersion="21.6.1" version="21.6.1" Modules="simple" RootPath="." Language="en" Id="{633EC909-4086-4695-807F-29E13A4F9641}">
   <COMPONENT cid="caphyon.advinst.msicomp.ProjectOptionsComponent">
     <ROW Name="HiddenItems" Value="AppXProductDetailsComponent;AppXDependenciesComponent;AppXAppDetailsComponent;AppXVisualAssetsComponent;AppXCapabilitiesComponent;AppXAppDeclarationsComponent;AppXUriRulesComponent;FixupComponent;MsiXDiffComponent;MsixManifestEditorComponent"/>
   </COMPONENT>
@@ -17,14 +17,13 @@
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Lab8.runtimeconfig.json" Value="Lab8.runtimeconfig.json"/>
     <ROW Property="ALLUSERS" Value="1"/>
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
-    <ROW Property="ARPPRODUCTICON" Value="song_art.exe" Type="8"/>
     <ROW Property="Manufacturer" Value="Your Company"/>
-    <ROW Property="ProductCode" Value="1033:{448479CC-3B4C-4FFB-AB52-4E6507985205} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{B72CD340-F76E-4B32-A8BA-1E8FFEE0C22A} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Song Database"/>
     <ROW Property="ProductVersion" Value="1.0.0" Options="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
-    <ROW Property="UpgradeCode" Value="{DE76C72F-D033-4D3B-AF43-13DDBB59D6AA}"/>
+    <ROW Property="UpgradeCode" Value="{7688144C-12E2-41F8-BDB4-FACE59A1004C}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
     <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
     <ROW Property="WindowsTypeNT40" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
@@ -45,15 +44,15 @@
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.SideBySideGuidComponent">
-    <ROW Component="APPDIR" Value="{186F5EBF-96FA-4ED9-B0A2-FB6011F884ED}"/>
-    <ROW Component="ProductInformation" Value="{20722ABE-DF0E-4A56-BF2A-2B4BA522231B}"/>
+    <ROW Component="APPDIR" Value="{A32F3718-465E-4306-8684-B05419492AC3}"/>
+    <ROW Component="ProductInformation" Value="{FB6DE498-B4E2-460C-A509-BF4552DE5778}"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="APPDIR" ComponentId="{186F5EBF-96FA-4ED9-B0A2-FB6011F884ED}" Directory_="APPDIR" Attributes="0"/>
-    <ROW Component="Lab8_PrimaryOutput" ComponentId="{DA598A24-E46D-48EE-8580-2CCF636A4579}" Directory_="Lab8_Dir" Attributes="0" KeyPath="Lab8.dll"/>
-    <ROW Component="Lab8_PublishOutput" ComponentId="{4C884C62-061D-4FEA-9C5F-2810AE4F8CB0}" Directory_="Lab8_Dir" Attributes="0" KeyPath="Lab8.exe"/>
-    <ROW Component="ProductInformation" ComponentId="{20722ABE-DF0E-4A56-BF2A-2B4BA522231B}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
-    <ROW Component="SongDatabase" ComponentId="{20468B88-C5B6-4301-9F93-84258001C9EC}" Directory_="SongDatabase_Dir" Attributes="0"/>
+    <ROW Component="APPDIR" ComponentId="{A32F3718-465E-4306-8684-B05419492AC3}" Directory_="APPDIR" Attributes="0"/>
+    <ROW Component="Lab8_PrimaryOutput" ComponentId="{615CC101-0A12-4DA8-AF84-964EBC5CDE2C}" Directory_="Lab8_Dir" Attributes="0" KeyPath="Lab8.dll"/>
+    <ROW Component="Lab8_PublishOutput" ComponentId="{7C9E239F-A323-4458-B16E-146208F9BA75}" Directory_="Lab8_Dir" Attributes="0" KeyPath="Lab8.exe"/>
+    <ROW Component="ProductInformation" ComponentId="{FB6DE498-B4E2-460C-A509-BF4552DE5778}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
+    <ROW Component="SongDatabase" ComponentId="{BF392DFF-C64A-4435-B6DB-0DA8C0E465BA}" Directory_="SongDatabase_Dir" Attributes="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
     <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0"/>
@@ -152,7 +151,7 @@
     <ROW Feature_="MainFeature" Component_="SongDatabase"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
-    <ROW Name="song_art.exe" SourcePath="..\..\..\song_art.ico" Index="0"/>
+    <ROW Name="AI_PROPPATH_FILENAME_PERBUILD_Lab8.exe" SourcePath="..\..\..\song_art.ico" Index="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
@@ -184,10 +183,10 @@
     <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
-    <ROW Shortcut="SongDatabase" Directory_="DesktopFolder" Name="SONGDA~1|Song Database" Component_="Lab8_PublishOutput" Target="[#Lab8.exe]" Hotkey="0" Icon_="song_art.exe" IconIndex="0" ShowCmd="1" WkDir="Lab8_Dir"/>
-    <ROW Shortcut="SongDatabase_1" Directory_="SongDatabase_Dir" Name="SONGDA~1|Song Database" Component_="Lab8_PublishOutput" Target="[#Lab8.exe]" Hotkey="0" Icon_="song_art.exe" IconIndex="0" ShowCmd="1" WkDir="Lab8_Dir"/>
-    <ROW Shortcut="UninstallSongDatabase" Directory_="Lab8_Dir" Name="UNINST~1|Uninstall Song Database" Component_="Lab8_PublishOutput" Target="[SystemFolder]msiexec.exe" Arguments="/x [ProductCode]" Hotkey="0" Icon_="song_art.exe" IconIndex="0" ShowCmd="1"/>
-    <ROW Shortcut="UninstallSongDatabase_1" Directory_="SongDatabase_Dir" Name="UNINST~1|Uninstall Song Database" Component_="ProductInformation" Target="[SystemFolder]msiexec.exe" Arguments="/x [ProductCode]" Hotkey="0" Icon_="song_art.exe" IconIndex="0" ShowCmd="1"/>
+    <ROW Shortcut="SongDatabase" Directory_="DesktopFolder" Name="SONGDA~1|Song Database" Component_="Lab8_PublishOutput" Target="[#Lab8.exe]" Hotkey="0" Icon_="AI_PROPPATH_FILENAME_PERBUILD_Lab8.exe" IconIndex="0" ShowCmd="1" WkDir="Lab8_Dir"/>
+    <ROW Shortcut="SongDatabase_1" Directory_="SongDatabase_Dir" Name="SONGDA~1|Song Database" Component_="Lab8_PublishOutput" Target="[#Lab8.exe]" Hotkey="0" Icon_="AI_PROPPATH_FILENAME_PERBUILD_Lab8.exe" IconIndex="0" ShowCmd="1" WkDir="Lab8_Dir"/>
+    <ROW Shortcut="UninstallSongDatabase" Directory_="Lab8_Dir" Name="UNINST~1|Uninstall Song Database" Component_="Lab8_PublishOutput" Target="[SystemFolder]msiexec.exe" Arguments="/x [ProductCode]" Hotkey="0" Icon_="AI_PROPPATH_FILENAME_PERBUILD_Lab8.exe" IconIndex="0" ShowCmd="1"/>
+    <ROW Shortcut="UninstallSongDatabase_1" Directory_="SongDatabase_Dir" Name="UNINST~1|Uninstall Song Database" Component_="ProductInformation" Target="[SystemFolder]msiexec.exe" Arguments="/x [ProductCode]" Hotkey="0" Icon_="AI_PROPPATH_FILENAME_PERBUILD_Lab8.exe" IconIndex="0" ShowCmd="1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="classic"/>

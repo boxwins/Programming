@@ -9,6 +9,7 @@
         private string _artist = "Artist";
         private int _duration = 0;
         private Genre _genre = Genre.None;
+        private string _imagePath = string.Empty;
 
         /// <summary>
         /// [GET / SET] Название песни.
@@ -56,6 +57,15 @@
         {
             get { return _genre; }
             set { _genre = value; }
+        }
+
+        /// <summary>
+        /// [GET / SET] Изображение.
+        /// </summary>
+        public string ImagePath
+        {
+            get { return _imagePath; }
+            set { _imagePath = value; }
         }
     }
 }

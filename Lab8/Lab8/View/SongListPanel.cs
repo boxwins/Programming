@@ -1,5 +1,7 @@
 ﻿using Lab8.Model;
+using System.Collections.Specialized;
 using System.Text.Json;
+using System.Windows.Forms;
 
 namespace Lab8.View
 {
@@ -80,6 +82,7 @@ namespace Lab8.View
                 textBoxName.Text = string.Empty;
                 textBoxArtist.Text = string.Empty;
                 textBoxDuration.Text = string.Empty;
+                pictureBox.Image = null;
 
                 comboBoxGenre.SelectedIndex = 0;
             }
@@ -88,6 +91,13 @@ namespace Lab8.View
                 textBoxName.Text = _shownSongList[listBox.SelectedIndex].Name;
                 textBoxArtist.Text = _shownSongList[listBox.SelectedIndex].Artist;
                 textBoxDuration.Text = $"{_shownSongList[listBox.SelectedIndex].Duration}";
+
+                if (File.Exists(_shownSongList[listBox.SelectedIndex].ImagePath))
+                {
+                    Bitmap bitmap = new Bitmap(_shownSongList[listBox.SelectedIndex].ImagePath);
+                    pictureBox.Image = bitmap;
+                }
+                else pictureBox.Image = null;
 
                 comboBoxGenre.SelectedIndex = (int)_shownSongList[listBox.SelectedIndex].Genre;
             }
@@ -154,6 +164,30 @@ namespace Lab8.View
         private void textBoxSearch_TextChanged(object sender, EventArgs e)
         {
             UpdateShown();
+        }
+
+        private void pictureBox_Click(object sender, EventArgs e)
+        {
+            string filePath = string.Empty;
+            string fileContent = string.Empty;
+
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "PNG (*.png)|*.png|JPG (*.jpg)|*.jpg";
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    filePath = openFileDialog.FileName;
+
+                    Bitmap bitmap = new Bitmap(filePath);
+
+                    pictureBox.Image = bitmap;
+                    _shownSongList[listBox.SelectedIndex].ImagePath = filePath;
+                }
+            }
         }
 
         /// <summary>

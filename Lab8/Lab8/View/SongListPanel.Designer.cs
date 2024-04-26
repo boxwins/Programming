@@ -30,6 +30,7 @@
         {
             listBox = new ListBox();
             groupBox = new GroupBox();
+            pictureBox = new PictureBox();
             labelGenre = new Label();
             labelDuration = new Label();
             textBoxDuration = new TextBox();
@@ -44,6 +45,7 @@
             splitContainer = new SplitContainer();
             splitContainerButtons = new SplitContainer();
             groupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
             splitContainer.Panel1.SuspendLayout();
             splitContainer.Panel2.SuspendLayout();
@@ -69,6 +71,7 @@
             // groupBox
             // 
             groupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            groupBox.Controls.Add(pictureBox);
             groupBox.Controls.Add(labelGenre);
             groupBox.Controls.Add(labelDuration);
             groupBox.Controls.Add(textBoxDuration);
@@ -84,11 +87,22 @@
             groupBox.TabStop = false;
             groupBox.Text = "Selected song";
             // 
+            // pictureBox
+            // 
+            pictureBox.BackColor = SystemColors.ControlLight;
+            pictureBox.Location = new Point(67, 22);
+            pictureBox.Name = "pictureBox";
+            pictureBox.Size = new Size(120, 120);
+            pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox.TabIndex = 9;
+            pictureBox.TabStop = false;
+            pictureBox.Click += pictureBox_Click;
+            // 
             // labelGenre
             // 
             labelGenre.AutoSize = true;
             labelGenre.FlatStyle = FlatStyle.Flat;
-            labelGenre.Location = new Point(194, 84);
+            labelGenre.Location = new Point(194, 210);
             labelGenre.Name = "labelGenre";
             labelGenre.Size = new Size(38, 15);
             labelGenre.TabIndex = 8;
@@ -98,7 +112,7 @@
             // 
             labelDuration.AutoSize = true;
             labelDuration.FlatStyle = FlatStyle.Flat;
-            labelDuration.Location = new Point(8, 84);
+            labelDuration.Location = new Point(8, 210);
             labelDuration.Name = "labelDuration";
             labelDuration.Size = new Size(53, 15);
             labelDuration.TabIndex = 6;
@@ -107,7 +121,7 @@
             // textBoxDuration
             // 
             textBoxDuration.BorderStyle = BorderStyle.FixedSingle;
-            textBoxDuration.Location = new Point(67, 80);
+            textBoxDuration.Location = new Point(67, 206);
             textBoxDuration.Name = "textBoxDuration";
             textBoxDuration.Size = new Size(121, 23);
             textBoxDuration.TabIndex = 5;
@@ -117,7 +131,7 @@
             // 
             labelArtist.AutoSize = true;
             labelArtist.FlatStyle = FlatStyle.Flat;
-            labelArtist.Location = new Point(26, 55);
+            labelArtist.Location = new Point(26, 181);
             labelArtist.Name = "labelArtist";
             labelArtist.Size = new Size(35, 15);
             labelArtist.TabIndex = 4;
@@ -127,7 +141,7 @@
             // 
             textBoxArtist.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBoxArtist.BorderStyle = BorderStyle.FixedSingle;
-            textBoxArtist.Location = new Point(67, 51);
+            textBoxArtist.Location = new Point(67, 177);
             textBoxArtist.Name = "textBoxArtist";
             textBoxArtist.Size = new Size(435, 23);
             textBoxArtist.TabIndex = 3;
@@ -138,7 +152,7 @@
             comboBoxGenre.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             comboBoxGenre.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxGenre.FormattingEnabled = true;
-            comboBoxGenre.Location = new Point(238, 80);
+            comboBoxGenre.Location = new Point(238, 206);
             comboBoxGenre.Name = "comboBoxGenre";
             comboBoxGenre.Size = new Size(264, 23);
             comboBoxGenre.Sorted = true;
@@ -149,7 +163,7 @@
             // 
             labelName.AutoSize = true;
             labelName.FlatStyle = FlatStyle.Flat;
-            labelName.Location = new Point(22, 26);
+            labelName.Location = new Point(22, 152);
             labelName.Name = "labelName";
             labelName.Size = new Size(39, 15);
             labelName.TabIndex = 1;
@@ -159,7 +173,7 @@
             // 
             textBoxName.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBoxName.BorderStyle = BorderStyle.FixedSingle;
-            textBoxName.Location = new Point(67, 22);
+            textBoxName.Location = new Point(67, 148);
             textBoxName.Name = "textBoxName";
             textBoxName.Size = new Size(435, 23);
             textBoxName.TabIndex = 0;
@@ -246,6 +260,7 @@
             Size = new Size(776, 497);
             groupBox.ResumeLayout(false);
             groupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox).EndInit();
             splitContainer.Panel1.ResumeLayout(false);
             splitContainer.Panel1.PerformLayout();
             splitContainer.Panel2.ResumeLayout(false);
@@ -275,5 +290,6 @@
         private TextBox textBoxSearch;
         private SplitContainer splitContainer;
         private SplitContainer splitContainerButtons;
+        private PictureBox pictureBox;
     }
 }
