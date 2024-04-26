@@ -42,9 +42,9 @@
 
             if (distance >= minDistance) return false;
 
-            return
+            return !(
                 ring1.OuterRadius + distance < ring2.InnerRadius ||
-                ring2.OuterRadius + distance < ring1.InnerRadius;
+                ring2.OuterRadius + distance < ring1.InnerRadius);
         }
     }
 }
