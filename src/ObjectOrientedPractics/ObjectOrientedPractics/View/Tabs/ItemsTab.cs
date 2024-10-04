@@ -47,6 +47,19 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// [GET / SET] Товары.
+        /// </summary>
+        public List<Item> Items
+        {
+            get { return _items; }
+            set 
+            { 
+                _items = value;
+                UpdateListBox();
+            }
+        }
+
         public ItemsTab()
         {
             InitializeComponent();
