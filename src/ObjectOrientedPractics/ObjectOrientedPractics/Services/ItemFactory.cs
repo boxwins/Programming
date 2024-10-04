@@ -41,7 +41,10 @@ namespace ObjectOrientedPractics.Services
                 string info = infos[random.Next(infos.Length)];
                 double cost = random.Next(100000);
 
-                result[i] = new Item(name, info, cost);
+                Array categories = Enum.GetValues(typeof(Category));
+                Category category = (Category)categories.GetValue(random.Next(categories.Length));
+
+                result[i] = new Item(name, info, cost, category);
             }
 
             return result;

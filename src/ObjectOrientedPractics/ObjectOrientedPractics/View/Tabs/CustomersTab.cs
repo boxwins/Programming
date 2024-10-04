@@ -135,7 +135,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
                 textBoxID.Text = CurrentCustomer.ID.ToString();
                 textBoxFullName.Text = CurrentCustomer.FullName;
-                textBoxAddress.Text = CurrentCustomer.Address;
+                addressControl.Address = CurrentCustomer.Address;
             }
         }
 
@@ -155,25 +155,6 @@ namespace ObjectOrientedPractics.View.Tabs
             catch (Exception)
             {
                 textBoxFullName.BackColor = AppColors.TextBoxErrorColor;
-            }
-        }
-
-        /// <summary>
-        /// Событие 'TextChanged' элемента <see cref="textBoxAddress"/>.
-        /// </summary>
-        private void textBoxAddress_TextChanged(object sender, EventArgs e)
-        {
-            if (CurrentCustomer == null) return;
-            try
-            {
-                CurrentCustomer.Address = textBoxAddress.Text;
-                textBoxAddress.BackColor = AppColors.TextBoxColor;
-
-                UpdateListBoxCustomer(CurrentIndex);
-            }
-            catch (Exception)
-            {
-                textBoxAddress.BackColor = AppColors.TextBoxErrorColor;
             }
         }
     }

@@ -34,20 +34,17 @@
             buttonAdd = new Button();
             labelCustomers = new Label();
             customersListBox = new ListBox();
-            panelBody = new Panel();
-            panelSelectedCustomer = new Panel();
+            addressControl = new Controls.AddressControl();
             textBoxFullName = new TextBox();
+            labelSelectedCustomer = new Label();
+            textBoxID = new TextBox();
             labelAddress = new Label();
             labelID = new Label();
-            textBoxAddress = new TextBox();
             labelFullName = new Label();
-            textBoxID = new TextBox();
-            labelSelectedCustomer = new Label();
             ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
             splitContainer.Panel1.SuspendLayout();
             splitContainer.Panel2.SuspendLayout();
             splitContainer.SuspendLayout();
-            panelSelectedCustomer.SuspendLayout();
             SuspendLayout();
             // 
             // splitContainer
@@ -66,9 +63,13 @@
             // 
             // splitContainer.Panel2
             // 
-            splitContainer.Panel2.Controls.Add(panelBody);
-            splitContainer.Panel2.Controls.Add(panelSelectedCustomer);
+            splitContainer.Panel2.Controls.Add(addressControl);
+            splitContainer.Panel2.Controls.Add(textBoxFullName);
             splitContainer.Panel2.Controls.Add(labelSelectedCustomer);
+            splitContainer.Panel2.Controls.Add(textBoxID);
+            splitContainer.Panel2.Controls.Add(labelAddress);
+            splitContainer.Panel2.Controls.Add(labelID);
+            splitContainer.Panel2.Controls.Add(labelFullName);
             splitContainer.Size = new Size(853, 531);
             splitContainer.SplitterDistance = 343;
             splitContainer.TabIndex = 1;
@@ -132,96 +133,28 @@
             customersListBox.TabIndex = 0;
             customersListBox.SelectedIndexChanged += customersListBox_SelectedIndexChanged;
             // 
-            // panelBody
+            // addressControl
             // 
-            panelBody.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panelBody.Location = new Point(6, 250);
-            panelBody.Name = "panelBody";
-            panelBody.Size = new Size(494, 278);
-            panelBody.TabIndex = 12;
-            // 
-            // panelSelectedCustomer
-            // 
-            panelSelectedCustomer.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panelSelectedCustomer.Controls.Add(textBoxFullName);
-            panelSelectedCustomer.Controls.Add(labelAddress);
-            panelSelectedCustomer.Controls.Add(labelID);
-            panelSelectedCustomer.Controls.Add(textBoxAddress);
-            panelSelectedCustomer.Controls.Add(labelFullName);
-            panelSelectedCustomer.Controls.Add(textBoxID);
-            panelSelectedCustomer.Location = new Point(6, 28);
-            panelSelectedCustomer.Name = "panelSelectedCustomer";
-            panelSelectedCustomer.Size = new Size(497, 216);
-            panelSelectedCustomer.TabIndex = 11;
+            addressControl.Address = null;
+            addressControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            addressControl.Location = new Point(10, 148);
+            addressControl.Margin = new Padding(6);
+            addressControl.Name = "addressControl";
+            addressControl.Size = new Size(490, 157);
+            addressControl.TabIndex = 11;
             // 
             // textBoxFullName
             // 
+            textBoxFullName.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBoxFullName.BackColor = SystemColors.Window;
             textBoxFullName.BorderStyle = BorderStyle.FixedSingle;
             textBoxFullName.Font = new Font("Segoe UI", 10F);
-            textBoxFullName.Location = new Point(105, 47);
+            textBoxFullName.Location = new Point(99, 72);
             textBoxFullName.Margin = new Padding(10);
             textBoxFullName.Name = "textBoxFullName";
-            textBoxFullName.Size = new Size(185, 25);
+            textBoxFullName.Size = new Size(397, 25);
             textBoxFullName.TabIndex = 8;
             textBoxFullName.TextChanged += textBoxFullName_TextChanged;
-            // 
-            // labelAddress
-            // 
-            labelAddress.AutoSize = true;
-            labelAddress.Font = new Font("Segoe UI", 10F);
-            labelAddress.Location = new Point(10, 88);
-            labelAddress.Margin = new Padding(10);
-            labelAddress.Name = "labelAddress";
-            labelAddress.Size = new Size(61, 19);
-            labelAddress.TabIndex = 10;
-            labelAddress.Text = "Address:";
-            // 
-            // labelID
-            // 
-            labelID.AutoSize = true;
-            labelID.Font = new Font("Segoe UI", 10F);
-            labelID.Location = new Point(10, 10);
-            labelID.Margin = new Padding(10);
-            labelID.Name = "labelID";
-            labelID.Size = new Size(26, 19);
-            labelID.TabIndex = 3;
-            labelID.Text = "ID:";
-            // 
-            // textBoxAddress
-            // 
-            textBoxAddress.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            textBoxAddress.BorderStyle = BorderStyle.FixedSingle;
-            textBoxAddress.Font = new Font("Segoe UI", 10F);
-            textBoxAddress.Location = new Point(105, 86);
-            textBoxAddress.Margin = new Padding(10);
-            textBoxAddress.Multiline = true;
-            textBoxAddress.Name = "textBoxAddress";
-            textBoxAddress.Size = new Size(382, 107);
-            textBoxAddress.TabIndex = 9;
-            textBoxAddress.TextChanged += textBoxAddress_TextChanged;
-            // 
-            // labelFullName
-            // 
-            labelFullName.AutoSize = true;
-            labelFullName.Font = new Font("Segoe UI", 10F);
-            labelFullName.Location = new Point(10, 49);
-            labelFullName.Margin = new Padding(10);
-            labelFullName.Name = "labelFullName";
-            labelFullName.Size = new Size(69, 19);
-            labelFullName.TabIndex = 4;
-            labelFullName.Text = "FullName:";
-            // 
-            // textBoxID
-            // 
-            textBoxID.BorderStyle = BorderStyle.FixedSingle;
-            textBoxID.Font = new Font("Segoe UI", 10F);
-            textBoxID.Location = new Point(105, 8);
-            textBoxID.Margin = new Padding(10);
-            textBoxID.Name = "textBoxID";
-            textBoxID.ReadOnly = true;
-            textBoxID.Size = new Size(185, 25);
-            textBoxID.TabIndex = 7;
             // 
             // labelSelectedCustomer
             // 
@@ -232,6 +165,51 @@
             labelSelectedCustomer.Size = new Size(152, 21);
             labelSelectedCustomer.TabIndex = 2;
             labelSelectedCustomer.Text = "Selected Customer";
+            // 
+            // textBoxID
+            // 
+            textBoxID.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxID.BorderStyle = BorderStyle.FixedSingle;
+            textBoxID.Font = new Font("Segoe UI", 10F);
+            textBoxID.Location = new Point(99, 33);
+            textBoxID.Margin = new Padding(10);
+            textBoxID.Name = "textBoxID";
+            textBoxID.ReadOnly = true;
+            textBoxID.Size = new Size(397, 25);
+            textBoxID.TabIndex = 7;
+            // 
+            // labelAddress
+            // 
+            labelAddress.AutoSize = true;
+            labelAddress.Font = new Font("Segoe UI", 10F);
+            labelAddress.Location = new Point(10, 113);
+            labelAddress.Margin = new Padding(10);
+            labelAddress.Name = "labelAddress";
+            labelAddress.Size = new Size(61, 19);
+            labelAddress.TabIndex = 10;
+            labelAddress.Text = "Address:";
+            // 
+            // labelID
+            // 
+            labelID.AutoSize = true;
+            labelID.Font = new Font("Segoe UI", 10F);
+            labelID.Location = new Point(10, 35);
+            labelID.Margin = new Padding(10);
+            labelID.Name = "labelID";
+            labelID.Size = new Size(26, 19);
+            labelID.TabIndex = 3;
+            labelID.Text = "ID:";
+            // 
+            // labelFullName
+            // 
+            labelFullName.AutoSize = true;
+            labelFullName.Font = new Font("Segoe UI", 10F);
+            labelFullName.Location = new Point(10, 74);
+            labelFullName.Margin = new Padding(10);
+            labelFullName.Name = "labelFullName";
+            labelFullName.Size = new Size(69, 19);
+            labelFullName.TabIndex = 4;
+            labelFullName.Text = "FullName:";
             // 
             // CustomersTab
             // 
@@ -246,8 +224,6 @@
             splitContainer.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer).EndInit();
             splitContainer.ResumeLayout(false);
-            panelSelectedCustomer.ResumeLayout(false);
-            panelSelectedCustomer.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -259,7 +235,6 @@
         private Label labelCustomers;
         private ListBox customersListBox;
         private TextBox textBoxDescription;
-        private TextBox textBoxAddress;
         private TextBox textBoxFullName;
         private TextBox textBoxID;
         private Label labelDescription;
@@ -268,8 +243,7 @@
         private Label labelID;
         private Label labelSelectedCustomer;
         private Label labelAddress;
-        private Panel panelBody;
-        private Panel panelSelectedCustomer;
         private Button buttonGenerate;
+        private Controls.AddressControl addressControl;
     }
 }

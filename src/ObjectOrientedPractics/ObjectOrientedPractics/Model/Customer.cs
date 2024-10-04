@@ -10,14 +10,14 @@ namespace ObjectOrientedPractics.Model
         private readonly int _id = IdGenerator.GetNextId<Customer>();
 
         private string _fullName = string.Empty;
-        private string _address = string.Empty;
+        private Address _address = null;
 
         /// <summary>
         /// [GET] Пустой покупатель.
         /// </summary>
         public static Customer Empty
         {
-            get { return new Customer("Customer", "No adress"); }
+            get { return new Customer("Customer", null); }
         }
 
         /// <summary>
@@ -44,17 +44,18 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// [GET / SET] Адрес покупателя.
         /// </summary>
-        public string Address
+        public Address Address
         {
             get { return _address; }
-            set
-            {
-                Validator.StringLimit(500, value);
-                _address = value;
-            }
+            set { _address = value; }
         }
 
-        public Customer(string fullName, string adress)
+        /// <summary>
+        /// Конструктор класса.
+        /// </summary>
+        /// <param name="fullName">Имя покупателя.</param>
+        /// <param name="adress">Адрес покупателя.</param>
+        public Customer(string fullName, Address adress)
         {
             FullName = fullName;
             Address = adress;

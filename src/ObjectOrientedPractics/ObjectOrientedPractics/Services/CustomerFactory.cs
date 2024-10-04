@@ -31,14 +31,25 @@ namespace ObjectOrientedPractics.Services
             Customer[] result = new Customer[count];
 
             string[] fullNames = Serializer.Deserialize(@$"{PATH}\FullNames.txt");
-            string[] addresses = Serializer.Deserialize(@$"{PATH}\Addresses.txt");
+            string[] countries = Serializer.Deserialize(@$"{PATH}\Countries.txt");
+            string[] cities = Serializer.Deserialize(@$"{PATH}\Cities.txt");
+            string[] streets = Serializer.Deserialize(@$"{PATH}\Streets.txt");
 
             Random random = new Random();
 
             for (int i = 0; i < count; i++)
             {
                 string fullName = fullNames[random.Next(fullNames.Length)];
-                string address = addresses[random.Next(addresses.Length)];
+
+                Address address = new Address();
+
+                address.Country = countries[random.Next(countries.Length)];
+                address.City = cities[random.Next(cities.Length)];
+                address.Street = streets[random.Next(streets.Length)];
+
+                address.Index = random.Next(100_000, 1_000_000);
+                address.Building = random.Next(1, 30).ToString();
+                address.Apartment = random.Next(1, 100).ToString();
 
                 result[i] = new Customer(fullName, address);
             }

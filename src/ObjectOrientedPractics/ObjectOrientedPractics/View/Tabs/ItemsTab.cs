@@ -50,6 +50,8 @@ namespace ObjectOrientedPractics.View.Tabs
         public ItemsTab()
         {
             InitializeComponent();
+
+            comboBoxCategory.Items.AddRange(Enum.GetValues(typeof(Category)).Cast<object>().ToArray());
         }
 
         /// <summary>
@@ -138,6 +140,8 @@ namespace ObjectOrientedPractics.View.Tabs
 
                 textBoxName.Text = CurrentItem.Name;
                 textBoxDescription.Text = CurrentItem.Info;
+
+                comboBoxCategory.SelectedItem = CurrentItem.Category;
             }
         }
 
@@ -196,6 +200,16 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 textBoxDescription.BackColor = AppColors.TextBoxErrorColor;
             }
+        }
+
+        /// <summary>
+        /// Событие 'SelectedIndexChanged' элемента <see cref="comboBoxCategory"/>.
+        /// </summary>
+        private void comboBoxCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CurrentItem == null) return;
+
+            CurrentItem.Category = (Category)comboBoxCategory.SelectedItem;
         }
     }
 }

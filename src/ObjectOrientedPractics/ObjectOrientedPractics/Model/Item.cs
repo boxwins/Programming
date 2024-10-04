@@ -19,7 +19,7 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public static Item Empty
         {
-            get { return new Item("Item", "No info", 0.0d); }
+            get { return new Item("Item", "No info", 0.0d, Category.None); }
         }
 
         /// <summary>
@@ -69,11 +69,24 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
-        public Item(string name, string info, double cost)
+        /// <summary>
+        /// [GET / SET] Категория товара.
+        /// </summary>
+        public Category Category { get; set; }
+
+        /// <summary>
+        /// Конструктор класса.
+        /// </summary>
+        /// <param name="name">Название товара.</param>
+        /// <param name="info">Описание товара.</param>
+        /// <param name="cost">Стоимость товара.</param>
+        /// <param name="category">Категория товара.</param>
+        public Item(string name, string info, double cost, Category category)
         {
             Name = name;
             Info = info;
             Cost = cost;
+            Category = category;
         }
     }
 }

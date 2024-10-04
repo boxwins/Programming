@@ -29,10 +29,13 @@
         private void InitializeComponent()
         {
             splitContainer = new SplitContainer();
+            buttonGenerate = new Button();
             buttonRemove = new Button();
             buttonAdd = new Button();
             labelItems = new Label();
             itemsListBox = new ListBox();
+            comboBoxCategory = new ComboBox();
+            labelCategory = new Label();
             textBoxDescription = new TextBox();
             textBoxName = new TextBox();
             textBoxCost = new TextBox();
@@ -42,7 +45,6 @@
             labelCost = new Label();
             labelID = new Label();
             labelSelectedItem = new Label();
-            buttonGenerate = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
             splitContainer.Panel1.SuspendLayout();
             splitContainer.Panel2.SuspendLayout();
@@ -65,6 +67,8 @@
             // 
             // splitContainer.Panel2
             // 
+            splitContainer.Panel2.Controls.Add(comboBoxCategory);
+            splitContainer.Panel2.Controls.Add(labelCategory);
             splitContainer.Panel2.Controls.Add(textBoxDescription);
             splitContainer.Panel2.Controls.Add(textBoxName);
             splitContainer.Panel2.Controls.Add(textBoxCost);
@@ -77,6 +81,18 @@
             splitContainer.Size = new Size(840, 598);
             splitContainer.SplitterDistance = 338;
             splitContainer.TabIndex = 0;
+            // 
+            // buttonGenerate
+            // 
+            buttonGenerate.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            buttonGenerate.FlatStyle = FlatStyle.Flat;
+            buttonGenerate.Location = new Point(215, 543);
+            buttonGenerate.Name = "buttonGenerate";
+            buttonGenerate.Size = new Size(100, 52);
+            buttonGenerate.TabIndex = 4;
+            buttonGenerate.Text = "Generate";
+            buttonGenerate.UseVisualStyleBackColor = true;
+            buttonGenerate.Click += buttonGenerate_Click;
             // 
             // buttonRemove
             // 
@@ -125,16 +141,37 @@
             itemsListBox.TabIndex = 0;
             itemsListBox.SelectedIndexChanged += itemsListBox_SelectedIndexChanged;
             // 
+            // comboBoxCategory
+            // 
+            comboBoxCategory.Font = new Font("Segoe UI", 10F);
+            comboBoxCategory.FormattingEnabled = true;
+            comboBoxCategory.Location = new Point(97, 110);
+            comboBoxCategory.Name = "comboBoxCategory";
+            comboBoxCategory.Size = new Size(185, 25);
+            comboBoxCategory.TabIndex = 12;
+            comboBoxCategory.SelectedIndexChanged += comboBoxCategory_SelectedIndexChanged;
+            // 
+            // labelCategory
+            // 
+            labelCategory.AutoSize = true;
+            labelCategory.Font = new Font("Segoe UI", 10F);
+            labelCategory.Location = new Point(10, 113);
+            labelCategory.Margin = new Padding(10);
+            labelCategory.Name = "labelCategory";
+            labelCategory.Size = new Size(68, 19);
+            labelCategory.TabIndex = 11;
+            labelCategory.Text = "Category:";
+            // 
             // textBoxDescription
             // 
             textBoxDescription.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             textBoxDescription.BorderStyle = BorderStyle.FixedSingle;
             textBoxDescription.Font = new Font("Segoe UI", 10F);
-            textBoxDescription.Location = new Point(10, 260);
+            textBoxDescription.Location = new Point(10, 313);
             textBoxDescription.Margin = new Padding(10);
             textBoxDescription.Multiline = true;
             textBoxDescription.Name = "textBoxDescription";
-            textBoxDescription.Size = new Size(478, 328);
+            textBoxDescription.Size = new Size(478, 275);
             textBoxDescription.TabIndex = 10;
             textBoxDescription.TextChanged += textBoxDescription_TextChanged;
             // 
@@ -143,7 +180,7 @@
             textBoxName.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBoxName.BorderStyle = BorderStyle.FixedSingle;
             textBoxName.Font = new Font("Segoe UI", 10F);
-            textBoxName.Location = new Point(10, 138);
+            textBoxName.Location = new Point(10, 191);
             textBoxName.Margin = new Padding(10);
             textBoxName.Multiline = true;
             textBoxName.Name = "textBoxName";
@@ -179,7 +216,7 @@
             labelDescription.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             labelDescription.AutoSize = true;
             labelDescription.Font = new Font("Segoe UI", 10F);
-            labelDescription.Location = new Point(10, 221);
+            labelDescription.Location = new Point(10, 274);
             labelDescription.Margin = new Padding(10);
             labelDescription.Name = "labelDescription";
             labelDescription.Size = new Size(81, 19);
@@ -190,7 +227,7 @@
             // 
             labelName.AutoSize = true;
             labelName.Font = new Font("Segoe UI", 10F);
-            labelName.Location = new Point(10, 113);
+            labelName.Location = new Point(10, 152);
             labelName.Margin = new Padding(10);
             labelName.Name = "labelName";
             labelName.Size = new Size(48, 19);
@@ -229,18 +266,6 @@
             labelSelectedItem.TabIndex = 2;
             labelSelectedItem.Text = "Selected Item";
             // 
-            // buttonGenerate
-            // 
-            buttonGenerate.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            buttonGenerate.FlatStyle = FlatStyle.Flat;
-            buttonGenerate.Location = new Point(215, 543);
-            buttonGenerate.Name = "buttonGenerate";
-            buttonGenerate.Size = new Size(100, 52);
-            buttonGenerate.TabIndex = 4;
-            buttonGenerate.Text = "Generate";
-            buttonGenerate.UseVisualStyleBackColor = true;
-            buttonGenerate.Click += buttonGenerate_Click;
-            // 
             // ItemsTab
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -274,5 +299,7 @@
         private TextBox textBoxCost;
         private TextBox textBoxID;
         private Button buttonGenerate;
+        private ComboBox comboBoxCategory;
+        private Label labelCategory;
     }
 }
