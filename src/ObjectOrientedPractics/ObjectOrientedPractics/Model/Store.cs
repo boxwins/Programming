@@ -1,6 +1,4 @@
-﻿using ObjectOrientedPractics.Model;
-
-namespace ObjectOrientedPractics.Services
+﻿namespace ObjectOrientedPractics.Model
 {
     /// <summary>
     /// Магазин.
@@ -28,9 +26,6 @@ namespace ObjectOrientedPractics.Services
             set { _customers = value; }
         }
 
-        public Store()
-        {
-            
-        }
+        public Store() { }
     }
 }
