@@ -12,6 +12,9 @@ namespace ObjectOrientedPractics.Model
         private string _fullName = string.Empty;
         private Address _address = null;
 
+        private Cart _cart = new Cart();
+        private List<Order> _orders = new List<Order>();
+
         /// <summary>
         /// [GET] Пустой покупатель.
         /// </summary>
@@ -48,6 +51,22 @@ namespace ObjectOrientedPractics.Model
         {
             get { return _address; }
             set { _address = value; }
+        }
+
+        /// <summary>
+        /// [GET] Корзина покупателя.
+        /// </summary>
+        public Cart Cart
+        {
+            get { return _cart; }
+        }
+
+        /// <summary>
+        /// [GET] Список заказов.
+        /// </summary>
+        public List<Order> Orders
+        {
+            get { return _orders; }
         }
 
         /// <summary>

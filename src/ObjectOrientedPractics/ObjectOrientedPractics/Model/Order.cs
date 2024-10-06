@@ -13,6 +13,7 @@ namespace ObjectOrientedPractics.Model
 
         private Address _address    = null;
         private List<Item> _items   = new List<Item>();
+        private OrderStatus _status = OrderStatus.New;
 
         /// <summary>
         /// [GET] Дата и время заказа.
@@ -23,19 +24,30 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// [GET] Адрес заказа.
+        /// [GET / SET] Адрес заказа.
         /// </summary>
         public Address Address
         {
             get { return _address; }
+            set { _address = value; }
         }
 
         /// <summary>
-        /// [GET] Товары в заказе.
+        /// [GET / SET] Товары в заказе.
         /// </summary>
         public List<Item> Items
         {
             get { return _items; }
+            set { _items = value; }
+        }
+
+        /// <summary>
+        /// [GET / SET] Статус заказа.
+        /// </summary>
+        public OrderStatus Status
+        {
+            get { return _status; }
+            set { _status = value; }
         }
 
         /// <summary>

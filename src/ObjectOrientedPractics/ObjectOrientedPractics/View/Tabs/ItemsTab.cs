@@ -94,7 +94,8 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void buttonGenerate_Click(object sender, EventArgs e)
         {
-            _items = ItemFactory.GenerateRandom(10).ToList();
+            Items.Clear();
+            Items.AddRange(ItemFactory.GenerateRandom(10));
 
             UpdateListBox();
         }
