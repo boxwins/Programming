@@ -8,12 +8,19 @@ namespace ObjectOrientedPractics.Model
     public class Order
     {
         private readonly int _id = IdGenerator.GetNextId<Order>();
-
         private readonly DateTime _dateTime = DateTime.Now;
 
         private Address _address    = null;
         private List<Item> _items   = new List<Item>();
         private OrderStatus _status = OrderStatus.New;
+
+        /// <summary>
+        /// [GET] ID заказа.
+        /// </summary>
+        public int ID
+        {
+            get { return _id; }
+        }
 
         /// <summary>
         /// [GET] Дата и время заказа.

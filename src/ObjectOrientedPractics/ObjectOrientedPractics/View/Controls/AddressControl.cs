@@ -9,6 +9,7 @@ namespace ObjectOrientedPractics.View.Controls
     public partial class AddressControl : UserControl
     {
         private Address _address = null;
+        private bool _readonly = false;
 
         /// <summary>
         /// [GET / SET] Адрес.
@@ -20,6 +21,28 @@ namespace ObjectOrientedPractics.View.Controls
             {
                 _address = value;
                 UpdateAddress();
+            }
+        }
+
+        /// <summary>
+        /// [GET / SET] Доступен ли элемент только для чтения.
+        /// </summary>
+        public bool Readonly
+        {
+            get { return _readonly; }
+            set
+            {
+                _readonly = value;
+
+                if (value)
+                {
+                    textBoxPostIndex.ReadOnly = value;
+                    textBoxCountry.ReadOnly = value;
+                    textBoxCity.ReadOnly = value;
+                    textBoxStreet.ReadOnly = value;
+                    textBoxBuilding.ReadOnly = value;
+                    textBoxApartment.ReadOnly = value;
+                }
             }
         }
 
