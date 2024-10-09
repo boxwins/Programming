@@ -45,7 +45,7 @@ namespace ObjectOrientedPractics.Model
             get { return _city; }
             set
             {
-                Validator.StringLimit(50, value);
+                Validator.StringLimit(100, value);
                 _city = value;
             }
         }

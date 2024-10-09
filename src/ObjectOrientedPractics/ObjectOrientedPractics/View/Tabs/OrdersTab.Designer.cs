@@ -1,4 +1,6 @@
-﻿namespace ObjectOrientedPractics.View.Tabs
+﻿using ObjectOrientedPractics.View.Data;
+
+namespace ObjectOrientedPractics.View.Tabs
 {
     partial class OrdersTab
     {
@@ -43,6 +45,7 @@
             orderDataBindingSource = new BindingSource(components);
             customerBindingSource = new BindingSource(components);
             splitContainer1 = new SplitContainer();
+            textBoxFind = new TextBox();
             textBoxAmount = new TextBox();
             labelAmount = new Label();
             labelOrderItems = new Label();
@@ -82,7 +85,7 @@
             listBoxOrderItems.Location = new Point(6, 339);
             listBoxOrderItems.Margin = new Padding(6);
             listBoxOrderItems.Name = "listBoxOrderItems";
-            listBoxOrderItems.Size = new Size(476, 274);
+            listBoxOrderItems.Size = new Size(471, 274);
             listBoxOrderItems.TabIndex = 1;
             // 
             // textBoxID
@@ -120,8 +123,9 @@
             dataGridView.Margin = new Padding(6);
             dataGridView.MultiSelect = false;
             dataGridView.Name = "dataGridView";
-            dataGridView.Size = new Size(539, 643);
+            dataGridView.Size = new Size(544, 609);
             dataGridView.TabIndex = 4;
+            dataGridView.ColumnHeaderMouseClick += dataGridView_ColumnHeaderMouseClick;
             dataGridView.SelectionChanged += dataGridView_SelectionChanged;
             // 
             // iDDataGridViewTextBoxColumn
@@ -168,7 +172,7 @@
             // 
             // orderDataBindingSource
             // 
-            orderDataBindingSource.DataSource = typeof(Model.Data.OrderData);
+            orderDataBindingSource.DataSource = typeof(OrderData);
             // 
             // customerBindingSource
             // 
@@ -182,6 +186,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            splitContainer1.Panel1.Controls.Add(textBoxFind);
             splitContainer1.Panel1.Controls.Add(dataGridView);
             splitContainer1.Panel1.Controls.Add(labelOrders);
             // 
@@ -200,18 +205,31 @@
             splitContainer1.Panel2.Controls.Add(listBoxOrderItems);
             splitContainer1.Panel2.Controls.Add(comboBoxStatus);
             splitContainer1.Size = new Size(1043, 686);
-            splitContainer1.SplitterDistance = 551;
+            splitContainer1.SplitterDistance = 556;
             splitContainer1.TabIndex = 5;
+            // 
+            // textBoxFind
+            // 
+            textBoxFind.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxFind.BorderStyle = BorderStyle.FixedSingle;
+            textBoxFind.Font = new Font("Segoe UI", 10F);
+            textBoxFind.Location = new Point(6, 655);
+            textBoxFind.Name = "textBoxFind";
+            textBoxFind.PlaceholderText = "Search";
+            textBoxFind.Size = new Size(544, 25);
+            textBoxFind.TabIndex = 9;
+            textBoxFind.TextChanged += textBoxFind_TextChanged;
             // 
             // textBoxAmount
             // 
             textBoxAmount.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxAmount.BackColor = Color.FromArgb(249, 249, 249);
             textBoxAmount.BorderStyle = BorderStyle.None;
             textBoxAmount.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             textBoxAmount.Location = new Point(6, 655);
             textBoxAmount.Margin = new Padding(6);
             textBoxAmount.Name = "textBoxAmount";
-            textBoxAmount.Size = new Size(476, 25);
+            textBoxAmount.Size = new Size(471, 25);
             textBoxAmount.TabIndex = 12;
             textBoxAmount.Text = "0.00 $";
             textBoxAmount.TextAlign = HorizontalAlignment.Right;
@@ -221,7 +239,7 @@
             labelAmount.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelAmount.AutoSize = true;
             labelAmount.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            labelAmount.Location = new Point(406, 622);
+            labelAmount.Location = new Point(401, 622);
             labelAmount.Margin = new Padding(6);
             labelAmount.Name = "labelAmount";
             labelAmount.Size = new Size(76, 21);
@@ -247,7 +265,7 @@
             addressControl.Margin = new Padding(0, 6, 0, 6);
             addressControl.Name = "addressControl";
             addressControl.Readonly = true;
-            addressControl.Size = new Size(488, 166);
+            addressControl.Size = new Size(483, 166);
             addressControl.TabIndex = 9;
             // 
             // textBoxCreated
@@ -348,5 +366,6 @@
         private DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
+        private TextBox textBoxFind;
     }
 }

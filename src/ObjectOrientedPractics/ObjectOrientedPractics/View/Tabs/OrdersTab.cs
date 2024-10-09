@@ -1,5 +1,5 @@
 ﻿using ObjectOrientedPractics.Model;
-using ObjectOrientedPractics.Model.Data;
+using ObjectOrientedPractics.View.Data;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
@@ -8,28 +8,11 @@ namespace ObjectOrientedPractics.View.Tabs
     /// </summary>
     public partial class OrdersTab : UserControl
     {
-        private List<Order> _orders = new List<Order>();
         private List<Customer> _customers = new List<Customer>();
+        private List<OrderData> _ordersData = new List<OrderData>();
 
-        /// <summary>
-        /// [GET] Список всех заказов.
-        /// </summary>
-        private List<Order> Orders
-        {
-            get { return _orders; }
-        }
-
-        /// <summary>
-        /// [GET] Выбранный заказ.
-        /// </summary>
-        private Order SelectedOrder
-        {
-            get
-            {
-                if (dataGridView.SelectedRows.Count == 0) return null;
-                else return Orders[dataGridView.SelectedRows[0].Index];
-            }
-        }
+        private int _sortIndex = 0;
+        private bool _sortDescending = false;
 
         /// <summary>
         /// [GET / SET] Список покупателей.
@@ -43,6 +26,27 @@ namespace ObjectOrientedPractics.View.Tabs
                 RefreshData();
             }
         }
+
+        /// <summary>
+        /// [GET] Список всех данных заказов.
+        /// </summary>
+        private List<OrderData> OrdersData
+        {
+            get { return _ordersData; }
+            set { _ordersData = value; }
+        }
+
+        /// <summary>
+        /// [GET] Выбранные данные заказа.
+        /// </summary>
+        private OrderData SelectedOrderData
+        {
+            get
+            {
+                if (dataGridView.SelectedRows.Count == 0) return null;
+                else return OrdersData[dataGridView.SelectedRows[0].Index];
+            }
+        }        
 
         public OrdersTab()
         {
@@ -64,9 +68,9 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void UpdateOrders()
         {
-            Orders.Clear();
+            OrderData selected = SelectedOrderData;
 
-            List<OrderData> orderDataSource = new List<OrderData>();
+            OrdersData.Clear();
 
             for (int c = 0; c < Customers.Count; c++)
             {
@@ -74,22 +78,86 @@ namespace ObjectOrientedPractics.View.Tabs
                 {
                     Order order = Customers[c].Orders[o];
 
-                    OrderData orderData = new OrderData()
+                    OrderData orderData = new OrderData(order)
                     {
-                        ID = order.ID,
-                        Date = order.DateTime,
+                        ID = order.ID.ToString(),
+                        Date = order.DateTime.ToString(),
                         Name = Customers[c].FullName,
                         Address = order.Address.ToString(),
-                        Amount = order.Amount,
-                        Status = order.Status,
+                        Amount = order.Amount.ToString() + " $",
+                        Status = order.Status.ToString(),
                     };
 
-                    Orders.Add(order);
-                    orderDataSource.Add(orderData);
+                    if (!DesiredOrder(orderData)) continue;
+
+                    OrdersData.Add(orderData);
                 }
             }
 
-            dataGridView.DataSource = orderDataSource;
+            SortOrdersData();
+
+            dataGridView.DataSource = OrdersData;
+
+            if (selected != null)
+            {
+                int selectedIndex = OrdersData.FindIndex(o => o.Order.ID == selected.Order.ID);
+                if (selectedIndex >= 0)
+                {
+                    DataGridViewRow row = dataGridView.Rows[selectedIndex];
+                    row.Selected = true;
+                    dataGridView.CurrentCell = row.Cells[0];
+                }
+            }
+        }
+
+        /// <summary>
+        /// Проверяет нужно ли отображать данные о заказе.
+        /// </summary>
+        /// <param name="orderData">Данные о заказе.</param>
+        /// <returns>Результат проверки.</returns>
+        private bool DesiredOrder(OrderData orderData)
+        {
+            if (string.IsNullOrWhiteSpace(textBoxFind.Text)) return true;
+
+            string search = textBoxFind.Text;
+            StringComparison comparison = StringComparison.InvariantCultureIgnoreCase;
+
+            return
+                  orderData.ID.Contains(search, comparison)
+                | orderData.Date.Contains(search, comparison)
+                | orderData.Name.Contains(search, comparison)
+                | orderData.Address.Contains(search, comparison)
+                | orderData.Amount.Contains(search, comparison)
+                | orderData.Status.Contains(search, comparison);
+        }
+
+        /// <summary>
+        /// Сортирует список данных о заказах.
+        /// </summary>
+        private void SortOrdersData()
+        {
+            Action[] sortMethods =
+            {
+                () => SortOrdersKey(o => o.Order.ID),
+                () => SortOrdersKey(o => o.Order.DateTime),
+                () => SortOrdersKey(o => o.Name),
+                () => SortOrdersKey(o => o.Address),
+                () => SortOrdersKey(o => o.Order.Amount),
+                () => SortOrdersKey(o => o.Status),
+            };
+
+            sortMethods[_sortIndex].Invoke();
+        }
+
+        /// <summary>
+        /// Сортирует список данных о заказах по ключу.
+        /// </summary>
+        private void SortOrdersKey<T>(Func<OrderData, T> key)
+        {
+            if (_sortDescending)
+                OrdersData = OrdersData.OrderByDescending(key).ToList();
+            else
+                OrdersData = OrdersData.OrderBy(key).ToList();
         }
 
         /// <summary>
@@ -97,18 +165,18 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void UpdateSelectedItems()
         {
-            if (SelectedOrder == null) return;
-
             int selected = listBoxOrderItems.SelectedIndex;
 
             listBoxOrderItems.Items.Clear();
 
-            for (int i = 0; i < SelectedOrder.Items.Count; i++)
+            if (SelectedOrderData == null) return;
+
+            for (int i = 0; i < SelectedOrderData.Order.Items.Count; i++)
             {
                 listBoxOrderItems.Items.Add(SelectedItemName(i));
             }
 
-            if (SelectedOrder.Items.Count > selected) listBoxOrderItems.SelectedIndex = selected;
+            if (SelectedOrderData.Order.Items.Count > selected) listBoxOrderItems.SelectedIndex = selected;
         }
 
         /// <summary>
@@ -118,7 +186,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <returns>Название.</returns>
         private string SelectedItemName(int index)
         {
-            return $"{index + 1}. {SelectedOrder.Items[index].Name}";
+            return $"{index + 1}. {SelectedOrderData.Order.Items[index].Name}";
         }
 
         /// <summary>
@@ -128,10 +196,14 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             comboBoxStatus.Items.Clear();
 
-            if (SelectedOrder == null) return;
+            if (SelectedOrderData == null) return;
+
+            comboBoxStatus.SelectedIndexChanged -= comboBoxStatus_SelectedIndexChanged;
 
             comboBoxStatus.Items.AddRange(Enum.GetValues(typeof(OrderStatus)).Cast<object>().ToArray());
-            comboBoxStatus.SelectedItem = SelectedOrder.Status;
+            comboBoxStatus.SelectedItem = SelectedOrderData.Order.Status;
+
+            comboBoxStatus.SelectedIndexChanged += comboBoxStatus_SelectedIndexChanged;
         }
 
         /// <summary>
@@ -139,7 +211,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void dataGridView_SelectionChanged(object sender, EventArgs e)
         {
-            if (SelectedOrder == null)
+            if (SelectedOrderData == null)
             {
                 textBoxID.Text = string.Empty;
                 textBoxCreated.Text = string.Empty;
@@ -149,11 +221,11 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             else
             {
-                textBoxID.Text = SelectedOrder.ID.ToString();
-                textBoxCreated.Text = SelectedOrder.DateTime.ToString();
-                textBoxAmount.Text = SelectedOrder.Amount.ToString();
+                textBoxID.Text = SelectedOrderData.Order.ID.ToString();
+                textBoxCreated.Text = SelectedOrderData.Order.DateTime.ToString();
+                textBoxAmount.Text = SelectedOrderData.Order.Amount.ToString();
 
-                addressControl.Address = SelectedOrder.Address;
+                addressControl.Address = SelectedOrderData.Order.Address;
             }
 
             UpdateSelectedItems();
@@ -165,9 +237,31 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void comboBoxStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (SelectedOrder == null) return;
+            if (SelectedOrderData == null) return;
 
-            SelectedOrder.Status = (OrderStatus)comboBoxStatus.SelectedItem;
+            SelectedOrderData.Order.Status = (OrderStatus)comboBoxStatus.SelectedItem;
+
+            UpdateOrders();
+        }
+
+        /// <summary>
+        /// Событие 'TextChanged' элемента <see cref="textBoxFind"/>.
+        /// </summary>
+        private void textBoxFind_TextChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+
+        /// <summary>
+        /// Событие 'ColumnHeaderMouseClick' элемента <see cref="dataGridView"/>.
+        /// </summary>
+        private void dataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (_sortIndex == e.ColumnIndex) 
+                _sortDescending = !_sortDescending;
+            else _sortIndex = e.ColumnIndex;
+
+            RefreshData();
         }
     }
 }

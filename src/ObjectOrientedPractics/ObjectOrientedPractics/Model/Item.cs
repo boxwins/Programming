@@ -88,5 +88,15 @@ namespace ObjectOrientedPractics.Model
             Cost = cost;
             Category = category;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Item item)
+            {
+                return item.Name == Name && item.Info == Info;
+            }
+
+            return false;
+        }
     }
 }

@@ -1,4 +1,9 @@
 ﻿using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
+
+using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Model.Data.Serialization;
 
 namespace ObjectOrientedPractics.Services
 {
@@ -14,7 +19,10 @@ namespace ObjectOrientedPractics.Services
         /// <param name="path">Путь к файлу.</param>
         public static void Serialize<T>(T data, string path)
         {
-            string json = JsonSerializer.Serialize(data);
+            JsonSerializerOptions options = new JsonSerializerOptions();
+            options.WriteIndented = true;
+
+            string json = Regex.Unescape(JsonSerializer.Serialize(data, options));
 
             File.WriteAllText(path, json);
         }

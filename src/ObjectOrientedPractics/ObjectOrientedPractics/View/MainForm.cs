@@ -1,4 +1,7 @@
-﻿using ObjectOrientedPractics.Model;
+﻿using System.Text.Json;
+
+using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.View
 {
@@ -13,6 +16,8 @@ namespace ObjectOrientedPractics.View
 
         public MainForm()
         {
+            _store = Serializer.Deserialize<Store>(PATH);
+
             InitializeComponent();
 
             itemsTab.Items = _store.Items;
@@ -31,6 +36,13 @@ namespace ObjectOrientedPractics.View
         {
             if (tabControl.SelectedIndex == 2) cartsTab.RefreshData();
             if (tabControl.SelectedIndex == 3) ordersTab.RefreshData();
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+            
+            Serializer.Serialize(_store, PATH);
         }
     }
 }

@@ -8,11 +8,10 @@ namespace ObjectOrientedPractics.Model
     public class Order
     {
         private readonly int _id = IdGenerator.GetNextId<Order>();
-        private readonly DateTime _dateTime = DateTime.Now;
 
         private Address _address    = null;
         private List<Item> _items   = new List<Item>();
-        private OrderStatus _status = OrderStatus.New;
+        private Dictionary<DateTime, OrderStatus> _statusLog = new Dictionary<DateTime, OrderStatus>();
 
         /// <summary>
         /// [GET] ID заказа.
@@ -20,14 +19,6 @@ namespace ObjectOrientedPractics.Model
         public int ID
         {
             get { return _id; }
-        }
-
-        /// <summary>
-        /// [GET] Дата и время заказа.
-        /// </summary>
-        public DateTime DateTime
-        {
-            get { return _dateTime; }
         }
 
         /// <summary>
@@ -49,12 +40,38 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// [GET / SET] Статус заказа.
+        /// [GET / SET] История изменения статуса заказа.
+        /// </summary>
+        public Dictionary<DateTime, OrderStatus> StatusLog
+        {
+            get { return _statusLog; }
+            set { _statusLog = value; }
+        }
+
+        /// <summary>
+        /// [GET / SET] Текущий статус заказа.
         /// </summary>
         public OrderStatus Status
         {
-            get { return _status; }
-            set { _status = value; }
+            get
+            {
+                return StatusLog.Values.ElementAt(StatusLog.Count - 1);
+            }
+            set
+            {
+                StatusLog.Add(DateTime.Now, value);
+            }
+        }
+
+        /// <summary>
+        /// [GET] Время последнего изменения статуса.
+        /// </summary>
+        public DateTime DateTime
+        {
+            get
+            {
+                return StatusLog.Keys.ElementAt(StatusLog.Count - 1);
+            }
         }
 
         /// <summary>
@@ -73,6 +90,14 @@ namespace ObjectOrientedPractics.Model
 
                 return result;
             }
+        }
+
+        /// <summary>
+        /// Конструктор класса.
+        /// </summary>
+        public Order()
+        {
+            _statusLog.Add(DateTime.Now, OrderStatus.New);
         }
     }
 }

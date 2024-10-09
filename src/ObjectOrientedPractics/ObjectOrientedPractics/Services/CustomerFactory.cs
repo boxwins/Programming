@@ -3,7 +3,7 @@
 namespace ObjectOrientedPractics.Services
 {
     /// <summary>
-    /// Генерирует случайных поекпателей.
+    /// Генерирует случайных покупателей.
     /// </summary>
     public static class CustomerFactory
     {
@@ -31,6 +31,32 @@ namespace ObjectOrientedPractics.Services
             Customer[] result = new Customer[count];
 
             string[] fullNames = Serializer.Deserialize(@$"{PATH}\FullNames.txt");
+            Address[] addresses = GenerateAddress(count);
+
+            Random random = new Random();
+
+            for (int i = 0; i < count; i++)
+            {
+                string fullName = fullNames[random.Next(fullNames.Length)];
+
+                Customer customer = new Customer(fullName, addresses[i]);
+                customer.Orders.AddRange(GenerateOrders(10));
+
+                result[i] = customer;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Генерирует случайные адреса.
+        /// </summary>
+        /// <param name="count">Количество.</param>
+        /// <returns>Случайные адреса.</returns>
+        private static Address[] GenerateAddress(int count)
+        {
+            Address[] result = new Address[count];
+
             string[] countries = Serializer.Deserialize(@$"{PATH}\Countries.txt");
             string[] cities = Serializer.Deserialize(@$"{PATH}\Cities.txt");
             string[] streets = Serializer.Deserialize(@$"{PATH}\Streets.txt");
@@ -39,8 +65,6 @@ namespace ObjectOrientedPractics.Services
 
             for (int i = 0; i < count; i++)
             {
-                string fullName = fullNames[random.Next(fullNames.Length)];
-
                 Address address = new Address();
 
                 address.Country = countries[random.Next(countries.Length)];
@@ -51,7 +75,33 @@ namespace ObjectOrientedPractics.Services
                 address.Building = random.Next(1, 30).ToString();
                 address.Apartment = random.Next(1, 100).ToString();
 
-                result[i] = new Customer(fullName, address);
+                result[i] = address;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Генерирует случайные заказы.
+        /// </summary>
+        /// <param name="count">Количество.</param>
+        /// <returns>Случайные заказы.</returns>
+        private static Order[] GenerateOrders(int count)
+        {
+            Order[] result = new Order[count];
+
+            Address[] addresses = GenerateAddress(count);
+
+            Random random = new Random();
+
+            for (int i = 0; i < count; i++)
+            {
+                Order order = new Order();
+
+                order.Items = ItemFactory.GenerateRandom(10).ToList();
+                order.Address = addresses[i];
+
+                result[i] = order;
             }
 
             return result;
