@@ -53,7 +53,7 @@ namespace ObjectOrientedPractics.Services
         /// </summary>
         /// <param name="count">Количество.</param>
         /// <returns>Случайные адреса.</returns>
-        private static Address[] GenerateAddress(int count)
+        public static Address[] GenerateAddress(int count)
         {
             Address[] result = new Address[count];
 
@@ -86,7 +86,7 @@ namespace ObjectOrientedPractics.Services
         /// </summary>
         /// <param name="count">Количество.</param>
         /// <returns>Случайные заказы.</returns>
-        private static Order[] GenerateOrders(int count)
+        public static Order[] GenerateOrders(int count)
         {
             Order[] result = new Order[count];
 

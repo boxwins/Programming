@@ -85,7 +85,7 @@ namespace ObjectOrientedPractics.View.Tabs
             listBoxOrderItems.Location = new Point(6, 339);
             listBoxOrderItems.Margin = new Padding(6);
             listBoxOrderItems.Name = "listBoxOrderItems";
-            listBoxOrderItems.Size = new Size(471, 274);
+            listBoxOrderItems.Size = new Size(467, 274);
             listBoxOrderItems.TabIndex = 1;
             // 
             // textBoxID
@@ -123,7 +123,7 @@ namespace ObjectOrientedPractics.View.Tabs
             dataGridView.Margin = new Padding(6);
             dataGridView.MultiSelect = false;
             dataGridView.Name = "dataGridView";
-            dataGridView.Size = new Size(544, 609);
+            dataGridView.Size = new Size(548, 609);
             dataGridView.TabIndex = 4;
             dataGridView.ColumnHeaderMouseClick += dataGridView_ColumnHeaderMouseClick;
             dataGridView.SelectionChanged += dataGridView_SelectionChanged;
@@ -205,7 +205,7 @@ namespace ObjectOrientedPractics.View.Tabs
             splitContainer1.Panel2.Controls.Add(listBoxOrderItems);
             splitContainer1.Panel2.Controls.Add(comboBoxStatus);
             splitContainer1.Size = new Size(1043, 686);
-            splitContainer1.SplitterDistance = 556;
+            splitContainer1.SplitterDistance = 560;
             splitContainer1.TabIndex = 5;
             // 
             // textBoxFind
@@ -216,7 +216,7 @@ namespace ObjectOrientedPractics.View.Tabs
             textBoxFind.Location = new Point(6, 655);
             textBoxFind.Name = "textBoxFind";
             textBoxFind.PlaceholderText = "Search";
-            textBoxFind.Size = new Size(544, 25);
+            textBoxFind.Size = new Size(548, 25);
             textBoxFind.TabIndex = 9;
             textBoxFind.TextChanged += textBoxFind_TextChanged;
             // 
@@ -229,7 +229,7 @@ namespace ObjectOrientedPractics.View.Tabs
             textBoxAmount.Location = new Point(6, 655);
             textBoxAmount.Margin = new Padding(6);
             textBoxAmount.Name = "textBoxAmount";
-            textBoxAmount.Size = new Size(471, 25);
+            textBoxAmount.Size = new Size(467, 25);
             textBoxAmount.TabIndex = 12;
             textBoxAmount.Text = "0.00 $";
             textBoxAmount.TextAlign = HorizontalAlignment.Right;
@@ -239,7 +239,7 @@ namespace ObjectOrientedPractics.View.Tabs
             labelAmount.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelAmount.AutoSize = true;
             labelAmount.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            labelAmount.Location = new Point(401, 622);
+            labelAmount.Location = new Point(397, 622);
             labelAmount.Margin = new Padding(6);
             labelAmount.Name = "labelAmount";
             labelAmount.Size = new Size(76, 21);
@@ -265,7 +265,7 @@ namespace ObjectOrientedPractics.View.Tabs
             addressControl.Margin = new Padding(0, 6, 0, 6);
             addressControl.Name = "addressControl";
             addressControl.Readonly = true;
-            addressControl.Size = new Size(483, 166);
+            addressControl.Size = new Size(479, 166);
             addressControl.TabIndex = 9;
             // 
             // textBoxCreated
