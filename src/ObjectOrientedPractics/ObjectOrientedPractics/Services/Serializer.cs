@@ -1,9 +1,4 @@
-﻿using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Text.RegularExpressions;
-
-using ObjectOrientedPractics.Model;
-using ObjectOrientedPractics.Model.Data.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace ObjectOrientedPractics.Services
 {
@@ -12,6 +7,14 @@ namespace ObjectOrientedPractics.Services
     /// </summary>
     public static class Serializer
     {
+        private static JsonSerializerSettings Settings { get; set; } = new JsonSerializerSettings();
+
+        static Serializer()
+        {
+            Settings.Formatting = Formatting.Indented;
+            Settings.TypeNameHandling = TypeNameHandling.All;
+        }
+
         /// <summary>
         /// Сериализует данные.
         /// </summary>
@@ -19,10 +22,7 @@ namespace ObjectOrientedPractics.Services
         /// <param name="path">Путь к файлу.</param>
         public static void Serialize<T>(T data, string path)
         {
-            JsonSerializerOptions options = new JsonSerializerOptions();
-            options.WriteIndented = true;
-
-            string json = Regex.Unescape(JsonSerializer.Serialize(data, options));
+            string json = JsonConvert.SerializeObject(data, Settings);
 
             File.WriteAllText(path, json);
         }
@@ -36,7 +36,7 @@ namespace ObjectOrientedPractics.Services
         {
             string json = File.ReadAllText(path);
 
-            return JsonSerializer.Deserialize<T>(json);
+            return JsonConvert.DeserializeObject<T>(json, Settings);
         }
 
         /// <summary>

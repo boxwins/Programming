@@ -34,6 +34,7 @@
             buttonAdd = new Button();
             labelCustomers = new Label();
             customersListBox = new ListBox();
+            checkBoxPriority = new CheckBox();
             addressControl = new Controls.AddressControl();
             textBoxFullName = new TextBox();
             labelSelectedCustomer = new Label();
@@ -63,6 +64,7 @@
             // 
             // splitContainer.Panel2
             // 
+            splitContainer.Panel2.Controls.Add(checkBoxPriority);
             splitContainer.Panel2.Controls.Add(addressControl);
             splitContainer.Panel2.Controls.Add(textBoxFullName);
             splitContainer.Panel2.Controls.Add(labelSelectedCustomer);
@@ -133,13 +135,26 @@
             customersListBox.TabIndex = 0;
             customersListBox.SelectedIndexChanged += customersListBox_SelectedIndexChanged;
             // 
+            // checkBoxPriority
+            // 
+            checkBoxPriority.AutoSize = true;
+            checkBoxPriority.Font = new Font("Segoe UI", 10F);
+            checkBoxPriority.Location = new Point(99, 111);
+            checkBoxPriority.Name = "checkBoxPriority";
+            checkBoxPriority.Size = new Size(86, 23);
+            checkBoxPriority.TabIndex = 13;
+            checkBoxPriority.Text = "Is Priority";
+            checkBoxPriority.UseVisualStyleBackColor = true;
+            checkBoxPriority.CheckedChanged += checkBoxPriority_CheckedChanged;
+            // 
             // addressControl
             // 
             addressControl.Address = null;
             addressControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            addressControl.Location = new Point(10, 148);
+            addressControl.Location = new Point(10, 183);
             addressControl.Margin = new Padding(6);
             addressControl.Name = "addressControl";
+            addressControl.Readonly = false;
             addressControl.Size = new Size(490, 157);
             addressControl.TabIndex = 11;
             // 
@@ -182,7 +197,7 @@
             // 
             labelAddress.AutoSize = true;
             labelAddress.Font = new Font("Segoe UI", 10F);
-            labelAddress.Location = new Point(10, 113);
+            labelAddress.Location = new Point(10, 148);
             labelAddress.Margin = new Padding(10);
             labelAddress.Name = "labelAddress";
             labelAddress.Size = new Size(61, 19);
@@ -234,16 +249,14 @@
         private Button buttonAdd;
         private Label labelCustomers;
         private ListBox customersListBox;
-        private TextBox textBoxDescription;
         private TextBox textBoxFullName;
         private TextBox textBoxID;
-        private Label labelDescription;
-        private Label labelName;
         private Label labelFullName;
         private Label labelID;
         private Label labelSelectedCustomer;
         private Label labelAddress;
         private Button buttonGenerate;
         private Controls.AddressControl addressControl;
+        private CheckBox checkBoxPriority;
     }
 }

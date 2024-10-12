@@ -11,6 +11,9 @@ namespace ObjectOrientedPractics.View.Tabs
         private List<Customer> _customers = new List<Customer>();
         private List<OrderData> _ordersData = new List<OrderData>();
 
+        private Order _selectedOrder = null;
+        private PriorityOrder _selectedPriorityOrder = null;
+
         private int _sortIndex = 0;
         private bool _sortDescending = false;
 
@@ -37,20 +40,28 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// [GET] Выбранные данные заказа.
+        /// [GET / SET] Выбранный заказ.
         /// </summary>
-        private OrderData SelectedOrderData
+        private Order SelectedOrder
         {
-            get
-            {
-                if (dataGridView.SelectedRows.Count == 0) return null;
-                else return OrdersData[dataGridView.SelectedRows[0].Index];
-            }
-        }        
+            get { return _selectedOrder; }
+            set { _selectedOrder = value; }
+        }
+
+        /// <summary>
+        /// [GET / SET] Выбранный приоритетный заказ.
+        /// </summary>
+        private PriorityOrder SelectedPriorityOrder
+        {
+            get { return _selectedPriorityOrder; }
+            set { _selectedPriorityOrder = value; }
+        }
 
         public OrdersTab()
         {
             InitializeComponent();
+
+            UpdateDeliveryTimes();
         }
 
         /// <summary>
@@ -68,7 +79,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void UpdateOrders()
         {
-            OrderData selected = SelectedOrderData;
+            Order selected = SelectedOrder;
 
             OrdersData.Clear();
 
@@ -83,7 +94,7 @@ namespace ObjectOrientedPractics.View.Tabs
                         ID = order.ID.ToString(),
                         Date = order.DateTime.ToString(),
                         Name = Customers[c].FullName,
-                        Address = order.Address.ToString(),
+                        Address = order.Address?.ToString() ?? string.Empty,
                         Amount = order.Amount.ToString() + " $",
                         Status = order.Status.ToString(),
                     };
@@ -100,7 +111,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
             if (selected != null)
             {
-                int selectedIndex = OrdersData.FindIndex(o => o.Order.ID == selected.Order.ID);
+                int selectedIndex = OrdersData.FindIndex(o => o.Order.ID == selected.ID);
                 if (selectedIndex >= 0)
                 {
                     DataGridViewRow row = dataGridView.Rows[selectedIndex];
@@ -169,14 +180,14 @@ namespace ObjectOrientedPractics.View.Tabs
 
             listBoxOrderItems.Items.Clear();
 
-            if (SelectedOrderData == null) return;
+            if (SelectedOrder == null) return;
 
-            for (int i = 0; i < SelectedOrderData.Order.Items.Count; i++)
+            for (int i = 0; i < SelectedOrder.Items.Count; i++)
             {
                 listBoxOrderItems.Items.Add(SelectedItemName(i));
             }
 
-            if (SelectedOrderData.Order.Items.Count > selected) listBoxOrderItems.SelectedIndex = selected;
+            if (SelectedOrder.Items.Count > selected) listBoxOrderItems.SelectedIndex = selected;
         }
 
         /// <summary>
@@ -186,7 +197,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <returns>Название.</returns>
         private string SelectedItemName(int index)
         {
-            return $"{index + 1}. {SelectedOrderData.Order.Items[index].Name}";
+            return $"{index + 1}. {SelectedOrder.Items[index].Name}";
         }
 
         /// <summary>
@@ -196,14 +207,28 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             comboBoxStatus.Items.Clear();
 
-            if (SelectedOrderData == null) return;
+            if (SelectedOrder == null) return;
 
             comboBoxStatus.SelectedIndexChanged -= comboBoxStatus_SelectedIndexChanged;
 
             comboBoxStatus.Items.AddRange(Enum.GetValues(typeof(OrderStatus)).Cast<object>().ToArray());
-            comboBoxStatus.SelectedItem = SelectedOrderData.Order.Status;
+            comboBoxStatus.SelectedItem = SelectedOrder.Status;
 
             comboBoxStatus.SelectedIndexChanged += comboBoxStatus_SelectedIndexChanged;
+        }
+
+        /// <summary>
+        /// Обновляет время доставки выбранного заказа.
+        /// </summary>
+        private void UpdateDeliveryTimes()
+        {
+            comboBoxDeliveryTime.Items.Clear();
+
+            for (int i = 0; i < PriorityOrder.DeliveryTimes.Length; i++)
+            {
+                comboBoxDeliveryTime.Items.
+                    Add($"{PriorityOrder.DeliveryTimes[i].From} - {PriorityOrder.DeliveryTimes[i].To}");
+            }
         }
 
         /// <summary>
@@ -211,8 +236,13 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void dataGridView_SelectionChanged(object sender, EventArgs e)
         {
-            if (SelectedOrderData == null)
+            panelPriorityOrder.Visible = false;
+
+            if (dataGridView.SelectedCells.Count == 0)
             {
+                SelectedOrder = null;
+                SelectedPriorityOrder = null;
+
                 textBoxID.Text = string.Empty;
                 textBoxCreated.Text = string.Empty;
                 textBoxAmount.Text = string.Empty;
@@ -221,11 +251,22 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             else
             {
-                textBoxID.Text = SelectedOrderData.Order.ID.ToString();
-                textBoxCreated.Text = SelectedOrderData.Order.DateTime.ToString();
-                textBoxAmount.Text = SelectedOrderData.Order.Amount.ToString();
+                SelectedOrder = ((OrderData)dataGridView.Rows[dataGridView.SelectedCells[0].RowIndex].DataBoundItem).Order;
 
-                addressControl.Address = SelectedOrderData.Order.Address;
+                if (SelectedOrder is PriorityOrder priorityOrder)
+                {
+                    SelectedPriorityOrder = priorityOrder;
+
+                    panelPriorityOrder.Visible = true;
+
+                    comboBoxDeliveryTime.SelectedIndex = priorityOrder.DesiredTimeIndex;
+                }
+
+                textBoxID.Text = SelectedOrder.ID.ToString();
+                textBoxCreated.Text = SelectedOrder.DateTime.ToString();
+                textBoxAmount.Text = SelectedOrder.Amount.ToString();
+
+                addressControl.Address = SelectedOrder.Address;
             }
 
             UpdateSelectedItems();
@@ -237,9 +278,9 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void comboBoxStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (SelectedOrderData == null) return;
+            if (SelectedOrder == null) return;
 
-            SelectedOrderData.Order.Status = (OrderStatus)comboBoxStatus.SelectedItem;
+            SelectedOrder.Status = (OrderStatus)comboBoxStatus.SelectedItem;
 
             UpdateOrders();
         }
@@ -257,11 +298,21 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void dataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (_sortIndex == e.ColumnIndex) 
+            if (_sortIndex == e.ColumnIndex)
                 _sortDescending = !_sortDescending;
             else _sortIndex = e.ColumnIndex;
 
             RefreshData();
+        }
+
+        /// <summary>
+        /// Событие 'SelectedIndexChanged' элемента <see cref="comboBoxDeliveryTime"/>.
+        /// </summary>
+        private void comboBoxDeliveryTime_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (SelectedPriorityOrder == null) return;
+
+            SelectedPriorityOrder.DesiredTimeIndex = comboBoxDeliveryTime.SelectedIndex;
         }
     }
 }

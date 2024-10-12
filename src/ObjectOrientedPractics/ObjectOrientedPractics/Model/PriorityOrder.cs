@@ -13,20 +13,28 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// [GET] Список доступного для выбора времени заказа.
         /// </summary>
-        public static (TimeOnly from, TimeOnly to)[] DeliveryTimes { get; } = 
+        public static DeliveryTime[] DeliveryTimes { get; } = 
         [
-            (new TimeOnly(9, 0), new TimeOnly(11, 0)),
-            (new TimeOnly(11, 0), new TimeOnly(13, 0)),
-            (new TimeOnly(13, 0), new TimeOnly(15, 0)),
-            (new TimeOnly(15, 0), new TimeOnly(17, 0)),
-            (new TimeOnly(17, 0), new TimeOnly(19, 0)),
-            (new TimeOnly(19, 0), new TimeOnly(21, 0)),
+            new DeliveryTime(new TimeOnly(9, 0), new TimeOnly(11, 0)),
+            new DeliveryTime(new TimeOnly(11, 0), new TimeOnly(13, 0)),
+            new DeliveryTime(new TimeOnly(13, 0), new TimeOnly(15, 0)),
+            new DeliveryTime(new TimeOnly(15, 0), new TimeOnly(17, 0)),
+            new DeliveryTime(new TimeOnly(17, 0), new TimeOnly(19, 0)),
+            new DeliveryTime(new TimeOnly(19, 0), new TimeOnly(21, 0)),
         ];
 
         /// <summary>
-        /// Желаемое время доставки заказа (индекс).
+        /// [GET] Желаемое время доставки заказа.
         /// </summary>
-        public int DesiredTime
+        public DeliveryTime DesiredTime
+        {
+            get { return DeliveryTimes[DesiredTimeIndex]; }
+        }
+
+        /// <summary>
+        /// [GET / SET] Желаемое время доставки заказа (индекс).
+        /// </summary>
+        public int DesiredTimeIndex
         {
             get { return _desiredTime; }
             set 
@@ -38,7 +46,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Желаемая дата доставки заказа.
+        /// [GET / SET] Желаемая дата доставки заказа.
         /// </summary>
         public DateTime DesiredDate
         {
@@ -50,11 +58,11 @@ namespace ObjectOrientedPractics.Model
         /// Конструктор класса.
         /// </summary>
         /// <param name="desiredDate">Желаемая дата достаки.</param>
-        /// <param name="desiredTime">Желаемое время доставки.</param>
-        public PriorityOrder(DateTime desiredDate, int desiredTime) : base()
+        /// <param name="desiredTimeIndex">Желаемое время доставки.</param>
+        public PriorityOrder(DateTime desiredDate, int desiredTimeIndex) : base()
         {
             DesiredDate = desiredDate;
-            DesiredTime = desiredTime;
+            DesiredTimeIndex = desiredTimeIndex;
         }
     }
 }

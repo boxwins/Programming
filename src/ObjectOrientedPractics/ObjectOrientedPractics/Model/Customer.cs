@@ -15,6 +15,8 @@ namespace ObjectOrientedPractics.Model
         private Cart _cart = new Cart();
         private List<Order> _orders = new List<Order>();
 
+        private bool _isPriority = false;
+
         /// <summary>
         /// [GET] Пустой покупатель.
         /// </summary>
@@ -67,6 +69,15 @@ namespace ObjectOrientedPractics.Model
         public List<Order> Orders
         {
             get { return _orders; }
+        }
+
+        /// <summary>
+        /// [GET / SET] Является ли покупатель приоритетным.
+        /// </summary>
+        public bool IsPriority
+        {
+            get { return _isPriority; }
+            set { _isPriority = value; }
         }
 
         /// <summary>

@@ -43,9 +43,12 @@ namespace ObjectOrientedPractics.View.Tabs
             amountDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             statusDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             orderDataBindingSource = new BindingSource(components);
-            customerBindingSource = new BindingSource(components);
             splitContainer1 = new SplitContainer();
             textBoxFind = new TextBox();
+            panelPriorityOrder = new Panel();
+            comboBoxDeliveryTime = new ComboBox();
+            labelPriorityOptions = new Label();
+            labelDeliveryTime = new Label();
             textBoxAmount = new TextBox();
             labelAmount = new Label();
             labelOrderItems = new Label();
@@ -57,11 +60,11 @@ namespace ObjectOrientedPractics.View.Tabs
             labelSelectedOrder = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)orderDataBindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)customerBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
+            panelPriorityOrder.SuspendLayout();
             SuspendLayout();
             // 
             // labelOrders
@@ -85,7 +88,7 @@ namespace ObjectOrientedPractics.View.Tabs
             listBoxOrderItems.Location = new Point(6, 339);
             listBoxOrderItems.Margin = new Padding(6);
             listBoxOrderItems.Name = "listBoxOrderItems";
-            listBoxOrderItems.Size = new Size(467, 274);
+            listBoxOrderItems.Size = new Size(708, 274);
             listBoxOrderItems.TabIndex = 1;
             // 
             // textBoxID
@@ -123,7 +126,7 @@ namespace ObjectOrientedPractics.View.Tabs
             dataGridView.Margin = new Padding(6);
             dataGridView.MultiSelect = false;
             dataGridView.Name = "dataGridView";
-            dataGridView.Size = new Size(548, 609);
+            dataGridView.Size = new Size(307, 609);
             dataGridView.TabIndex = 4;
             dataGridView.ColumnHeaderMouseClick += dataGridView_ColumnHeaderMouseClick;
             dataGridView.SelectionChanged += dataGridView_SelectionChanged;
@@ -174,10 +177,6 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             orderDataBindingSource.DataSource = typeof(OrderData);
             // 
-            // customerBindingSource
-            // 
-            customerBindingSource.DataSource = typeof(Model.Customer);
-            // 
             // splitContainer1
             // 
             splitContainer1.Dock = DockStyle.Fill;
@@ -192,6 +191,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // splitContainer1.Panel2
             // 
+            splitContainer1.Panel2.Controls.Add(panelPriorityOrder);
             splitContainer1.Panel2.Controls.Add(textBoxAmount);
             splitContainer1.Panel2.Controls.Add(labelAmount);
             splitContainer1.Panel2.Controls.Add(labelOrderItems);
@@ -205,7 +205,7 @@ namespace ObjectOrientedPractics.View.Tabs
             splitContainer1.Panel2.Controls.Add(listBoxOrderItems);
             splitContainer1.Panel2.Controls.Add(comboBoxStatus);
             splitContainer1.Size = new Size(1043, 686);
-            splitContainer1.SplitterDistance = 560;
+            splitContainer1.SplitterDistance = 319;
             splitContainer1.TabIndex = 5;
             // 
             // textBoxFind
@@ -216,9 +216,53 @@ namespace ObjectOrientedPractics.View.Tabs
             textBoxFind.Location = new Point(6, 655);
             textBoxFind.Name = "textBoxFind";
             textBoxFind.PlaceholderText = "Search";
-            textBoxFind.Size = new Size(548, 25);
+            textBoxFind.Size = new Size(307, 25);
             textBoxFind.TabIndex = 9;
             textBoxFind.TextChanged += textBoxFind_TextChanged;
+            // 
+            // panelPriorityOrder
+            // 
+            panelPriorityOrder.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panelPriorityOrder.Controls.Add(comboBoxDeliveryTime);
+            panelPriorityOrder.Controls.Add(labelPriorityOptions);
+            panelPriorityOrder.Controls.Add(labelDeliveryTime);
+            panelPriorityOrder.Location = new Point(281, 0);
+            panelPriorityOrder.Name = "panelPriorityOrder";
+            panelPriorityOrder.Size = new Size(439, 121);
+            panelPriorityOrder.TabIndex = 31;
+            // 
+            // comboBoxDeliveryTime
+            // 
+            comboBoxDeliveryTime.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxDeliveryTime.Font = new Font("Segoe UI", 10F);
+            comboBoxDeliveryTime.FormattingEnabled = true;
+            comboBoxDeliveryTime.Location = new Point(109, 34);
+            comboBoxDeliveryTime.Name = "comboBoxDeliveryTime";
+            comboBoxDeliveryTime.Size = new Size(210, 25);
+            comboBoxDeliveryTime.TabIndex = 29;
+            comboBoxDeliveryTime.SelectedIndexChanged += comboBoxDeliveryTime_SelectedIndexChanged;
+            // 
+            // labelPriorityOptions
+            // 
+            labelPriorityOptions.AutoSize = true;
+            labelPriorityOptions.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            labelPriorityOptions.Location = new Point(6, 6);
+            labelPriorityOptions.Margin = new Padding(6);
+            labelPriorityOptions.Name = "labelPriorityOptions";
+            labelPriorityOptions.Size = new Size(116, 19);
+            labelPriorityOptions.TabIndex = 28;
+            labelPriorityOptions.Text = "Priority Options";
+            // 
+            // labelDeliveryTime
+            // 
+            labelDeliveryTime.AutoSize = true;
+            labelDeliveryTime.Font = new Font("Segoe UI", 10F);
+            labelDeliveryTime.Location = new Point(6, 37);
+            labelDeliveryTime.Margin = new Padding(6);
+            labelDeliveryTime.Name = "labelDeliveryTime";
+            labelDeliveryTime.Size = new Size(94, 19);
+            labelDeliveryTime.TabIndex = 30;
+            labelDeliveryTime.Text = "Delivery Time:";
             // 
             // textBoxAmount
             // 
@@ -229,7 +273,7 @@ namespace ObjectOrientedPractics.View.Tabs
             textBoxAmount.Location = new Point(6, 655);
             textBoxAmount.Margin = new Padding(6);
             textBoxAmount.Name = "textBoxAmount";
-            textBoxAmount.Size = new Size(467, 25);
+            textBoxAmount.Size = new Size(708, 25);
             textBoxAmount.TabIndex = 12;
             textBoxAmount.Text = "0.00 $";
             textBoxAmount.TextAlign = HorizontalAlignment.Right;
@@ -239,7 +283,7 @@ namespace ObjectOrientedPractics.View.Tabs
             labelAmount.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelAmount.AutoSize = true;
             labelAmount.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            labelAmount.Location = new Point(397, 622);
+            labelAmount.Location = new Point(638, 622);
             labelAmount.Margin = new Padding(6);
             labelAmount.Name = "labelAmount";
             labelAmount.Size = new Size(76, 21);
@@ -265,7 +309,7 @@ namespace ObjectOrientedPractics.View.Tabs
             addressControl.Margin = new Padding(0, 6, 0, 6);
             addressControl.Name = "addressControl";
             addressControl.Readonly = true;
-            addressControl.Size = new Size(479, 166);
+            addressControl.Size = new Size(720, 166);
             addressControl.TabIndex = 9;
             // 
             // textBoxCreated
@@ -331,13 +375,14 @@ namespace ObjectOrientedPractics.View.Tabs
             Size = new Size(1043, 686);
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
             ((System.ComponentModel.ISupportInitialize)orderDataBindingSource).EndInit();
-            ((System.ComponentModel.ISupportInitialize)customerBindingSource).EndInit();
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel1.PerformLayout();
             splitContainer1.Panel2.ResumeLayout(false);
             splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
+            panelPriorityOrder.ResumeLayout(false);
+            panelPriorityOrder.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -358,7 +403,6 @@ namespace ObjectOrientedPractics.View.Tabs
         private TextBox textBoxCreated;
         private TextBox textBoxAmount;
         private Label labelAmount;
-        private BindingSource customerBindingSource;
         private BindingSource orderDataBindingSource;
         private DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
@@ -367,5 +411,9 @@ namespace ObjectOrientedPractics.View.Tabs
         private DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
         private TextBox textBoxFind;
+        private Label labelDeliveryTime;
+        private ComboBox comboBoxDeliveryTime;
+        private Label labelPriorityOptions;
+        private Panel panelPriorityOrder;
     }
 }

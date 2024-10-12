@@ -41,7 +41,7 @@ namespace ObjectOrientedPractics.View.Tabs
             textBoxID.Text = Order.ID.ToString();
             textBoxCreated.Text = Order.DateTime.ToString();
 
-            if (Order.Address == null) Order.Address = CustomerFactory.GenerateAddress(1)[0];
+            if (Order.Address == null) Order.Address = Factory.GenerateAddresses(1)[0];
             addressControl.Address = Order.Address;
 
             listBoxOrderItems.Items.Clear();
@@ -80,10 +80,10 @@ namespace ObjectOrientedPractics.View.Tabs
             for (int i = 0; i < PriorityOrder.DeliveryTimes.Length; i++)
             {
                 comboBoxDeliveryTime.Items.
-                    Add($"{PriorityOrder.DeliveryTimes[i].from} - {PriorityOrder.DeliveryTimes[i].to}");
+                    Add($"{PriorityOrder.DeliveryTimes[i].From} - {PriorityOrder.DeliveryTimes[i].To}");
             }
 
-            comboBoxDeliveryTime.SelectedIndex = Order.DesiredTime;
+            comboBoxDeliveryTime.SelectedIndex = Order.DesiredTimeIndex;
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void comboBoxDeliveryTime_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Order.DesiredTime = comboBoxDeliveryTime.SelectedIndex;
+            Order.DesiredTimeIndex = comboBoxDeliveryTime.SelectedIndex;
         }
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void buttonAddItem_Click(object sender, EventArgs e)
         {
-            Item item = ItemFactory.GenerateRandom();
+            Item item = Factory.GenerateItem();
 
             Order.Items.Add(item);
             listBoxOrderItems.Items.Add(item.Name);

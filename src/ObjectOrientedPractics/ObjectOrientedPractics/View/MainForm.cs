@@ -1,6 +1,4 @@
-﻿using System.Text.Json;
-
-using ObjectOrientedPractics.Model;
+﻿using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.View

@@ -93,7 +93,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void buttonGenerate_Click(object sender, EventArgs e)
         {
             Customers.Clear();
-            Customers.AddRange(CustomerFactory.GenerateRandom(10));
+            Customers.AddRange(Factory.GenerateCustomers(10));
 
             UpdateListBox();
         }
@@ -150,6 +150,8 @@ namespace ObjectOrientedPractics.View.Tabs
                 textBoxID.Text = CurrentCustomer.ID.ToString();
                 textBoxFullName.Text = CurrentCustomer.FullName;
                 addressControl.Address = CurrentCustomer.Address;
+
+                checkBoxPriority.Checked = CurrentCustomer.IsPriority;
             }
         }
 
@@ -170,6 +172,16 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 textBoxFullName.BackColor = AppColors.TextBoxErrorColor;
             }
+        }
+
+        /// <summary>
+        /// Событие 'CheckedChanged' элемента <see cref="checkBoxPriority"/>.
+        /// </summary>
+        private void checkBoxPriority_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CurrentCustomer == null) return;
+
+            CurrentCustomer.IsPriority = checkBoxPriority.Checked;
         }
     }
 }

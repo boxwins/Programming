@@ -91,7 +91,7 @@ namespace ObjectOrientedPractics.Services
             return currentIndexes.Select(c =>
             {
                 if (c >= 0) return storeItems[c];
-                else return ItemFactory.GenerateRandom();
+                else return Factory.GenerateItem();
             })
                 .ToList();
         }

@@ -7,7 +7,6 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Магазин.
     /// </summary>
-    [JsonConverter(typeof(StoreConverter))]
     public class Store
     {
         private List<Item> _items = new List<Item>();

@@ -246,7 +246,7 @@ namespace ObjectOrientedPractics.View.Tabs
             if (CurrentCustomer == null) return;
             if (CurrentCustomer.Cart.Items.Count == 0) return;
 
-            Order order = new Order();
+            Order order = CurrentCustomer.IsPriority ? new PriorityOrder(DateTime.Today, 0) : new Order();
 
             order.Status = OrderStatus.New;
             order.Items = new List<Item>(CurrentCustomer.Cart.Items);
