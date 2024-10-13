@@ -1,6 +1,6 @@
 ﻿using ObjectOrientedPractics.Services;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Orders
 {
     /// <summary>
     /// Приоритетный заказ.
@@ -13,7 +13,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// [GET] Список доступного для выбора времени заказа.
         /// </summary>
-        public static DeliveryTime[] DeliveryTimes { get; } = 
+        public static DeliveryTime[] DeliveryTimes { get; } =
         [
             new DeliveryTime(new TimeOnly(9, 0), new TimeOnly(11, 0)),
             new DeliveryTime(new TimeOnly(11, 0), new TimeOnly(13, 0)),
@@ -37,11 +37,11 @@ namespace ObjectOrientedPractics.Model
         public int DesiredTimeIndex
         {
             get { return _desiredTime; }
-            set 
+            set
             {
                 Validator.Limit(0, DeliveryTimes.Length - 1, value);
 
-                _desiredTime = value; 
+                _desiredTime = value;
             }
         }
 

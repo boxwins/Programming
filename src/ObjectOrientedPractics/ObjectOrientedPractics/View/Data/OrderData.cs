@@ -1,4 +1,4 @@
-﻿using ObjectOrientedPractics.Model;
+﻿using ObjectOrientedPractics.Model.Orders;
 
 namespace ObjectOrientedPractics.View.Data
 {

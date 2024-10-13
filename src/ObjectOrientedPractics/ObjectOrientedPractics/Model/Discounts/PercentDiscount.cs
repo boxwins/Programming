@@ -1,6 +1,8 @@
-﻿namespace ObjectOrientedPractics.Model
+﻿using ObjectOrientedPractics.Model.Enums;
+
+namespace ObjectOrientedPractics.Model.Discounts
 {
-    public class PercentDiscount
+    public class PercentDiscount : IDiscount
     {
         private const int DISCOUNT_MAX = 10;
         private const int DISCOUNT_INCREASE = 1;
@@ -46,9 +48,6 @@
             set { _category = value; }
         }
 
-        /// <summary>
-        /// [GET] Информация о скидке.
-        /// </summary>
         public string Info
         {
             get
@@ -57,21 +56,11 @@
             }
         }
 
-        /// <summary>
-        /// Считает размер скидки доступной для товаров.
-        /// </summary>
-        /// <param name="items">Товары.</param>
-        /// <returns>Расмер скидки.</returns>
         public double Calculate(List<Item> items)
         {
             return GetCost(SelectDiscounted(items)) * DiscountRelative;
         }
 
-        /// <summary>
-        /// Применяет скидку к товарам.
-        /// </summary>
-        /// <param name="items">Товары.</param>
-        /// <returns>Размер скидки.</returns>
         public double Apply(List<Item> items)
         {
             int discount = (int)Calculate(items);
@@ -87,10 +76,6 @@
             return discount;
         }
 
-        /// <summary>
-        /// Добавляет скидочные баллы за товары.
-        /// </summary>
-        /// <param name="items">Товары.</param>
         public void Update(List<Item> items)
         {
             double cost = GetCost(SelectDiscounted(items));

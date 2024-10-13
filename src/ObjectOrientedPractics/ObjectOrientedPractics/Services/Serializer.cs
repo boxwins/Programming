@@ -13,6 +13,7 @@ namespace ObjectOrientedPractics.Services
         {
             Settings.Formatting = Formatting.Indented;
             Settings.TypeNameHandling = TypeNameHandling.All;
+            Settings.ObjectCreationHandling = ObjectCreationHandling.Replace;
         }
 
         /// <summary>

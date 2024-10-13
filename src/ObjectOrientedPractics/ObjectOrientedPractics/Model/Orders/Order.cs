@@ -1,6 +1,7 @@
-﻿using ObjectOrientedPractics.Services;
+﻿using ObjectOrientedPractics.Model.Enums;
+using ObjectOrientedPractics.Services;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Orders
 {
     /// <summary>
     /// Заказ.
@@ -9,8 +10,8 @@ namespace ObjectOrientedPractics.Model
     {
         private readonly int _id = IdGenerator.GetNextId<Order>();
 
-        private Address _address    = null;
-        private List<Item> _items   = new List<Item>();
+        private Address _address = null;
+        private List<Item> _items = new List<Item>();
         private Dictionary<DateTime, OrderStatus> _statusLog = new Dictionary<DateTime, OrderStatus>();
 
         /// <summary>
@@ -89,6 +90,22 @@ namespace ObjectOrientedPractics.Model
                 }
 
                 return result;
+            }
+        }
+
+        /// <summary>
+        /// [GET / SET] Размер скидки.
+        /// </summary>
+        public int DiscountAmount { get; set; }
+
+        /// <summary>
+        /// [GET] Стоимость товаров с учетом скидки.
+        /// </summary>
+        public double Total
+        {
+            get
+            {
+                return Amount - DiscountAmount;
             }
         }
 

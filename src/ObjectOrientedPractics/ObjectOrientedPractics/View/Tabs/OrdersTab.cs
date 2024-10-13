@@ -1,4 +1,6 @@
 ﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Model.Enums;
+using ObjectOrientedPractics.Model.Orders;
 using ObjectOrientedPractics.View.Data;
 
 namespace ObjectOrientedPractics.View.Tabs

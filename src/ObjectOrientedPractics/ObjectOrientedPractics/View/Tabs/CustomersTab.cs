@@ -138,6 +138,21 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
+        /// Обновляет содержимое элемента <see cref="listBoxDiscounts"/>.
+        /// </summary>
+        private void UpdateListBoxDiscount()
+        {
+            if (CurrentCustomer == null) return;
+
+            listBoxDiscounts.Items.Clear();
+
+            for (int i = 0; i < CurrentCustomer.Discounts.Count; i++)
+            {
+                listBoxDiscounts.Items.Add(CurrentCustomer.Discounts[i].Info);
+            }
+        }
+
+        /// <summary>
         /// Событие 'SelectedIndexChanged' элемента <see cref="customersListBox"/>.
         /// </summary>
         private void customersListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -152,6 +167,8 @@ namespace ObjectOrientedPractics.View.Tabs
                 addressControl.Address = CurrentCustomer.Address;
 
                 checkBoxPriority.Checked = CurrentCustomer.IsPriority;
+
+                UpdateListBoxDiscount();
             }
         }
 
@@ -182,6 +199,33 @@ namespace ObjectOrientedPractics.View.Tabs
             if (CurrentCustomer == null) return;
 
             CurrentCustomer.IsPriority = checkBoxPriority.Checked;
+        }
+
+        /// <summary>
+        /// Событие 'Click' элемента <see cref="buttonAddDiscount"/>.
+        /// </summary>
+        private void buttonAddDiscount_Click(object sender, EventArgs e)
+        {
+            if (CurrentCustomer == null) return;
+
+            AddPercentDiscountForm addPercentDiscountForm = new AddPercentDiscountForm(CurrentCustomer);
+            addPercentDiscountForm.ShowDialog();
+
+            UpdateListBoxDiscount();
+        }
+
+        /// <summary>
+        /// Событие 'Click' элемента <see cref="buttonRemoveDiscount"/>.
+        /// </summary>
+        private void buttonRemoveDiscount_Click(object sender, EventArgs e)
+        {
+            if (CurrentCustomer == null) return;
+            if (listBoxDiscounts.SelectedIndex < 0) return;
+            if (listBoxDiscounts.SelectedIndex == 1) return;
+
+            CurrentCustomer.Discounts.RemoveAt(listBoxDiscounts.SelectedIndex);
+
+            UpdateListBoxDiscount();
         }
     }
 }

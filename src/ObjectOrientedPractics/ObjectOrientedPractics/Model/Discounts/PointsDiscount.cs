@@ -1,11 +1,11 @@
 ﻿using ObjectOrientedPractics.Services;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Discounts
 {
     /// <summary>
     /// Скидка накопительных баллов.
     /// </summary>
-    public class PointsDiscount
+    public class PointsDiscount : IDiscount
     {
         private const double DISCOUNT_MAX = 0.3d;
         private const double DISCOUNT_INCREASE = 0.1d;
@@ -26,9 +26,6 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
-        /// <summary>
-        /// [GET] Информация о скидке.
-        /// </summary>
         public string Info
         {
             get
@@ -37,11 +34,6 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
-        /// <summary>
-        /// Считает размер скидки доступной для товаров.
-        /// </summary>
-        /// <param name="items">Товары.</param>
-        /// <returns>Расмер скидки.</returns>
         public double Calculate(List<Item> items)
         {
             double maxDiscount = (int)(GetCost(items) * DISCOUNT_MAX);
@@ -49,11 +41,6 @@ namespace ObjectOrientedPractics.Model
             return Points > maxDiscount ? maxDiscount : Points;
         }
 
-        /// <summary>
-        /// Применяет скидку к товарам.
-        /// </summary>
-        /// <param name="items">Товары.</param>
-        /// <returns>Размер скидки.</returns>
         public double Apply(List<Item> items)
         {
             int discount = (int)Calculate(items);
@@ -69,10 +56,6 @@ namespace ObjectOrientedPractics.Model
             return discount;
         }
 
-        /// <summary>
-        /// Добавляет скидочные баллы за товары.
-        /// </summary>
-        /// <param name="items">Товары.</param>
         public void Update(List<Item> items)
         {
             Points += (int)Math.Round(GetCost(items) * DISCOUNT_INCREASE, MidpointRounding.ToPositiveInfinity);

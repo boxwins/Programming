@@ -1,4 +1,8 @@
-﻿using ObjectOrientedPractics.Services;
+﻿using Newtonsoft.Json;
+
+using ObjectOrientedPractics.Model.Discounts;
+using ObjectOrientedPractics.Model.Orders;
+using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.Model
 {
@@ -14,6 +18,11 @@ namespace ObjectOrientedPractics.Model
 
         private Cart _cart = new Cart();
         private List<Order> _orders = new List<Order>();
+
+        private List<IDiscount> _discounts = new List<IDiscount>()
+        {
+            new PointsDiscount()
+        };
 
         private bool _isPriority = false;
 
@@ -69,6 +78,16 @@ namespace ObjectOrientedPractics.Model
         public List<Order> Orders
         {
             get { return _orders; }
+        }
+
+        /// <summary>
+        /// [GET] Список скидок.
+        /// </summary>
+        [JsonProperty]
+        public List<IDiscount> Discounts
+        {
+            get { return _discounts; }
+            private set { _discounts = value; }
         }
 
         /// <summary>
