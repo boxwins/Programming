@@ -36,14 +36,9 @@ namespace ObjectOrientedPractics.View.Tabs
             textBoxID = new TextBox();
             comboBoxStatus = new ComboBox();
             dataGridView = new DataGridView();
-            iDDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            dateDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            nameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            addressDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            amountDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            statusDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             orderDataBindingSource = new BindingSource(components);
             splitContainer1 = new SplitContainer();
+            checkBoxOnlyPriority = new CheckBox();
             textBoxFind = new TextBox();
             panelPriorityOrder = new Panel();
             comboBoxDeliveryTime = new ComboBox();
@@ -58,6 +53,13 @@ namespace ObjectOrientedPractics.View.Tabs
             labelCreated = new Label();
             labelID = new Label();
             labelSelectedOrder = new Label();
+            PriorityImage = new DataGridViewImageColumn();
+            iDDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            dateDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            nameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            addressDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            amountDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            statusDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)orderDataBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
@@ -120,58 +122,19 @@ namespace ObjectOrientedPractics.View.Tabs
             dataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView.AutoGenerateColumns = false;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView.Columns.AddRange(new DataGridViewColumn[] { iDDataGridViewTextBoxColumn, dateDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, addressDataGridViewTextBoxColumn, amountDataGridViewTextBoxColumn, statusDataGridViewTextBoxColumn });
+            dataGridView.Columns.AddRange(new DataGridViewColumn[] { PriorityImage, iDDataGridViewTextBoxColumn, dateDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, addressDataGridViewTextBoxColumn, amountDataGridViewTextBoxColumn, statusDataGridViewTextBoxColumn });
             dataGridView.DataSource = orderDataBindingSource;
             dataGridView.Location = new Point(6, 37);
             dataGridView.Margin = new Padding(6);
             dataGridView.MultiSelect = false;
             dataGridView.Name = "dataGridView";
-            dataGridView.Size = new Size(307, 609);
+            dataGridView.ReadOnly = true;
+            dataGridView.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridView.RowHeadersVisible = false;
+            dataGridView.Size = new Size(307, 580);
             dataGridView.TabIndex = 4;
             dataGridView.ColumnHeaderMouseClick += dataGridView_ColumnHeaderMouseClick;
             dataGridView.SelectionChanged += dataGridView_SelectionChanged;
-            // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            iDDataGridViewTextBoxColumn.HeaderText = "Order ID";
-            iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            iDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dateDataGridViewTextBoxColumn
-            // 
-            dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
-            dateDataGridViewTextBoxColumn.HeaderText = "Creation Date";
-            dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
-            dateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            nameDataGridViewTextBoxColumn.HeaderText = "Customer Full Name";
-            nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            nameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // addressDataGridViewTextBoxColumn
-            // 
-            addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
-            addressDataGridViewTextBoxColumn.HeaderText = "Delivery Address";
-            addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
-            addressDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // amountDataGridViewTextBoxColumn
-            // 
-            amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
-            amountDataGridViewTextBoxColumn.HeaderText = "Total Amount";
-            amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
-            amountDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // statusDataGridViewTextBoxColumn
-            // 
-            statusDataGridViewTextBoxColumn.DataPropertyName = "Status";
-            statusDataGridViewTextBoxColumn.HeaderText = "Order Status";
-            statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
-            statusDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // orderDataBindingSource
             // 
@@ -185,6 +148,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // splitContainer1.Panel1
             // 
+            splitContainer1.Panel1.Controls.Add(checkBoxOnlyPriority);
             splitContainer1.Panel1.Controls.Add(textBoxFind);
             splitContainer1.Panel1.Controls.Add(dataGridView);
             splitContainer1.Panel1.Controls.Add(labelOrders);
@@ -207,6 +171,19 @@ namespace ObjectOrientedPractics.View.Tabs
             splitContainer1.Size = new Size(1043, 686);
             splitContainer1.SplitterDistance = 319;
             splitContainer1.TabIndex = 5;
+            // 
+            // checkBoxOnlyPriority
+            // 
+            checkBoxOnlyPriority.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            checkBoxOnlyPriority.AutoSize = true;
+            checkBoxOnlyPriority.Font = new Font("Segoe UI", 10F);
+            checkBoxOnlyPriority.Location = new Point(6, 626);
+            checkBoxOnlyPriority.Name = "checkBoxOnlyPriority";
+            checkBoxOnlyPriority.Size = new Size(188, 23);
+            checkBoxOnlyPriority.TabIndex = 10;
+            checkBoxOnlyPriority.Text = "Show Only Priority Orders";
+            checkBoxOnlyPriority.UseVisualStyleBackColor = true;
+            checkBoxOnlyPriority.CheckedChanged += checkBoxOnlyPriority_CheckedChanged;
             // 
             // textBoxFind
             // 
@@ -366,6 +343,59 @@ namespace ObjectOrientedPractics.View.Tabs
             labelSelectedOrder.TabIndex = 4;
             labelSelectedOrder.Text = "Selected Order";
             // 
+            // PriorityImage
+            // 
+            PriorityImage.DataPropertyName = "PriorityImage";
+            PriorityImage.HeaderText = "";
+            PriorityImage.ImageLayout = DataGridViewImageCellLayout.Zoom;
+            PriorityImage.Name = "PriorityImage";
+            PriorityImage.ReadOnly = true;
+            PriorityImage.Width = 40;
+            // 
+            // iDDataGridViewTextBoxColumn
+            // 
+            iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            iDDataGridViewTextBoxColumn.HeaderText = "Order ID";
+            iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            iDDataGridViewTextBoxColumn.ReadOnly = true;
+            iDDataGridViewTextBoxColumn.Width = 40;
+            // 
+            // dateDataGridViewTextBoxColumn
+            // 
+            dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
+            dateDataGridViewTextBoxColumn.HeaderText = "Creation Date";
+            dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
+            dateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            nameDataGridViewTextBoxColumn.HeaderText = "Customer Full Name";
+            nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // addressDataGridViewTextBoxColumn
+            // 
+            addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
+            addressDataGridViewTextBoxColumn.HeaderText = "Delivery Address";
+            addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
+            addressDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // amountDataGridViewTextBoxColumn
+            // 
+            amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
+            amountDataGridViewTextBoxColumn.HeaderText = "Total Amount";
+            amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
+            amountDataGridViewTextBoxColumn.ReadOnly = true;
+            amountDataGridViewTextBoxColumn.Width = 50;
+            // 
+            // statusDataGridViewTextBoxColumn
+            // 
+            statusDataGridViewTextBoxColumn.DataPropertyName = "Status";
+            statusDataGridViewTextBoxColumn.HeaderText = "Order Status";
+            statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
+            statusDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // OrdersTab
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -404,16 +434,18 @@ namespace ObjectOrientedPractics.View.Tabs
         private TextBox textBoxAmount;
         private Label labelAmount;
         private BindingSource orderDataBindingSource;
+        private TextBox textBoxFind;
+        private Label labelDeliveryTime;
+        private ComboBox comboBoxDeliveryTime;
+        private Label labelPriorityOptions;
+        private Panel panelPriorityOrder;
+        private CheckBox checkBoxOnlyPriority;
+        private DataGridViewImageColumn PriorityImage;
         private DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
-        private TextBox textBoxFind;
-        private Label labelDeliveryTime;
-        private ComboBox comboBoxDeliveryTime;
-        private Label labelPriorityOptions;
-        private Panel panelPriorityOrder;
     }
 }

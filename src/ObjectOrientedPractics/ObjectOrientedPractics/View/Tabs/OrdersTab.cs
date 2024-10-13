@@ -16,6 +16,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private int _sortIndex = 0;
         private bool _sortDescending = false;
+        private bool _showOnlyPriority = false;
 
         /// <summary>
         /// [GET / SET] Список покупателей.
@@ -99,7 +100,8 @@ namespace ObjectOrientedPractics.View.Tabs
                         Status = order.Status.ToString(),
                     };
 
-                    if (!DesiredOrder(orderData)) continue;
+                    if (!DesiredOrderSearch(orderData)) continue;
+                    if (!DesiredOrderPriority(orderData)) continue;
 
                     OrdersData.Add(orderData);
                 }
@@ -122,11 +124,11 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// Проверяет нужно ли отображать данные о заказе.
+        /// Проверяет нужно ли отображать данные о заказе на основе строки поиска.
         /// </summary>
         /// <param name="orderData">Данные о заказе.</param>
         /// <returns>Результат проверки.</returns>
-        private bool DesiredOrder(OrderData orderData)
+        private bool DesiredOrderSearch(OrderData orderData)
         {
             if (string.IsNullOrWhiteSpace(textBoxFind.Text)) return true;
 
@@ -143,21 +145,33 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
+        /// Проверяет нужно ли отображать данные о заказе на основе приоритета.
+        /// </summary>
+        /// <param name="orderData">Данные о заказе.</param>
+        /// <returns>Результат проверки.</returns>
+        private bool DesiredOrderPriority(OrderData orderData)
+        {
+            if (!_showOnlyPriority) return true;
+
+            return orderData.Order is PriorityOrder;
+        }
+
+        /// <summary>
         /// Сортирует список данных о заказах.
         /// </summary>
         private void SortOrdersData()
         {
-            Action[] sortMethods =
+            Dictionary<int, Action> sortMethods = new Dictionary<int, Action>()
             {
-                () => SortOrdersKey(o => o.Order.ID),
-                () => SortOrdersKey(o => o.Order.DateTime),
-                () => SortOrdersKey(o => o.Name),
-                () => SortOrdersKey(o => o.Address),
-                () => SortOrdersKey(o => o.Order.Amount),
-                () => SortOrdersKey(o => o.Status),
+                { 1, () => SortOrdersKey(o => o.Order.ID) },
+                { 2, () => SortOrdersKey(o => o.Order.DateTime) },
+                { 3, () => SortOrdersKey(o => o.Name) },
+                { 4, () => SortOrdersKey(o => o.Address) },
+                { 5, () => SortOrdersKey(o => o.Order.Amount) },
+                { 6, () => SortOrdersKey(o => o.Status) },
             };
 
-            sortMethods[_sortIndex].Invoke();
+            if (sortMethods.TryGetValue(_sortIndex, out Action method)) method.Invoke();
         }
 
         /// <summary>
@@ -313,6 +327,16 @@ namespace ObjectOrientedPractics.View.Tabs
             if (SelectedPriorityOrder == null) return;
 
             SelectedPriorityOrder.DesiredTimeIndex = comboBoxDeliveryTime.SelectedIndex;
+        }
+
+        /// <summary>
+        /// Событие 'CheckedChanged' элемента <see cref="checkBoxOnlyPriority"/>.
+        /// </summary>
+        private void checkBoxOnlyPriority_CheckedChanged(object sender, EventArgs e)
+        {
+            _showOnlyPriority = checkBoxOnlyPriority.Checked;
+
+            RefreshData();
         }
     }
 }

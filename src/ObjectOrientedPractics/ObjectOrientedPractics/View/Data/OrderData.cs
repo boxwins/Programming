@@ -7,6 +7,8 @@ namespace ObjectOrientedPractics.View.Data
     /// </summary>
     public class OrderData
     {
+        private static Image Star { get; }
+
         /// <summary>
         /// [GET] Заказ.
         /// </summary>
@@ -41,6 +43,23 @@ namespace ObjectOrientedPractics.View.Data
         /// [GET / SET] Статус заказа.
         /// </summary>
         public string Status { get; set; }
+
+        /// <summary>
+        /// [GET] Изображение приоритета.
+        /// </summary>
+        public Image PriorityImage
+        {
+            get 
+            {
+                if (Order is PriorityOrder) return Star;
+                else return new Bitmap(1, 1);
+            }
+        }
+
+        static OrderData()
+        {
+            Star = Image.FromFile(@$"{Environment.CurrentDirectory}\Properties\Resources\Star.png");
+        }
 
         /// <summary>
         /// Конструктор класса.

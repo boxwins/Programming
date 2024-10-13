@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="ObjectOrientedPractics.Model.Order">
+    <Position X="1.75" Y="2.25" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAEAAAAiAAAAABAACCAABAAAAQCAAAAAEAAAAA=</HashCode>
+      <FileName>Model\Order.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObjectOrientedPractics.Model.PriorityOrder">
+    <Position X="1.75" Y="6.75" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAIAAAAAACAAAAAEAAAABAAAAAAAQ=</HashCode>
+      <FileName>Model\PriorityOrder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObjectOrientedPractics.Model.DeliveryTime">
+    <Position X="6.25" Y="2.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\DeliveryTime.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObjectOrientedPractics.Model.Customer">
+    <Position X="6.25" Y="5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAEAAEAAAEEAgIAAAAJAAAIAAAAAAAACQAAAIEAAAAA=</HashCode>
+      <FileName>Model\Customer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

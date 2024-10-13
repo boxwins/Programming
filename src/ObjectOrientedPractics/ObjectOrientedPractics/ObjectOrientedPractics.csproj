@@ -12,6 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Properties\Resources\Star.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Services\Data\Addresses.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
