@@ -5,7 +5,7 @@ namespace ObjectOrientedPractics.Model.Discounts
     /// <summary>
     /// Скидка накопительных баллов.
     /// </summary>
-    public class PointsDiscount : IDiscount
+    public class PointsDiscount : IDiscount, IComparable<PointsDiscount>
     {
         private const double DISCOUNT_MAX = 0.3d;
         private const double DISCOUNT_INCREASE = 0.1d;
@@ -65,6 +65,11 @@ namespace ObjectOrientedPractics.Model.Discounts
             double cost = 0;
             for (int i = 0; i < items.Count; i++) cost += items[i].Cost;
             return cost;
+        }
+
+        public int CompareTo(PointsDiscount other)
+        {
+            return Points.CompareTo(other.Points);
         }
     }
 }

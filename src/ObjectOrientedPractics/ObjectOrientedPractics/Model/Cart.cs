@@ -5,7 +5,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Корзина товаров.
     /// </summary>
-    public class Cart
+    public class Cart : ICloneable, IEquatable<Cart>
     {
         private List<Item> _items = new List<Item>();
 
@@ -35,6 +35,26 @@ namespace ObjectOrientedPractics.Model
 
                 return result;
             }
+        }
+
+        public object Clone()
+        {
+            Cart cart = new Cart();
+            cart.Items = new List<Item>(Items);
+
+            return cart;
+        }
+
+        public bool Equals(Cart other)
+        {
+            if (Items.Count != other.Items.Count) return false;
+
+            for (int i = 0; i < Items.Count; i++)
+            {
+                if (!Items[i].Equals(other.Items[i])) return false;
+            }
+
+            return true;
         }
     }
 }

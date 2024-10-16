@@ -2,7 +2,7 @@
 
 namespace ObjectOrientedPractics.Model
 {
-    public class Address
+    public class Address : ICloneable, IEquatable<Address>
     {
         private int _index = 0;
         private string _country = string.Empty;
@@ -116,6 +116,29 @@ namespace ObjectOrientedPractics.Model
         public override string ToString()
         {
             return $"{Country}, г.{City}, ул.{Street}, д.{Building}, {Apartment}";
+        }
+
+        public object Clone()
+        {
+            Address address = new Address();
+
+            address.Country = Country;
+            address.City = City;
+            address.Street = Street;
+            address.Building = Building;
+            address.Apartment = Apartment;
+
+            return address;
+        }
+
+        public bool Equals(Address other)
+        {
+            return
+                Country == other.Country &&
+                City == other.City &&
+                Street == other.Street &&
+                Building == other.Building &&
+                Apartment == other.Apartment;
         }
     }
 }

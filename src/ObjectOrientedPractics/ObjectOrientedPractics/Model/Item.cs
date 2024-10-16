@@ -6,7 +6,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Товар.
     /// </summary>
-    public class Item
+    public class Item : ICloneable, IEquatable<Item>, IComparable<Item>
     {
         private readonly int _id = IdGenerator.GetNextId<Item>();
 
@@ -88,6 +88,24 @@ namespace ObjectOrientedPractics.Model
             Info = info;
             Cost = cost;
             Category = category;
+        }
+
+        public object Clone()
+        {
+            return new Item(Name, Info, Cost, Category);
+        }
+
+        public bool Equals(Item other)
+        {
+            return 
+                Name == other.Name && 
+                Info == other.Info && 
+                Cost == other.Cost;
+        }
+
+        public int CompareTo(Item other)
+        {
+            return Cost.CompareTo(other.Cost);
         }
     }
 }

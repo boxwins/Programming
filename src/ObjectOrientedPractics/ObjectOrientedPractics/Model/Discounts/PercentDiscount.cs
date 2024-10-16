@@ -2,7 +2,7 @@
 
 namespace ObjectOrientedPractics.Model.Discounts
 {
-    public class PercentDiscount : IDiscount
+    public class PercentDiscount : IDiscount, IComparable<PercentDiscount>
     {
         private const int DISCOUNT_MAX = 10;
         private const int DISCOUNT_START = 1;
@@ -101,6 +101,11 @@ namespace ObjectOrientedPractics.Model.Discounts
         private List<Item> SelectDiscounted(List<Item> items)
         {
             return items.Where(i => i.Category == Category).ToList();
+        }
+
+        public int CompareTo(PercentDiscount other)
+        {
+            return Discount.CompareTo(other.Discount);
         }
     }
 }
