@@ -5,10 +5,11 @@ namespace ObjectOrientedPractics.Model.Discounts
     public class PercentDiscount : IDiscount
     {
         private const int DISCOUNT_MAX = 10;
+        private const int DISCOUNT_START = 1;
         private const int DISCOUNT_INCREASE = 1;
         private const int DISCOUNT_TRESHOLD = 1000;
 
-        private int _discount = 1;
+        private int _discount = DISCOUNT_START;
         private double _purchaseValue = 0;
 
         private Category _category = Category.None;
@@ -25,9 +26,9 @@ namespace ObjectOrientedPractics.Model.Discounts
         /// <summary>
         /// [GET] Текущая скидка в отношении.
         /// </summary>
-        public int DiscountRelative
+        public double DiscountRelative
         {
-            get { return Discount / 100; }
+            get { return Discount / 100.0d; }
         }
 
         /// <summary>
@@ -65,13 +66,7 @@ namespace ObjectOrientedPractics.Model.Discounts
         {
             int discount = (int)Calculate(items);
 
-            List<Item> discountItems = SelectDiscounted(items);
-
-            discountItems[0].Cost -= discount % items.Count;
-
-            int itemDiscount = discount / items.Count;
-            for (int i = 0; i < discountItems.Count; i++)
-                items[i].Cost -= itemDiscount;
+            Discount = DISCOUNT_START;
 
             return discount;
         }

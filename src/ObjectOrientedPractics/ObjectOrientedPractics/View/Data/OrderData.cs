@@ -7,6 +7,9 @@ namespace ObjectOrientedPractics.View.Data
     /// </summary>
     public class OrderData
     {
+        /// <summary>
+        /// Изображение приоритетного заказа.
+        /// </summary>
         private static Image Star { get; }
 
         /// <summary>
@@ -35,7 +38,7 @@ namespace ObjectOrientedPractics.View.Data
         public string Address { get; set; }
 
         /// <summary>
-        /// [GET / SET] Стоимость заказа.
+        /// [GET / SET] Стоимость товаров в заказе.
         /// </summary>
         public string Amount { get; set; }
 
@@ -43,6 +46,11 @@ namespace ObjectOrientedPractics.View.Data
         /// [GET / SET] Статус заказа.
         /// </summary>
         public string Status { get; set; }
+
+        /// <summary>
+        /// [GET / SET] Общая стоимость заказа.
+        /// </summary>
+        public string Total { get; set; }
 
         /// <summary>
         /// [GET] Изображение приоритета.
@@ -56,6 +64,9 @@ namespace ObjectOrientedPractics.View.Data
             }
         }
 
+        /// <summary>
+        /// Конструктор класса.
+        /// </summary>
         static OrderData()
         {
             Star = Image.FromFile(@$"{Environment.CurrentDirectory}\Properties\Resources\Star.png");

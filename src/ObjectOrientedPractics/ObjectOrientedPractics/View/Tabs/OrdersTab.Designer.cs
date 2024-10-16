@@ -36,10 +36,20 @@ namespace ObjectOrientedPractics.View.Tabs
             textBoxID = new TextBox();
             comboBoxStatus = new ComboBox();
             dataGridView = new DataGridView();
+            PriorityImage = new DataGridViewImageColumn();
+            iDDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            dateDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            nameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            addressDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            amountDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            Total = new DataGridViewTextBoxColumn();
+            statusDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             orderDataBindingSource = new BindingSource(components);
             splitContainer1 = new SplitContainer();
             checkBoxOnlyPriority = new CheckBox();
             textBoxFind = new TextBox();
+            textBoxTotal = new TextBox();
+            labelTotal = new Label();
             panelPriorityOrder = new Panel();
             comboBoxDeliveryTime = new ComboBox();
             labelPriorityOptions = new Label();
@@ -53,13 +63,6 @@ namespace ObjectOrientedPractics.View.Tabs
             labelCreated = new Label();
             labelID = new Label();
             labelSelectedOrder = new Label();
-            PriorityImage = new DataGridViewImageColumn();
-            iDDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            dateDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            nameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            addressDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            amountDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            statusDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)orderDataBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
@@ -90,7 +93,7 @@ namespace ObjectOrientedPractics.View.Tabs
             listBoxOrderItems.Location = new Point(6, 339);
             listBoxOrderItems.Margin = new Padding(6);
             listBoxOrderItems.Name = "listBoxOrderItems";
-            listBoxOrderItems.Size = new Size(708, 274);
+            listBoxOrderItems.Size = new Size(418, 342);
             listBoxOrderItems.TabIndex = 1;
             // 
             // textBoxID
@@ -122,7 +125,7 @@ namespace ObjectOrientedPractics.View.Tabs
             dataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView.AutoGenerateColumns = false;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView.Columns.AddRange(new DataGridViewColumn[] { PriorityImage, iDDataGridViewTextBoxColumn, dateDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, addressDataGridViewTextBoxColumn, amountDataGridViewTextBoxColumn, statusDataGridViewTextBoxColumn });
+            dataGridView.Columns.AddRange(new DataGridViewColumn[] { PriorityImage, iDDataGridViewTextBoxColumn, dateDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, addressDataGridViewTextBoxColumn, amountDataGridViewTextBoxColumn, Total, statusDataGridViewTextBoxColumn });
             dataGridView.DataSource = orderDataBindingSource;
             dataGridView.Location = new Point(6, 37);
             dataGridView.Margin = new Padding(6);
@@ -135,6 +138,66 @@ namespace ObjectOrientedPractics.View.Tabs
             dataGridView.TabIndex = 4;
             dataGridView.ColumnHeaderMouseClick += dataGridView_ColumnHeaderMouseClick;
             dataGridView.SelectionChanged += dataGridView_SelectionChanged;
+            // 
+            // PriorityImage
+            // 
+            PriorityImage.DataPropertyName = "PriorityImage";
+            PriorityImage.HeaderText = "";
+            PriorityImage.ImageLayout = DataGridViewImageCellLayout.Zoom;
+            PriorityImage.Name = "PriorityImage";
+            PriorityImage.ReadOnly = true;
+            PriorityImage.Width = 40;
+            // 
+            // iDDataGridViewTextBoxColumn
+            // 
+            iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            iDDataGridViewTextBoxColumn.HeaderText = "Order ID";
+            iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            iDDataGridViewTextBoxColumn.ReadOnly = true;
+            iDDataGridViewTextBoxColumn.Width = 40;
+            // 
+            // dateDataGridViewTextBoxColumn
+            // 
+            dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
+            dateDataGridViewTextBoxColumn.HeaderText = "Creation Date";
+            dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
+            dateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            nameDataGridViewTextBoxColumn.HeaderText = "Customer Full Name";
+            nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // addressDataGridViewTextBoxColumn
+            // 
+            addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
+            addressDataGridViewTextBoxColumn.HeaderText = "Delivery Address";
+            addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
+            addressDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // amountDataGridViewTextBoxColumn
+            // 
+            amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
+            amountDataGridViewTextBoxColumn.HeaderText = "Amount";
+            amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
+            amountDataGridViewTextBoxColumn.ReadOnly = true;
+            amountDataGridViewTextBoxColumn.Width = 50;
+            // 
+            // Total
+            // 
+            Total.DataPropertyName = "Total";
+            Total.HeaderText = "Total";
+            Total.Name = "Total";
+            Total.ReadOnly = true;
+            // 
+            // statusDataGridViewTextBoxColumn
+            // 
+            statusDataGridViewTextBoxColumn.DataPropertyName = "Status";
+            statusDataGridViewTextBoxColumn.HeaderText = "Order Status";
+            statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
+            statusDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // orderDataBindingSource
             // 
@@ -155,6 +218,8 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // splitContainer1.Panel2
             // 
+            splitContainer1.Panel2.Controls.Add(textBoxTotal);
+            splitContainer1.Panel2.Controls.Add(labelTotal);
             splitContainer1.Panel2.Controls.Add(panelPriorityOrder);
             splitContainer1.Panel2.Controls.Add(textBoxAmount);
             splitContainer1.Panel2.Controls.Add(labelAmount);
@@ -196,6 +261,32 @@ namespace ObjectOrientedPractics.View.Tabs
             textBoxFind.Size = new Size(307, 25);
             textBoxFind.TabIndex = 9;
             textBoxFind.TextChanged += textBoxFind_TextChanged;
+            // 
+            // textBoxTotal
+            // 
+            textBoxTotal.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxTotal.BackColor = Color.FromArgb(249, 249, 249);
+            textBoxTotal.BorderStyle = BorderStyle.None;
+            textBoxTotal.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            textBoxTotal.Location = new Point(436, 658);
+            textBoxTotal.Margin = new Padding(6);
+            textBoxTotal.Name = "textBoxTotal";
+            textBoxTotal.Size = new Size(278, 25);
+            textBoxTotal.TabIndex = 33;
+            textBoxTotal.Text = "0.00 $";
+            textBoxTotal.TextAlign = HorizontalAlignment.Right;
+            // 
+            // labelTotal
+            // 
+            labelTotal.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            labelTotal.AutoSize = true;
+            labelTotal.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            labelTotal.Location = new Point(662, 625);
+            labelTotal.Margin = new Padding(6);
+            labelTotal.Name = "labelTotal";
+            labelTotal.Size = new Size(52, 21);
+            labelTotal.TabIndex = 32;
+            labelTotal.Text = "Total:";
             // 
             // panelPriorityOrder
             // 
@@ -243,24 +334,24 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // textBoxAmount
             // 
-            textBoxAmount.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxAmount.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBoxAmount.BackColor = Color.FromArgb(249, 249, 249);
             textBoxAmount.BorderStyle = BorderStyle.None;
             textBoxAmount.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
-            textBoxAmount.Location = new Point(6, 655);
+            textBoxAmount.Location = new Point(436, 372);
             textBoxAmount.Margin = new Padding(6);
             textBoxAmount.Name = "textBoxAmount";
-            textBoxAmount.Size = new Size(708, 25);
+            textBoxAmount.Size = new Size(278, 25);
             textBoxAmount.TabIndex = 12;
             textBoxAmount.Text = "0.00 $";
             textBoxAmount.TextAlign = HorizontalAlignment.Right;
             // 
             // labelAmount
             // 
-            labelAmount.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            labelAmount.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             labelAmount.AutoSize = true;
             labelAmount.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            labelAmount.Location = new Point(638, 622);
+            labelAmount.Location = new Point(638, 339);
             labelAmount.Margin = new Padding(6);
             labelAmount.Name = "labelAmount";
             labelAmount.Size = new Size(76, 21);
@@ -343,59 +434,6 @@ namespace ObjectOrientedPractics.View.Tabs
             labelSelectedOrder.TabIndex = 4;
             labelSelectedOrder.Text = "Selected Order";
             // 
-            // PriorityImage
-            // 
-            PriorityImage.DataPropertyName = "PriorityImage";
-            PriorityImage.HeaderText = "";
-            PriorityImage.ImageLayout = DataGridViewImageCellLayout.Zoom;
-            PriorityImage.Name = "PriorityImage";
-            PriorityImage.ReadOnly = true;
-            PriorityImage.Width = 40;
-            // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            iDDataGridViewTextBoxColumn.HeaderText = "Order ID";
-            iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            iDDataGridViewTextBoxColumn.ReadOnly = true;
-            iDDataGridViewTextBoxColumn.Width = 40;
-            // 
-            // dateDataGridViewTextBoxColumn
-            // 
-            dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
-            dateDataGridViewTextBoxColumn.HeaderText = "Creation Date";
-            dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
-            dateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            nameDataGridViewTextBoxColumn.HeaderText = "Customer Full Name";
-            nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            nameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // addressDataGridViewTextBoxColumn
-            // 
-            addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
-            addressDataGridViewTextBoxColumn.HeaderText = "Delivery Address";
-            addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
-            addressDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // amountDataGridViewTextBoxColumn
-            // 
-            amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
-            amountDataGridViewTextBoxColumn.HeaderText = "Total Amount";
-            amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
-            amountDataGridViewTextBoxColumn.ReadOnly = true;
-            amountDataGridViewTextBoxColumn.Width = 50;
-            // 
-            // statusDataGridViewTextBoxColumn
-            // 
-            statusDataGridViewTextBoxColumn.DataPropertyName = "Status";
-            statusDataGridViewTextBoxColumn.HeaderText = "Order Status";
-            statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
-            statusDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // OrdersTab
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -446,6 +484,9 @@ namespace ObjectOrientedPractics.View.Tabs
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn Total;
         private DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
+        private TextBox textBoxTotal;
+        private Label labelTotal;
     }
 }

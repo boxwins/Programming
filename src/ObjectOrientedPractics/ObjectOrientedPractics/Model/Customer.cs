@@ -15,14 +15,12 @@ namespace ObjectOrientedPractics.Model
 
         private string _fullName = string.Empty;
         private Address _address = null;
+        private DateTime _birthday = DateTime.Today;
 
         private Cart _cart = new Cart();
         private List<Order> _orders = new List<Order>();
 
-        private List<IDiscount> _discounts = new List<IDiscount>()
-        {
-            new PointsDiscount()
-        };
+        private List<IDiscount> _discounts = new List<IDiscount>();
 
         private bool _isPriority = false;
 
@@ -31,7 +29,7 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public static Customer Empty
         {
-            get { return new Customer("Customer", null); }
+            get { return new Customer("Customer", null, DateTime.Today); }
         }
 
         /// <summary>
@@ -65,11 +63,22 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
+        /// [GET] День рождения покупателя.
+        /// </summary>
+        public DateTime Birthday
+        {
+            get { return _birthday; }
+            private set { _birthday = value; }
+        }
+
+        /// <summary>
         /// [GET] Корзина покупателя.
         /// </summary>
+        [JsonProperty]
         public Cart Cart
         {
             get { return _cart; }
+            private set { _cart = value; }
         }
 
         /// <summary>
@@ -104,10 +113,14 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         /// <param name="fullName">Имя покупателя.</param>
         /// <param name="adress">Адрес покупателя.</param>
-        public Customer(string fullName, Address adress)
+        public Customer(string fullName, Address adress, DateTime birthday)
         {
             FullName = fullName;
             Address = adress;
+            Birthday = birthday;
+
+            Discounts.Add(new PointsDiscount());
+            Discounts.Add(new BirthdayDiscount(Birthday));
         }
     }
 }

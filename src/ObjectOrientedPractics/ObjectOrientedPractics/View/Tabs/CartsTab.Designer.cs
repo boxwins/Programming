@@ -38,6 +38,12 @@
             buttonClearCart = new Button();
             buttonAddToCart = new Button();
             splitContainer = new SplitContainer();
+            textBoxDiscountAmount = new TextBox();
+            labelDiscountAmount = new Label();
+            labelDiscounts = new Label();
+            checkedListBoxDiscounts = new CheckedListBox();
+            textBoxTotal = new TextBox();
+            labelTotal = new Label();
             textBoxAmount = new TextBox();
             listBoxCart = new ListBox();
             labelCart = new Label();
@@ -68,14 +74,14 @@
             listBoxItems.Location = new Point(6, 32);
             listBoxItems.Margin = new Padding(6);
             listBoxItems.Name = "listBoxItems";
-            listBoxItems.Size = new Size(235, 427);
+            listBoxItems.Size = new Size(314, 597);
             listBoxItems.TabIndex = 1;
             // 
             // buttonCreateOrder
             // 
             buttonCreateOrder.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             buttonCreateOrder.Font = new Font("Segoe UI", 10F);
-            buttonCreateOrder.Location = new Point(6, 465);
+            buttonCreateOrder.Location = new Point(6, 345);
             buttonCreateOrder.Margin = new Padding(6);
             buttonCreateOrder.Name = "buttonCreateOrder";
             buttonCreateOrder.Size = new Size(105, 40);
@@ -93,7 +99,7 @@
             comboBoxCustomers.Location = new Point(101, 32);
             comboBoxCustomers.Margin = new Padding(6);
             comboBoxCustomers.Name = "comboBoxCustomers";
-            comboBoxCustomers.Size = new Size(340, 25);
+            comboBoxCustomers.Size = new Size(485, 25);
             comboBoxCustomers.TabIndex = 4;
             comboBoxCustomers.SelectedIndexChanged += comboBoxCustomers_SelectedIndexChanged;
             // 
@@ -113,7 +119,7 @@
             labelAmount.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelAmount.AutoSize = true;
             labelAmount.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            labelAmount.Location = new Point(371, 399);
+            labelAmount.Location = new Point(516, 331);
             labelAmount.Margin = new Padding(6, 6, 6, 0);
             labelAmount.Name = "labelAmount";
             labelAmount.Size = new Size(70, 19);
@@ -122,9 +128,9 @@
             // 
             // buttonRemoveItem
             // 
-            buttonRemoveItem.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            buttonRemoveItem.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             buttonRemoveItem.Font = new Font("Segoe UI", 10F);
-            buttonRemoveItem.Location = new Point(219, 465);
+            buttonRemoveItem.Location = new Point(123, 345);
             buttonRemoveItem.Margin = new Padding(6);
             buttonRemoveItem.Name = "buttonRemoveItem";
             buttonRemoveItem.Size = new Size(105, 40);
@@ -135,9 +141,9 @@
             // 
             // buttonClearCart
             // 
-            buttonClearCart.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            buttonClearCart.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             buttonClearCart.Font = new Font("Segoe UI", 10F);
-            buttonClearCart.Location = new Point(336, 465);
+            buttonClearCart.Location = new Point(240, 345);
             buttonClearCart.Margin = new Padding(6);
             buttonClearCart.Name = "buttonClearCart";
             buttonClearCart.Size = new Size(105, 40);
@@ -150,7 +156,7 @@
             // 
             buttonAddToCart.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             buttonAddToCart.Font = new Font("Segoe UI", 10F);
-            buttonAddToCart.Location = new Point(6, 465);
+            buttonAddToCart.Location = new Point(6, 643);
             buttonAddToCart.Margin = new Padding(6);
             buttonAddToCart.Name = "buttonAddToCart";
             buttonAddToCart.Size = new Size(105, 40);
@@ -176,6 +182,12 @@
             // splitContainer.Panel2
             // 
             splitContainer.Panel2.BackColor = Color.Transparent;
+            splitContainer.Panel2.Controls.Add(textBoxDiscountAmount);
+            splitContainer.Panel2.Controls.Add(labelDiscountAmount);
+            splitContainer.Panel2.Controls.Add(labelDiscounts);
+            splitContainer.Panel2.Controls.Add(checkedListBoxDiscounts);
+            splitContainer.Panel2.Controls.Add(textBoxTotal);
+            splitContainer.Panel2.Controls.Add(labelTotal);
             splitContainer.Panel2.Controls.Add(textBoxAmount);
             splitContainer.Panel2.Controls.Add(listBoxCart);
             splitContainer.Panel2.Controls.Add(labelCart);
@@ -185,9 +197,89 @@
             splitContainer.Panel2.Controls.Add(buttonCreateOrder);
             splitContainer.Panel2.Controls.Add(labelAmount);
             splitContainer.Panel2.Controls.Add(comboBoxCustomers);
-            splitContainer.Size = new Size(698, 511);
-            splitContainer.SplitterDistance = 247;
+            splitContainer.Size = new Size(922, 689);
+            splitContainer.SplitterDistance = 326;
             splitContainer.TabIndex = 11;
+            // 
+            // textBoxDiscountAmount
+            // 
+            textBoxDiscountAmount.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            textBoxDiscountAmount.BackColor = Color.FromArgb(249, 249, 249);
+            textBoxDiscountAmount.BorderStyle = BorderStyle.None;
+            textBoxDiscountAmount.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            textBoxDiscountAmount.Location = new Point(357, 455);
+            textBoxDiscountAmount.Margin = new Padding(6);
+            textBoxDiscountAmount.Name = "textBoxDiscountAmount";
+            textBoxDiscountAmount.ReadOnly = true;
+            textBoxDiscountAmount.Size = new Size(229, 29);
+            textBoxDiscountAmount.TabIndex = 18;
+            textBoxDiscountAmount.Text = "0.00 $";
+            textBoxDiscountAmount.TextAlign = HorizontalAlignment.Right;
+            // 
+            // labelDiscountAmount
+            // 
+            labelDiscountAmount.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            labelDiscountAmount.AutoSize = true;
+            labelDiscountAmount.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            labelDiscountAmount.Location = new Point(462, 430);
+            labelDiscountAmount.Margin = new Padding(6, 6, 6, 0);
+            labelDiscountAmount.Name = "labelDiscountAmount";
+            labelDiscountAmount.Size = new Size(124, 19);
+            labelDiscountAmount.TabIndex = 17;
+            labelDiscountAmount.Text = "Disount Amount: ";
+            // 
+            // labelDiscounts
+            // 
+            labelDiscounts.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelDiscounts.AutoSize = true;
+            labelDiscounts.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            labelDiscounts.Location = new Point(5, 397);
+            labelDiscounts.Margin = new Padding(6);
+            labelDiscounts.Name = "labelDiscounts";
+            labelDiscounts.Size = new Size(93, 21);
+            labelDiscounts.TabIndex = 16;
+            labelDiscounts.Text = "Discounts: ";
+            // 
+            // checkedListBoxDiscounts
+            // 
+            checkedListBoxDiscounts.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            checkedListBoxDiscounts.BackColor = Color.FromArgb(249, 249, 249);
+            checkedListBoxDiscounts.BorderStyle = BorderStyle.None;
+            checkedListBoxDiscounts.Font = new Font("Segoe UI", 10F);
+            checkedListBoxDiscounts.FormattingEnabled = true;
+            checkedListBoxDiscounts.Location = new Point(6, 430);
+            checkedListBoxDiscounts.Margin = new Padding(6);
+            checkedListBoxDiscounts.Name = "checkedListBoxDiscounts";
+            checkedListBoxDiscounts.Size = new Size(346, 240);
+            checkedListBoxDiscounts.TabIndex = 15;
+            checkedListBoxDiscounts.ItemCheck += checkedListBoxDiscounts_ItemCheck;
+            // 
+            // textBoxTotal
+            // 
+            textBoxTotal.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            textBoxTotal.BackColor = Color.FromArgb(249, 249, 249);
+            textBoxTotal.BorderStyle = BorderStyle.None;
+            textBoxTotal.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            textBoxTotal.Location = new Point(364, 654);
+            textBoxTotal.Margin = new Padding(6);
+            textBoxTotal.Name = "textBoxTotal";
+            textBoxTotal.ReadOnly = true;
+            textBoxTotal.Size = new Size(222, 29);
+            textBoxTotal.TabIndex = 14;
+            textBoxTotal.Text = "0.00 $";
+            textBoxTotal.TextAlign = HorizontalAlignment.Right;
+            // 
+            // labelTotal
+            // 
+            labelTotal.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            labelTotal.AutoSize = true;
+            labelTotal.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            labelTotal.Location = new Point(536, 629);
+            labelTotal.Margin = new Padding(6, 6, 6, 0);
+            labelTotal.Name = "labelTotal";
+            labelTotal.Size = new Size(50, 19);
+            labelTotal.TabIndex = 13;
+            labelTotal.Text = "Total: ";
             // 
             // textBoxAmount
             // 
@@ -195,11 +287,11 @@
             textBoxAmount.BackColor = Color.FromArgb(249, 249, 249);
             textBoxAmount.BorderStyle = BorderStyle.None;
             textBoxAmount.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            textBoxAmount.Location = new Point(6, 424);
+            textBoxAmount.Location = new Point(357, 356);
             textBoxAmount.Margin = new Padding(6);
             textBoxAmount.Name = "textBoxAmount";
             textBoxAmount.ReadOnly = true;
-            textBoxAmount.Size = new Size(435, 29);
+            textBoxAmount.Size = new Size(229, 29);
             textBoxAmount.TabIndex = 12;
             textBoxAmount.Text = "0.00 $";
             textBoxAmount.TextAlign = HorizontalAlignment.Right;
@@ -214,7 +306,7 @@
             listBoxCart.Location = new Point(6, 96);
             listBoxCart.Margin = new Padding(6);
             listBoxCart.Name = "listBoxCart";
-            listBoxCart.Size = new Size(435, 291);
+            listBoxCart.Size = new Size(580, 223);
             listBoxCart.TabIndex = 11;
             // 
             // labelCart
@@ -234,7 +326,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(splitContainer);
             Name = "CartsTab";
-            Size = new Size(698, 511);
+            Size = new Size(922, 689);
             splitContainer.Panel1.ResumeLayout(false);
             splitContainer.Panel1.PerformLayout();
             splitContainer.Panel2.ResumeLayout(false);
@@ -259,5 +351,11 @@
         private Label labelCart;
         private ListBox listBoxCart;
         private TextBox textBoxAmount;
+        private Label labelDiscounts;
+        private CheckedListBox checkedListBoxDiscounts;
+        private TextBox textBoxTotal;
+        private Label labelTotal;
+        private TextBox textBoxDiscountAmount;
+        private Label labelDiscountAmount;
     }
 }

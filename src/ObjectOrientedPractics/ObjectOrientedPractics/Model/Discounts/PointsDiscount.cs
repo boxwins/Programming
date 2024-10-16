@@ -36,20 +36,14 @@ namespace ObjectOrientedPractics.Model.Discounts
 
         public double Calculate(List<Item> items)
         {
-            double maxDiscount = (int)(GetCost(items) * DISCOUNT_MAX);
+            double maxDiscount = (int)Math.Round(GetCost(items) * DISCOUNT_MAX, MidpointRounding.AwayFromZero);
 
             return Points > maxDiscount ? maxDiscount : Points;
         }
 
         public double Apply(List<Item> items)
         {
-            int discount = (int)Calculate(items);
-
-            items[0].Cost -= discount % items.Count;
-
-            int itemDiscount = discount / items.Count;
-            for (int i = 0; i < items.Count; i++)
-                items[i].Cost -= itemDiscount;
+            int discount = (int)Math.Round(Calculate(items) - 0.5d, MidpointRounding.AwayFromZero);
 
             Points -= discount;
 
@@ -58,7 +52,7 @@ namespace ObjectOrientedPractics.Model.Discounts
 
         public void Update(List<Item> items)
         {
-            Points += (int)Math.Round(GetCost(items) * DISCOUNT_INCREASE, MidpointRounding.ToPositiveInfinity);
+            Points += (int)Math.Round(GetCost(items) * DISCOUNT_INCREASE, MidpointRounding.AwayFromZero);
         }
 
         /// <summary>

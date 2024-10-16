@@ -164,6 +164,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
                 textBoxID.Text = CurrentCustomer.ID.ToString();
                 textBoxFullName.Text = CurrentCustomer.FullName;
+                textBoxBirthday.Text = CurrentCustomer.Birthday.ToString();
                 addressControl.Address = CurrentCustomer.Address;
 
                 checkBoxPriority.Checked = CurrentCustomer.IsPriority;
@@ -220,8 +221,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void buttonRemoveDiscount_Click(object sender, EventArgs e)
         {
             if (CurrentCustomer == null) return;
-            if (listBoxDiscounts.SelectedIndex < 0) return;
-            if (listBoxDiscounts.SelectedIndex == 1) return;
+            if (listBoxDiscounts.SelectedIndex < 2) return;
 
             CurrentCustomer.Discounts.RemoveAt(listBoxDiscounts.SelectedIndex);
 

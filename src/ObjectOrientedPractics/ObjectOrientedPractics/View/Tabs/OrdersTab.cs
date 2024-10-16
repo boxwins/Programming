@@ -99,6 +99,7 @@ namespace ObjectOrientedPractics.View.Tabs
                         Name = Customers[c].FullName,
                         Address = order.Address?.ToString() ?? string.Empty,
                         Amount = order.Amount.ToString() + " $",
+                        Total = order.Total.ToString() + " $",
                         Status = order.Status.ToString(),
                     };
 
@@ -262,6 +263,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 textBoxID.Text = string.Empty;
                 textBoxCreated.Text = string.Empty;
                 textBoxAmount.Text = string.Empty;
+                textBoxTotal.Text = string.Empty;
 
                 addressControl.Address = null;
             }
@@ -280,7 +282,8 @@ namespace ObjectOrientedPractics.View.Tabs
 
                 textBoxID.Text = SelectedOrder.ID.ToString();
                 textBoxCreated.Text = SelectedOrder.DateTime.ToString();
-                textBoxAmount.Text = SelectedOrder.Amount.ToString();
+                textBoxAmount.Text = SelectedOrder.Amount.ToString() + " $";
+                textBoxTotal.Text = SelectedOrder.Total.ToString() + " $";
 
                 addressControl.Address = SelectedOrder.Address;
             }

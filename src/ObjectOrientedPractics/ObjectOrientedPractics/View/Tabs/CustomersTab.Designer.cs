@@ -46,6 +46,8 @@
             labelAddress = new Label();
             labelID = new Label();
             labelFullName = new Label();
+            textBoxBirthday = new TextBox();
+            labelBirthday = new Label();
             ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
             splitContainer.Panel1.SuspendLayout();
             splitContainer.Panel2.SuspendLayout();
@@ -68,6 +70,8 @@
             // 
             // splitContainer.Panel2
             // 
+            splitContainer.Panel2.Controls.Add(textBoxBirthday);
+            splitContainer.Panel2.Controls.Add(labelBirthday);
             splitContainer.Panel2.Controls.Add(buttonRemoveDiscount);
             splitContainer.Panel2.Controls.Add(buttonAddDiscount);
             splitContainer.Panel2.Controls.Add(labelDiscounts);
@@ -147,7 +151,7 @@
             // 
             buttonRemoveDiscount.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             buttonRemoveDiscount.FlatStyle = FlatStyle.Flat;
-            buttonRemoveDiscount.Location = new Point(505, 437);
+            buttonRemoveDiscount.Location = new Point(498, 464);
             buttonRemoveDiscount.Margin = new Padding(6);
             buttonRemoveDiscount.Name = "buttonRemoveDiscount";
             buttonRemoveDiscount.Size = new Size(100, 52);
@@ -160,7 +164,7 @@
             // 
             buttonAddDiscount.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             buttonAddDiscount.FlatStyle = FlatStyle.Flat;
-            buttonAddDiscount.Location = new Point(505, 373);
+            buttonAddDiscount.Location = new Point(498, 400);
             buttonAddDiscount.Margin = new Padding(6);
             buttonAddDiscount.Name = "buttonAddDiscount";
             buttonAddDiscount.Size = new Size(100, 52);
@@ -173,7 +177,7 @@
             // 
             labelDiscounts.AutoSize = true;
             labelDiscounts.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelDiscounts.Location = new Point(10, 346);
+            labelDiscounts.Location = new Point(3, 373);
             labelDiscounts.Name = "labelDiscounts";
             labelDiscounts.Size = new Size(85, 21);
             labelDiscounts.TabIndex = 15;
@@ -182,21 +186,22 @@
             // listBoxDiscounts
             // 
             listBoxDiscounts.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            listBoxDiscounts.BorderStyle = BorderStyle.FixedSingle;
+            listBoxDiscounts.BackColor = Color.FromArgb(249, 249, 249);
+            listBoxDiscounts.BorderStyle = BorderStyle.None;
             listBoxDiscounts.Font = new Font("Segoe UI", 10F);
             listBoxDiscounts.FormattingEnabled = true;
             listBoxDiscounts.ItemHeight = 17;
-            listBoxDiscounts.Location = new Point(10, 373);
+            listBoxDiscounts.Location = new Point(3, 400);
             listBoxDiscounts.Margin = new Padding(6);
             listBoxDiscounts.Name = "listBoxDiscounts";
-            listBoxDiscounts.Size = new Size(483, 274);
+            listBoxDiscounts.Size = new Size(483, 238);
             listBoxDiscounts.TabIndex = 14;
             // 
             // checkBoxPriority
             // 
             checkBoxPriority.AutoSize = true;
             checkBoxPriority.Font = new Font("Segoe UI", 10F);
-            checkBoxPriority.Location = new Point(99, 111);
+            checkBoxPriority.Location = new Point(99, 150);
             checkBoxPriority.Name = "checkBoxPriority";
             checkBoxPriority.Size = new Size(86, 23);
             checkBoxPriority.TabIndex = 13;
@@ -208,11 +213,11 @@
             // 
             addressControl.Address = null;
             addressControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            addressControl.Location = new Point(10, 183);
+            addressControl.Location = new Point(-1, 210);
             addressControl.Margin = new Padding(6);
             addressControl.Name = "addressControl";
             addressControl.Readonly = false;
-            addressControl.Size = new Size(599, 157);
+            addressControl.Size = new Size(616, 157);
             addressControl.TabIndex = 11;
             // 
             // textBoxFullName
@@ -221,7 +226,7 @@
             textBoxFullName.BackColor = SystemColors.Window;
             textBoxFullName.BorderStyle = BorderStyle.FixedSingle;
             textBoxFullName.Font = new Font("Segoe UI", 10F);
-            textBoxFullName.Location = new Point(99, 72);
+            textBoxFullName.Location = new Point(99, 111);
             textBoxFullName.Margin = new Padding(10);
             textBoxFullName.Name = "textBoxFullName";
             textBoxFullName.Size = new Size(506, 25);
@@ -254,7 +259,7 @@
             // 
             labelAddress.AutoSize = true;
             labelAddress.Font = new Font("Segoe UI", 10F);
-            labelAddress.Location = new Point(10, 148);
+            labelAddress.Location = new Point(10, 175);
             labelAddress.Margin = new Padding(10);
             labelAddress.Name = "labelAddress";
             labelAddress.Size = new Size(61, 19);
@@ -276,12 +281,35 @@
             // 
             labelFullName.AutoSize = true;
             labelFullName.Font = new Font("Segoe UI", 10F);
-            labelFullName.Location = new Point(10, 74);
+            labelFullName.Location = new Point(10, 113);
             labelFullName.Margin = new Padding(10);
             labelFullName.Name = "labelFullName";
             labelFullName.Size = new Size(69, 19);
             labelFullName.TabIndex = 4;
             labelFullName.Text = "FullName:";
+            // 
+            // textBoxBirthday
+            // 
+            textBoxBirthday.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxBirthday.BorderStyle = BorderStyle.FixedSingle;
+            textBoxBirthday.Font = new Font("Segoe UI", 10F);
+            textBoxBirthday.Location = new Point(99, 72);
+            textBoxBirthday.Margin = new Padding(10);
+            textBoxBirthday.Name = "textBoxBirthday";
+            textBoxBirthday.ReadOnly = true;
+            textBoxBirthday.Size = new Size(506, 25);
+            textBoxBirthday.TabIndex = 19;
+            // 
+            // labelBirthday
+            // 
+            labelBirthday.AutoSize = true;
+            labelBirthday.Font = new Font("Segoe UI", 10F);
+            labelBirthday.Location = new Point(10, 74);
+            labelBirthday.Margin = new Padding(10);
+            labelBirthday.Name = "labelBirthday";
+            labelBirthday.Size = new Size(63, 19);
+            labelBirthday.TabIndex = 18;
+            labelBirthday.Text = "Birthday:";
             // 
             // CustomersTab
             // 
@@ -319,5 +347,7 @@
         private ListBox listBoxDiscounts;
         private Button buttonRemoveDiscount;
         private Button buttonAddDiscount;
+        private TextBox textBoxBirthday;
+        private Label labelBirthday;
     }
 }

@@ -79,9 +79,13 @@ namespace ObjectOrientedPractics.Services
             {
                 string fullName = fullNames[random.Next(fullNames.Length)];
 
-                Customer customer = new Customer(fullName, addresses[i]);
+                int birthdayYear = random.Next(1970, 2008);
+                DateTime birthday = new DateTime(birthdayYear, 1, 1);
+                birthday = birthday.AddDays(random.Next(365));
+
+                Customer customer = new Customer(fullName, addresses[i], birthday);
                 customer.IsPriority = random.Next() % 2 == 0;
-                
+
                 Order[] orders = customer.IsPriority ? GeneratePriorityOrders(1) : GenerateOrders(1);
                 customer.Orders.AddRange(orders);
 

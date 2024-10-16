@@ -1,4 +1,6 @@
-﻿namespace ObjectOrientedPractics.Model
+﻿using Newtonsoft.Json;
+
+namespace ObjectOrientedPractics.Model
 {
     /// <summary>
     /// Корзина товаров.
@@ -10,9 +12,11 @@
         /// <summary>
         /// [GET] Товары в корзине.
         /// </summary>
+        [JsonProperty]
         public List<Item> Items
         {
             get { return _items; }
+            private set { _items = value; }
         }
 
         /// <summary>

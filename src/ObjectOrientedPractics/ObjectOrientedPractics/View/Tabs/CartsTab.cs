@@ -1,4 +1,7 @@
-﻿using ObjectOrientedPractics.Model;
+﻿using System;
+using System.Reflection;
+
+using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Model.Enums;
 using ObjectOrientedPractics.Model.Orders;
 
@@ -12,8 +15,10 @@ namespace ObjectOrientedPractics.View.Tabs
         private List<Item> _items = new List<Item>();
         private List<Customer> _customers = new List<Customer>();
 
+        private List<IDiscount> _selectedDisounts = new List<IDiscount>();
+
         /// <summary>
-        /// [GET] Выбранный товар.
+        /// Выбранный товар.
         /// </summary>
         private Item SelectedItem
         {
@@ -25,7 +30,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// [GET] Выбранный товар в корзине.
+        /// Выбранный товар в корзине.
         /// </summary>
         private Item SelectedCartItem
         {
@@ -38,7 +43,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// [GET] Выбранный покупатель.
+        /// Выбранный покупатель.
         /// </summary>
         private Customer CurrentCustomer
         {
@@ -50,13 +55,22 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
+        /// Список выбранных скидок.
+        /// </summary>
+        public List<IDiscount> SelectedDisounts
+        {
+            get { return _selectedDisounts; }
+            set { _selectedDisounts = value; }
+        }
+
+        /// <summary>
         /// [GET / SET] Список товаров.
         /// </summary>
         public List<Item> Items
         {
             get { return _items; }
-            set 
-            { 
+            set
+            {
                 _items = value;
                 UpdateItems();
             }
@@ -68,8 +82,8 @@ namespace ObjectOrientedPractics.View.Tabs
         public List<Customer> Customers
         {
             get { return _customers; }
-            set 
-            { 
+            set
+            {
                 _customers = value;
                 UpdateCustomers();
             }
@@ -91,7 +105,51 @@ namespace ObjectOrientedPractics.View.Tabs
             UpdateItems();
             UpdateCustomers();
             UpdateCart();
+            UpdateDiscounts();
+            UpdateSelectedDiscounts();
+            UpdateAmount();
+            UpdateDiscountAmount();
+            UpdateTotal();
         }
+
+        /// <summary>
+        /// Считает стоимость товаров в корзине покупателя.
+        /// </summary>
+        /// <returns>Стоимость товаров.</returns>
+        private double GetAmount()
+        {
+            double amount = 0.0d;
+
+            if (CurrentCustomer != null)
+            {
+                for (int i = 0; i < CurrentCustomer.Cart.Items.Count; i++)
+                {
+                    amount += CurrentCustomer.Cart.Items[i].Cost;
+                }
+            }
+
+            return amount;
+        }
+
+        /// <summary>
+        /// Считает общее значение скидки.
+        /// </summary>
+        /// <returns></returns>
+        private double GetDiscountAmount()
+        {
+            if (CurrentCustomer == null) return 0.0d;
+
+            double discountAmount = 0.0d;
+
+            for (int i = 0; i < SelectedDisounts.Count; i++)
+            {
+                discountAmount += SelectedDisounts[i].Calculate(CurrentCustomer.Cart.Items);
+            }
+
+            return discountAmount;
+        }
+
+        // ===== Обновление интерфейса =====
 
         /// <summary>
         /// Обновляет содержимое элемента <see cref="listBoxItems"/>.
@@ -104,20 +162,10 @@ namespace ObjectOrientedPractics.View.Tabs
 
             for (int i = 0; i < Items.Count; i++)
             {
-                listBoxItems.Items.Add(ListBoxItemName(i));
+                listBoxItems.Items.Add($"{i + 1}. {Items[i].Name}");
             }
 
             if (_customers.Count > selected) listBoxItems.SelectedIndex = selected;
-        }
-
-        /// <summary>
-        /// Создает название содержимого для элемента <see cref="listBoxItems"/>.
-        /// </summary>
-        /// <param name="index">Индекс.</param>
-        /// <returns>Название.</returns>
-        private string ListBoxItemName(int index)
-        {
-            return $"{index + 1}. {Items[index].Name}";
         }
 
         /// <summary>
@@ -129,18 +177,8 @@ namespace ObjectOrientedPractics.View.Tabs
 
             for (int i = 0; i < Customers.Count; i++)
             {
-                comboBoxCustomers.Items.Add(ListBoxCustomerName(i));
+                comboBoxCustomers.Items.Add($"{Customers[i].FullName}");
             }
-        }
-
-        /// <summary>
-        /// Создает название содержимого для элемента <see cref="listBoxItems"/>.
-        /// </summary>
-        /// <param name="index">Индекс.</param>
-        /// <returns>Название.</returns>
-        private string ListBoxCustomerName(int index)
-        {
-            return $"{Customers[index].FullName}";
         }
 
         /// <summary>
@@ -156,20 +194,29 @@ namespace ObjectOrientedPractics.View.Tabs
 
             for (int i = 0; i < CurrentCustomer.Cart.Items.Count; i++)
             {
-                listBoxCart.Items.Add(ListBoxCartName(i));
+                listBoxCart.Items.Add($"{i + 1}. {CurrentCustomer.Cart.Items[i].Name}");
             }
 
             if (CurrentCustomer.Cart.Items.Count > selected) listBoxCart.SelectedIndex = selected;
         }
 
         /// <summary>
-        /// Создает название содержимого для элемента <see cref="listBoxCart"/>.
+        /// Обновляет содержимое элемента <see cref="checkedListBoxDiscounts"/>.
         /// </summary>
-        /// <param name="index">Индекс.</param>
-        /// <returns>Название.</returns>
-        private string ListBoxCartName(int index)
+        private void UpdateDiscounts()
         {
-            return $"{index + 1}. {CurrentCustomer.Cart.Items[index].Name}";
+            _selectedDisounts.Clear();
+            checkedListBoxDiscounts.Items.Clear();
+
+            if (CurrentCustomer == null) return;
+
+            for (int i = 0; i < CurrentCustomer.Discounts.Count; i++)
+            {
+                checkedListBoxDiscounts.Items.Add(CurrentCustomer.Discounts[i].Info);
+                checkedListBoxDiscounts.SetItemChecked(i, true);
+            }
+
+            _selectedDisounts.AddRange(CurrentCustomer.Discounts);
         }
 
         /// <summary>
@@ -177,18 +224,44 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void UpdateAmount()
         {
-            double amount = 0.0d;
-
-            if (CurrentCustomer != null)
-            {
-                for (int i = 0; i < CurrentCustomer.Cart.Items.Count; i++)
-                {
-                    amount += CurrentCustomer.Cart.Items[i].Cost;
-                }
-            }
-
-            textBoxAmount.Text = $"{amount:n2} $";
+            textBoxAmount.Text = $"{GetAmount():n2} $";
         }
+
+        /// <summary>
+        /// Обновляет содержимое элемента <see cref="textBoxDiscountAmount"/>.
+        /// </summary>
+        private void UpdateDiscountAmount()
+        {
+            textBoxDiscountAmount.Text = $"{GetDiscountAmount():n2} $";
+        }
+
+        /// <summary>
+        /// Обновляет содержимое элемента <see cref="textBoxTotal"/>.
+        /// </summary>
+        private void UpdateTotal()
+        {
+            textBoxTotal.Text = $"{GetAmount() - GetDiscountAmount():n2} $";
+        }
+
+        // ===== Обновление данных =====
+
+        /// <summary>
+        /// Обновляет список выбранных скидок.
+        /// </summary>
+        private void UpdateSelectedDiscounts()
+        {
+            if (CurrentCustomer == null) return;
+
+            SelectedDisounts.Clear();
+
+            for (int i = 0; i < checkedListBoxDiscounts.Items.Count; i++)
+            {
+                if (!checkedListBoxDiscounts.GetItemChecked(i)) continue;
+                SelectedDisounts.Add(CurrentCustomer.Discounts[i]);
+            }
+        }
+
+        // ===== События =====
 
         /// <summary>
         /// Событие 'SelectedIndexChanged' элемента <see cref="comboBoxCustomers"/>.
@@ -196,7 +269,11 @@ namespace ObjectOrientedPractics.View.Tabs
         private void comboBoxCustomers_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateCart();
+            UpdateDiscounts();
+            UpdateSelectedDiscounts();
             UpdateAmount();
+            UpdateDiscountAmount();
+            UpdateTotal();
         }
 
         /// <summary>
@@ -211,6 +288,8 @@ namespace ObjectOrientedPractics.View.Tabs
 
             UpdateCart();
             UpdateAmount();
+            UpdateDiscountAmount();
+            UpdateTotal();
         }
 
         /// <summary>
@@ -225,6 +304,8 @@ namespace ObjectOrientedPractics.View.Tabs
 
             UpdateCart();
             UpdateAmount();
+            UpdateDiscountAmount();
+            UpdateTotal();
         }
 
         /// <summary>
@@ -238,6 +319,8 @@ namespace ObjectOrientedPractics.View.Tabs
 
             UpdateCart();
             UpdateAmount();
+            UpdateDiscountAmount();
+            UpdateTotal();
         }
 
         /// <summary>
@@ -254,11 +337,38 @@ namespace ObjectOrientedPractics.View.Tabs
             order.Items = new List<Item>(CurrentCustomer.Cart.Items);
             order.Address = CurrentCustomer.Address;
 
+            double discountAmount = GetDiscountAmount();
+
+            foreach (var selectedDiscount in SelectedDisounts)
+                selectedDiscount.Apply(CurrentCustomer.Cart.Items);
+
+            foreach (var discount in CurrentCustomer.Discounts)
+                discount.Update(CurrentCustomer.Cart.Items);
+
+            order.DiscountAmount = discountAmount;
+
             CurrentCustomer.Orders.Add(order);
             CurrentCustomer.Cart.Items.Clear();
 
             UpdateCart();
+            UpdateDiscounts();
+            UpdateSelectedDiscounts();
             UpdateAmount();
+            UpdateDiscountAmount();
+            UpdateTotal();
+        }
+
+        /// <summary>
+        /// Событие 'ItemCheck' элемента <see cref="checkedListBoxDiscounts"/>.
+        /// </summary>
+        private void checkedListBoxDiscounts_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            BeginInvoke(() =>
+            {
+                UpdateSelectedDiscounts();
+                UpdateDiscountAmount();
+                UpdateTotal();
+            });
         }
     }
 }

@@ -96,7 +96,7 @@ namespace ObjectOrientedPractics.Model.Orders
         /// <summary>
         /// [GET / SET] Размер скидки.
         /// </summary>
-        public int DiscountAmount { get; set; }
+        public double DiscountAmount { get; set; }
 
         /// <summary>
         /// [GET] Стоимость товаров с учетом скидки.
