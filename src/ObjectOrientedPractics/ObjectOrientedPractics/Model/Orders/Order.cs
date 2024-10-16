@@ -6,7 +6,7 @@ namespace ObjectOrientedPractics.Model.Orders
     /// <summary>
     /// Заказ.
     /// </summary>
-    public class Order
+    public class Order : IEquatable<Order>
     {
         private readonly int _id = IdGenerator.GetNextId<Order>();
 
@@ -115,6 +115,28 @@ namespace ObjectOrientedPractics.Model.Orders
         public Order()
         {
             _statusLog.Add(DateTime.Now, OrderStatus.New);
+        }
+
+        public bool Equals(Order other)
+        {
+            if (ReferenceEquals(this, other)) return true;
+
+            if (!Address.Equals(other.Address)) return false;
+            if (DiscountAmount != other.DiscountAmount) return false;
+
+            if (Items.Count != other.Items.Count) return false;
+            if (StatusLog.Count != other.StatusLog.Count) return false;
+
+            for (int i = 0; i < Items.Count; i++)
+                if (!Items[i].Equals(other.Items[i])) return false;
+
+            for (int i = 0; i < StatusLog.Count; i++)
+            {
+                if (StatusLog.ElementAt(i).Key != other.StatusLog.ElementAt(i).Key) return false;
+                if (StatusLog.ElementAt(i).Value != other.StatusLog.ElementAt(i).Value) return false;
+            }
+
+            return true;
         }
     }
 }

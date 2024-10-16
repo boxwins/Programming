@@ -107,5 +107,17 @@ namespace ObjectOrientedPractics.Model.Discounts
         {
             return Discount.CompareTo(other.Discount);
         }
+
+        public bool Equals(IDiscount other)
+        {
+            if (other is not PercentDiscount percentDiscount) return false;
+
+            if (ReferenceEquals(this, other)) return true;
+
+            if (Discount != percentDiscount.Discount) return false;
+            if (Category != percentDiscount.Category) return false;
+
+            return true;
+        }
     }
 }

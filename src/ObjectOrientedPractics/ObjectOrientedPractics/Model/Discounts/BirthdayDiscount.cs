@@ -69,5 +69,16 @@
         {
             return new DateTime(DateTime.Now.Year, Birthday.Month, Birthday.Day);
         }
+
+        public bool Equals(IDiscount other)
+        {
+            if (other is not BirthdayDiscount birthdayDiscount) return false;
+
+            if (ReferenceEquals(this, other)) return true;
+
+            if (Birthday != birthdayDiscount.Birthday) return false;
+
+            return true;
+        }
     }
 }

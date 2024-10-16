@@ -9,7 +9,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Покупатель.
     /// </summary>
-    public class Customer
+    public class Customer : ICloneable, IEquatable<Customer>
     {
         private readonly int _id = IdGenerator.GetNextId<Customer>();
 
@@ -87,6 +87,7 @@ namespace ObjectOrientedPractics.Model
         public List<Order> Orders
         {
             get { return _orders; }
+            private set { _orders = value; }
         }
 
         /// <summary>
@@ -121,6 +122,40 @@ namespace ObjectOrientedPractics.Model
 
             Discounts.Add(new PointsDiscount());
             Discounts.Add(new BirthdayDiscount(Birthday));
+        }
+
+        public object Clone()
+        {
+            return new Customer(FullName, (Address)Address.Clone(), Birthday)
+            {
+                IsPriority = IsPriority,
+                Discounts = new List<IDiscount>(Discounts),
+                Orders = new List<Order>(Orders),
+                Cart = (Cart)Cart.Clone()
+            };
+        }
+
+        public bool Equals(Customer other)
+        {
+            if (ReferenceEquals(this, other)) return true;
+
+            if (FullName != other.FullName) return false;
+            if (Birthday != other.Birthday) return false;
+            if (IsPriority != other.IsPriority) return false;
+
+            if (!Cart.Equals(other.Cart)) return false;
+            if (!Address.Equals(other.Address)) return false;
+
+            if (Orders.Count != other.Orders.Count) return false;
+            if (Discounts.Count != other.Discounts.Count) return false;
+
+            for (int i = 0; i < Orders.Count; i++)
+                if (!Orders[i].Equals(other.Orders[i])) return false;
+
+            for (int i = 0; i < Discounts.Count; i++)
+                if (!Discounts[i].Equals(other.Discounts[i])) return false;
+
+            return true;
         }
     }
 }

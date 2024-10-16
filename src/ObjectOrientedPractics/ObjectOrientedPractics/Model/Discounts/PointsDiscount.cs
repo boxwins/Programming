@@ -1,4 +1,5 @@
-﻿using ObjectOrientedPractics.Services;
+﻿using ObjectOrientedPractics.Model.Enums;
+using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.Model.Discounts
 {
@@ -70,6 +71,17 @@ namespace ObjectOrientedPractics.Model.Discounts
         public int CompareTo(PointsDiscount other)
         {
             return Points.CompareTo(other.Points);
+        }
+
+        public bool Equals(IDiscount other)
+        {
+            if (other is not PointsDiscount pointsDiscount) return false;
+
+            if (ReferenceEquals(this, other)) return true;
+
+            if (Points != pointsDiscount.Points) return false;
+
+            return true;
         }
     }
 }

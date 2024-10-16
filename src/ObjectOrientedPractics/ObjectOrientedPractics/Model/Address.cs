@@ -133,6 +133,8 @@ namespace ObjectOrientedPractics.Model
 
         public bool Equals(Address other)
         {
+            if (ReferenceEquals(this, other)) return true;
+
             return
                 Country == other.Country &&
                 City == other.City &&

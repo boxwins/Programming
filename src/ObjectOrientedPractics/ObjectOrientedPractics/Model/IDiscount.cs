@@ -1,6 +1,6 @@
 ﻿namespace ObjectOrientedPractics.Model
 {
-    public interface IDiscount
+    public interface IDiscount : IEquatable<IDiscount>
     {
         /// <summary>
         /// [GET] Информация о скидке.

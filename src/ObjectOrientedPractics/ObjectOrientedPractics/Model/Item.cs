@@ -97,6 +97,8 @@ namespace ObjectOrientedPractics.Model
 
         public bool Equals(Item other)
         {
+            if (ReferenceEquals(this, other)) return true;
+
             return 
                 Name == other.Name && 
                 Info == other.Info && 

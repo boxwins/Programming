@@ -1,52 +1,56 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
-  <Class Name="ObjectOrientedPractics.Model.Orders.Order">
-    <Position X="1" Y="1.75" Width="4" />
-    <TypeIdentifier>
-      <HashCode>AAAgAAAEAAAAiAAAAABAACCAABAASAQCAAAAAEAAAAA=</HashCode>
-      <FileName>Model\Orders\Order.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ObjectOrientedPractics.Model.Orders.PriorityOrder">
-    <Position X="1" Y="6.5" Width="4" />
-    <TypeIdentifier>
-      <HashCode>AAABAAAAAAAAAAAAIAAAAAACAAAAAEAAAABAAAAAAAQ=</HashCode>
-      <FileName>Model\Orders\PriorityOrder.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="ObjectOrientedPractics.Model.Discounts.PercentDiscount">
-    <Position X="5.75" Y="4.75" Width="3.5" />
+    <Position X="3" Y="1.25" Width="3.5" />
     <TypeIdentifier>
-      <HashCode>AQUQAAAAABABBAIAAAAAAAAAQCAAAAQAAiAAAEIACgA=</HashCode>
+      <HashCode>AQUQAAAAABABBAYAAAAAAAAAQCAAAAQAAiAAAEIACgA=</HashCode>
       <FileName>Model\Discounts\PercentDiscount.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ObjectOrientedPractics.Model.Discounts.PointsDiscount">
-    <Position X="9.75" Y="6" Width="2.75" />
+    <Position X="6.75" Y="1.5" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AQQAAAAAABAAgAAAgAAAAAAAACAAAAAAAAAAAEIAAgA=</HashCode>
+      <HashCode>AQQAAAAAABAAgAQAgAAAAAAAACAAAAAAAAAAAEIAAgA=</HashCode>
       <FileName>Model\Discounts\PointsDiscount.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ObjectOrientedPractics.Model.Customer">
-    <Position X="10" Y="1.25" Width="3" />
+  <Class Name="ObjectOrientedPractics.Model.Item">
+    <Position X="9.75" Y="1.25" Width="4" />
     <TypeIdentifier>
-      <HashCode>AAEAAEAAAEEAgIAAAAJAAEIAAAAIAAACQggAIEAAAAA=</HashCode>
-      <FileName>Model\Customer.cs</FileName>
+      <HashCode>AAAAIAAAACAAgAQAgAJAABQAAAAAAAAAAAAgAEAACBA=</HashCode>
+      <FileName>Model\Item.cs</FileName>
     </TypeIdentifier>
-    <ShowAsCollectionAssociation>
-      <Field Name="_discounts" />
-      <Field Name="_orders" />
-    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
   </Class>
-  <Interface Name="ObjectOrientedPractics.Model.IDiscount">
-    <Position X="5.25" Y="1.25" Width="2.75" />
+  <Class Name="ObjectOrientedPractics.Model.Address">
+    <Position X="8" Y="5.75" Width="5.75" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAEAAAAA=</HashCode>
-      <FileName>Model\IDiscount.cs</FileName>
+      <HashCode>AAAAgBAAAAAAAAAMgEAgAAAAAAIAAAAAAAMAQCAiABA=</HashCode>
+      <FileName>Model\Address.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ObjectOrientedPractics.Model.Cart">
+    <Position X="5.5" Y="6.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAgAAAAACAABAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Model\Cart.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="System.IEquatable&lt;T&gt;">
+    <Position X="3.25" Y="7.75" Width="1.75" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="System.ICloneable">
+    <Position X="3.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="System.IComparable&lt;T&gt;">
+    <Position X="3.25" Y="9" Width="2" />
+    <TypeIdentifier />
   </Interface>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

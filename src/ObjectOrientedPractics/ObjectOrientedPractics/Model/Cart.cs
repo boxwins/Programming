@@ -47,6 +47,8 @@ namespace ObjectOrientedPractics.Model
 
         public bool Equals(Cart other)
         {
+            if (ReferenceEquals(this, other)) return true;
+
             if (Items.Count != other.Items.Count) return false;
 
             for (int i = 0; i < Items.Count; i++)
