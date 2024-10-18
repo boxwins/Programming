@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             splitContainer = new SplitContainer();
+            comboBoxOrderBy = new ComboBox();
+            labelOrderBy = new Label();
+            textBoxFind = new TextBox();
             buttonGenerate = new Button();
             buttonRemove = new Button();
             buttonAdd = new Button();
@@ -59,6 +62,9 @@
             // 
             // splitContainer.Panel1
             // 
+            splitContainer.Panel1.Controls.Add(comboBoxOrderBy);
+            splitContainer.Panel1.Controls.Add(labelOrderBy);
+            splitContainer.Panel1.Controls.Add(textBoxFind);
             splitContainer.Panel1.Controls.Add(buttonGenerate);
             splitContainer.Panel1.Controls.Add(buttonRemove);
             splitContainer.Panel1.Controls.Add(buttonAdd);
@@ -82,13 +88,47 @@
             splitContainer.SplitterDistance = 338;
             splitContainer.TabIndex = 0;
             // 
+            // comboBoxOrderBy
+            // 
+            comboBoxOrderBy.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxOrderBy.Font = new Font("Segoe UI", 10F);
+            comboBoxOrderBy.FormattingEnabled = true;
+            comboBoxOrderBy.Location = new Point(90, 526);
+            comboBoxOrderBy.Name = "comboBoxOrderBy";
+            comboBoxOrderBy.Size = new Size(224, 25);
+            comboBoxOrderBy.TabIndex = 13;
+            comboBoxOrderBy.SelectedIndexChanged += comboBoxOrderBy_SelectedIndexChanged;
+            // 
+            // labelOrderBy
+            // 
+            labelOrderBy.AutoSize = true;
+            labelOrderBy.Font = new Font("Segoe UI", 10F);
+            labelOrderBy.Location = new Point(10, 529);
+            labelOrderBy.Margin = new Padding(10);
+            labelOrderBy.Name = "labelOrderBy";
+            labelOrderBy.Size = new Size(67, 19);
+            labelOrderBy.TabIndex = 12;
+            labelOrderBy.Text = "Order By:";
+            // 
+            // textBoxFind
+            // 
+            textBoxFind.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxFind.BorderStyle = BorderStyle.FixedSingle;
+            textBoxFind.Font = new Font("Segoe UI", 10F);
+            textBoxFind.Location = new Point(3, 28);
+            textBoxFind.Name = "textBoxFind";
+            textBoxFind.PlaceholderText = "Search";
+            textBoxFind.Size = new Size(332, 25);
+            textBoxFind.TabIndex = 10;
+            textBoxFind.TextChanged += textBoxFind_TextChanged;
+            // 
             // buttonGenerate
             // 
             buttonGenerate.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             buttonGenerate.FlatStyle = FlatStyle.Flat;
-            buttonGenerate.Location = new Point(215, 543);
+            buttonGenerate.Location = new Point(215, 559);
             buttonGenerate.Name = "buttonGenerate";
-            buttonGenerate.Size = new Size(100, 52);
+            buttonGenerate.Size = new Size(100, 36);
             buttonGenerate.TabIndex = 4;
             buttonGenerate.Text = "Generate";
             buttonGenerate.UseVisualStyleBackColor = true;
@@ -98,9 +138,9 @@
             // 
             buttonRemove.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             buttonRemove.FlatStyle = FlatStyle.Flat;
-            buttonRemove.Location = new Point(109, 543);
+            buttonRemove.Location = new Point(109, 559);
             buttonRemove.Name = "buttonRemove";
-            buttonRemove.Size = new Size(100, 52);
+            buttonRemove.Size = new Size(100, 36);
             buttonRemove.TabIndex = 3;
             buttonRemove.Text = "Remove";
             buttonRemove.UseVisualStyleBackColor = true;
@@ -110,9 +150,9 @@
             // 
             buttonAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             buttonAdd.FlatStyle = FlatStyle.Flat;
-            buttonAdd.Location = new Point(3, 543);
+            buttonAdd.Location = new Point(3, 559);
             buttonAdd.Name = "buttonAdd";
-            buttonAdd.Size = new Size(100, 52);
+            buttonAdd.Size = new Size(100, 36);
             buttonAdd.TabIndex = 2;
             buttonAdd.Text = "Add";
             buttonAdd.UseVisualStyleBackColor = true;
@@ -135,14 +175,15 @@
             itemsListBox.Font = new Font("Segoe UI", 10F);
             itemsListBox.FormattingEnabled = true;
             itemsListBox.ItemHeight = 17;
-            itemsListBox.Location = new Point(3, 28);
+            itemsListBox.Location = new Point(3, 59);
             itemsListBox.Name = "itemsListBox";
-            itemsListBox.Size = new Size(332, 512);
+            itemsListBox.Size = new Size(332, 461);
             itemsListBox.TabIndex = 0;
             itemsListBox.SelectedIndexChanged += itemsListBox_SelectedIndexChanged;
             // 
             // comboBoxCategory
             // 
+            comboBoxCategory.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxCategory.Font = new Font("Segoe UI", 10F);
             comboBoxCategory.FormattingEnabled = true;
             comboBoxCategory.Location = new Point(97, 110);
@@ -301,5 +342,8 @@
         private Button buttonGenerate;
         private ComboBox comboBoxCategory;
         private Label labelCategory;
+        private TextBox textBoxFind;
+        private ComboBox comboBoxOrderBy;
+        private Label labelOrderBy;
     }
 }

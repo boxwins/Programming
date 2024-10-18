@@ -13,6 +13,38 @@ namespace ObjectOrientedPractics.View.Tabs
         private List<Item> _items = new List<Item>();
 
         /// <summary>
+        /// Алгоритмы сортировки списка товаров.
+        /// </summary>
+        private static Dictionary<string, Func<List<Item>, List<Item>>> SortingMethods { get; } 
+            = new Dictionary<string, Func<List<Item>, List<Item>>>
+        {
+            { "Name", 
+                (List<Item> items) => DataTools.Sort(
+                items, i => i.Name, 
+                (string str1, string str2) => string.Compare(str1, str2)) },
+            
+            { "Cost (Ascending)", 
+                (List<Item> items) => DataTools.Sort(
+                items, i => i.Cost,
+                (double cost1, double cost2) => cost1.CompareTo(cost2)) },
+
+            { "Cost (Descending)", 
+                (List<Item> items) => DataTools.Sort(
+                items, i => i.Cost,
+                (double cost1, double cost2) => cost2.CompareTo(cost1)) },
+        };
+
+        /// <summary>
+        /// Метод сортировки.
+        /// </summary>
+        private Func<List<Item>, List<Item>> SortingMethod { get; set; }
+
+        /// <summary>
+        /// Текущие товары.
+        /// </summary>
+        private List<Item> CurrentItems { get; set; }
+
+        /// <summary>
         /// [GET] Текущий индекс товара.
         /// </summary>
         private int CurrentIndex
@@ -20,7 +52,7 @@ namespace ObjectOrientedPractics.View.Tabs
             get { return _currentIndex; }
             set
             {
-                if (value > _items.Count - 1) return;
+                if (value > CurrentItems.Count - 1) return;
                 _currentIndex = value;
             }
         }
@@ -32,18 +64,18 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             get
             {
-                if (_currentIndex < 0) return null;
-                else return _items[_currentIndex];
+                if (CurrentIndex < 0) return null;
+                else return CurrentItems[CurrentIndex];
             }
             set
             {
-                if (value == null) _currentIndex = -1;
+                if (value == null) CurrentIndex = -1;
                 else
                 {
-                    int index = _items.IndexOf(value);
+                    int index = CurrentItems.IndexOf(value);
                     if (index < 0) return;
 
-                    _currentIndex = index;
+                    CurrentIndex = index;
                 }
             }
         }
@@ -54,18 +86,22 @@ namespace ObjectOrientedPractics.View.Tabs
         public List<Item> Items
         {
             get { return _items; }
-            set 
-            { 
+            set
+            {
                 _items = value;
                 UpdateListBox();
             }
-        }
+        }        
 
+        /// <summary>
+        /// Конструктор класса.
+        /// </summary>
         public ItemsTab()
         {
             InitializeComponent();
 
-            comboBoxCategory.Items.AddRange(Enum.GetValues(typeof(Category)).Cast<object>().ToArray());
+            comboBoxOrderBy.Items.AddRange(SortingMethods.Select(m => m.Key).ToArray());
+            comboBoxOrderBy.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -73,7 +109,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            _items.Add(Item.Empty);
+            Items.Add(Item.Empty);
 
             UpdateListBox();
         }
@@ -85,7 +121,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (CurrentItem == null) return;
 
-            _items.RemoveAt(CurrentIndex);
+            Items.Remove(CurrentItem);
 
             UpdateListBox();
         }
@@ -106,17 +142,54 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void UpdateListBox()
         {
-            int selected = itemsListBox.SelectedIndex;
+            Item selectedItem = CurrentItem;
+            int selectedIndex = CurrentIndex;
+
+            CurrentItems = GetDesired();
+            CurrentItems = SortingMethod.Invoke(CurrentItems);
 
             itemsListBox.Items.Clear(); // Почему 'Clear()' не вызывает 'SelectedIndexChanged' ?????
             itemsListBox_SelectedIndexChanged(null, new EventArgs());
 
-            for (int i = 0; i < _items.Count; i++)
+            for (int i = 0; i < CurrentItems.Count; i++)
             {
                 itemsListBox.Items.Add(ListBoxItemName(i));
             }
 
-            if (_items.Count > selected) itemsListBox.SelectedIndex = selected;
+            int index = CurrentItems.IndexOf(selectedItem);
+            if (index >= 0) itemsListBox.SelectedIndex = index;
+
+            else if (selectedIndex < CurrentItems.Count - 1) itemsListBox.SelectedIndex = selectedIndex;
+
+            else itemsListBox.SelectedIndex = CurrentItems.Count - 1;
+        }
+
+        /// <summary>
+        /// Фильтрует список товаров в соответствии с поиском.
+        /// </summary>
+        /// <returns>Отфильтрованный список товаров.</returns>
+        private List<Item> GetDesired()
+        {
+            if (string.IsNullOrWhiteSpace(textBoxFind.Text)) return Items;
+            return DataTools.Filter(Items, i => i.Name.Contains(textBoxFind.Text, StringComparison.CurrentCultureIgnoreCase));
+        }
+
+        /// <summary>
+        /// Обновляет содержимое элемента <see cref="comboBoxCategory"/>.
+        /// </summary>
+        private void UpdateCategory()
+        {
+            comboBoxCategory.Items.Clear();
+
+            if (CurrentItem == null)
+            {
+                comboBoxCategory.SelectedIndex = -1;
+            }
+            else
+            {
+                comboBoxCategory.Items.AddRange(Enum.GetValues(typeof(Category)).Cast<object>().ToArray());
+                comboBoxCategory.SelectedItem = CurrentItem.Category;
+            }
         }
 
         /// <summary>
@@ -137,7 +210,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <returns>Название.</returns>
         private string ListBoxItemName(int index)
         {
-            return $"{index + 1}. {_items[index].Name} - {_items[index].Info}";
+            return $"{CurrentItems[index].Name} - {CurrentItems[index].Info}";
         }
 
         /// <summary>
@@ -145,7 +218,16 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void itemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (itemsListBox.SelectedIndex < 0) CurrentItem = null;
+            if (itemsListBox.SelectedIndex < 0)
+            {
+                CurrentItem = null;
+
+                textBoxID.Text = string.Empty;
+                textBoxCost.Text = string.Empty;
+
+                textBoxName.Text = string.Empty;
+                textBoxDescription.Text = string.Empty;
+            }
             else
             {
                 CurrentIndex = itemsListBox.SelectedIndex;
@@ -155,9 +237,9 @@ namespace ObjectOrientedPractics.View.Tabs
 
                 textBoxName.Text = CurrentItem.Name;
                 textBoxDescription.Text = CurrentItem.Info;
-
-                comboBoxCategory.SelectedItem = CurrentItem.Category;
             }
+
+            UpdateCategory();
         }
 
         /// <summary>
@@ -225,6 +307,25 @@ namespace ObjectOrientedPractics.View.Tabs
             if (CurrentItem == null) return;
 
             CurrentItem.Category = (Category)comboBoxCategory.SelectedItem;
+        }
+
+        /// <summary>
+        /// Событие 'TextChanged' элемента <see cref="textBoxFind"/>.
+        /// </summary>
+        private void textBoxFind_TextChanged(object sender, EventArgs e)
+        {
+            UpdateListBox();
+        }
+
+        /// <summary>
+        /// Событие 'SelectedIndexChanged' элемента <see cref="comboBoxOrderBy"/>.
+        /// </summary>
+        private void comboBoxOrderBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxOrderBy.SelectedIndex < 0) return;
+
+            SortingMethod = SortingMethods.ElementAt(comboBoxOrderBy.SelectedIndex).Value;
+            UpdateListBox();
         }
     }
 }

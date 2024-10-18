@@ -36,6 +36,9 @@ namespace ObjectOrientedPractics.View
             if (tabControl.SelectedIndex == 3) ordersTab.RefreshData();
         }
 
+        /// <summary>
+        /// Событие 'OnFormClosing' элемента <see cref="MainForm"/>.
+        /// </summary>
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);
