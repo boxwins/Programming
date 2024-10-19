@@ -16,6 +16,21 @@ namespace ObjectOrientedPractics.Model
         private string _info = string.Empty;
 
         /// <summary>
+        /// Событие изменения своиства <see cref="Name"/>.
+        /// </summary>
+        public event EventHandler NameChanged;
+
+        /// <summary>
+        /// Событие изменения своиства <see cref="Cost"/>.
+        /// </summary>
+        public event EventHandler CostChanged;
+
+        /// <summary>
+        /// Событие изменения своиства <see cref="Info"/>.
+        /// </summary>
+        public event EventHandler InfoChanged;
+
+        /// <summary>
         /// [GET] Пустой товар.
         /// </summary>
         public static Item Empty
@@ -40,7 +55,9 @@ namespace ObjectOrientedPractics.Model
             set 
             {
                 Validator.Limit(0, 100_000, value);
-                _cost = value; 
+                _cost = value;
+
+                CostChanged?.Invoke(this, new EventArgs());
             }
         }
 
@@ -54,6 +71,8 @@ namespace ObjectOrientedPractics.Model
             {
                 Validator.StringLimit(200, value);
                 _name = value;
+
+                NameChanged?.Invoke(this, new EventArgs());
             }
         }
 
@@ -66,7 +85,9 @@ namespace ObjectOrientedPractics.Model
             set 
             {
                 Validator.StringLimit(1000, value);
-                _info = value; 
+                _info = value;
+
+                InfoChanged?.Invoke(this, new EventArgs());
             }
         }
 

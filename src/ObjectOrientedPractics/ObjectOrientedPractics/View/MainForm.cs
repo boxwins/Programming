@@ -25,15 +25,17 @@ namespace ObjectOrientedPractics.View
             cartsTab.Customers = _store.Сustomers;
 
             ordersTab.Customers = _store.Сustomers;
+
+            itemsTab.ItemsChanged += ItemsTab_ItemsChanged;
         }
 
         /// <summary>
-        /// Событие 'SelectedIndexChanged' элемента <see cref="tabControl"/>.
+        /// Событие 'ItemsChanged' элемента <see cref="ItemsTab"/>.
         /// </summary>
-        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+        private void ItemsTab_ItemsChanged(object sender, EventArgs e)
         {
-            if (tabControl.SelectedIndex == 2) cartsTab.RefreshData();
-            if (tabControl.SelectedIndex == 3) ordersTab.RefreshData();
+            cartsTab.RefreshData();
+            ordersTab.RefreshData();
         }
 
         /// <summary>

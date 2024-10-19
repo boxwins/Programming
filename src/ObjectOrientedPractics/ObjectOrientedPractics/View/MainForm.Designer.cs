@@ -57,8 +57,6 @@
             tabControl.SelectedIndex = 0;
             tabControl.Size = new Size(943, 642);
             tabControl.TabIndex = 0;
-            tabControl.SelectedIndexChanged += tabControl_SelectedIndexChanged;
-            tabControl.TabIndexChanged += tabControl_SelectedIndexChanged;
             // 
             // itemsPage
             // 

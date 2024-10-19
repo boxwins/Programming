@@ -12,6 +12,11 @@ namespace ObjectOrientedPractics.Model
         private string _apartment = string.Empty;
 
         /// <summary>
+        /// Событие изменения адреса.
+        /// </summary>
+        public event EventHandler AddressChanged;
+
+        /// <summary>
         /// [GET / SET] Почтовый индекс.
         /// </summary>
         public int Index
@@ -21,6 +26,8 @@ namespace ObjectOrientedPractics.Model
             {
                 Validator.Limit(100_000, 999_999, value);
                 _index = value;
+
+                AddressChanged?.Invoke(this, new EventArgs());
             }
         }
 
@@ -34,6 +41,8 @@ namespace ObjectOrientedPractics.Model
             {
                 Validator.StringLimit(50, value);
                 _country = value;
+
+                AddressChanged?.Invoke(this, new EventArgs());
             }
         }
 
@@ -47,6 +56,8 @@ namespace ObjectOrientedPractics.Model
             {
                 Validator.StringLimit(100, value);
                 _city = value;
+
+                AddressChanged?.Invoke(this, new EventArgs());
             }
         }
 
@@ -60,6 +71,8 @@ namespace ObjectOrientedPractics.Model
             {
                 Validator.StringLimit(100, value);
                 _street = value;
+
+                AddressChanged?.Invoke(this, new EventArgs());
             }
         }
 
@@ -73,6 +86,8 @@ namespace ObjectOrientedPractics.Model
             {
                 Validator.StringLimit(10, value);
                 _building = value;
+
+                AddressChanged?.Invoke(this, new EventArgs());
             }
         }
 
@@ -86,6 +101,8 @@ namespace ObjectOrientedPractics.Model
             {
                 Validator.StringLimit(10, value);
                 _apartment = value;
+
+                AddressChanged?.Invoke(this, new EventArgs());
             }
         }
 

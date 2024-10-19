@@ -13,6 +13,11 @@ namespace ObjectOrientedPractics.View.Tabs
         private List<Item> _items = new List<Item>();
 
         /// <summary>
+        /// Событие изменения своиства <see cref="Items"/>.
+        /// </summary>
+        public event EventHandler ItemsChanged;
+
+        /// <summary>
         /// Алгоритмы сортировки списка товаров.
         /// </summary>
         private static Dictionary<string, Func<List<Item>, List<Item>>> SortingMethods { get; } 
@@ -90,6 +95,8 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 _items = value;
                 UpdateListBox();
+
+                ItemsChanged?.Invoke(this, new EventArgs());
             }
         }        
 
@@ -110,6 +117,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             Items.Add(Item.Empty);
+            ItemsChanged?.Invoke(this, new EventArgs());
 
             UpdateListBox();
         }
@@ -122,6 +130,7 @@ namespace ObjectOrientedPractics.View.Tabs
             if (CurrentItem == null) return;
 
             Items.Remove(CurrentItem);
+            ItemsChanged?.Invoke(this, new EventArgs());
 
             UpdateListBox();
         }
@@ -133,6 +142,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             Items.Clear();
             Items.AddRange(Factory.GenerateItems(10));
+            ItemsChanged?.Invoke(this, new EventArgs());
 
             UpdateListBox();
         }
