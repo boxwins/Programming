@@ -12,6 +12,33 @@ namespace ObjectOrientedPractics.View.Tabs
         private List<Customer> _customers = new List<Customer>();
 
         /// <summary>
+        /// Алгоритмы сортировки списка покупателей.
+        /// </summary>
+        private static Dictionary<string, Func<List<Customer>, List<Customer>>> SortingMethods { get; }
+            = new Dictionary<string, Func<List<Customer>, List<Customer>>>
+        {
+            { "Name",
+                (List<Customer> customers) => DataTools.Sort(
+                customers, c => c.FullName,
+                (string str1, string str2) => string.Compare(str1, str2)) },
+
+            { "Priority",
+                (List<Customer> customers) => DataTools.Sort(
+                customers, c => c.IsPriority,
+                (bool bl1, bool bl2) => bl2.CompareTo(bl1)) }
+        };
+
+        /// <summary>
+        /// Метод сортировки.
+        /// </summary>
+        private Func<List<Customer>, List<Customer>> SortingMethod { get; set; }
+
+        /// <summary>
+        /// Текущие товары.
+        /// </summary>
+        private List<Customer> CurrentCustomers { get; set; }
+
+        /// <summary>
         /// [GET] Текущий индекс покупателя.
         /// </summary>
         private int CurrentIndex
@@ -19,7 +46,7 @@ namespace ObjectOrientedPractics.View.Tabs
             get { return _currentIndex; }
             set
             {
-                if (value > _customers.Count - 1) return;
+                if (value > CurrentCustomers.Count - 1) return;
                 _currentIndex = value;
             }
         }
@@ -31,18 +58,18 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             get
             {
-                if (_currentIndex < 0) return null;
-                else return _customers[_currentIndex];
+                if (CurrentIndex < 0) return null;
+                else return CurrentCustomers[CurrentIndex];
             }
             set
             {
-                if (value == null) _currentIndex = -1;
+                if (value == null) CurrentIndex = -1;
                 else
                 {
-                    int index = _customers.IndexOf(value);
+                    int index = CurrentCustomers.IndexOf(value);
                     if (index < 0) return;
 
-                    _currentIndex = index;
+                    CurrentIndex = index;
                 }
             }
         }
@@ -63,6 +90,9 @@ namespace ObjectOrientedPractics.View.Tabs
         public CustomersTab()
         {
             InitializeComponent();
+
+            comboBoxOrderBy.Items.AddRange(SortingMethods.Select(m => m.Key).ToArray());
+            comboBoxOrderBy.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -103,17 +133,36 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void UpdateListBox()
         {
-            int selected = customersListBox.SelectedIndex;
+            Customer selectedCustomer = CurrentCustomer;
+            int selectedIndex = CurrentIndex;
+
+            CurrentCustomers = GetDesired();
+            CurrentCustomers = SortingMethod.Invoke(CurrentCustomers);
 
             customersListBox.Items.Clear(); // Почему 'Clear()' не вызывает 'SelectedIndexChanged' ?????
             customersListBox_SelectedIndexChanged(null, new EventArgs());
 
-            for (int i = 0; i < _customers.Count; i++)
+            for (int i = 0; i < CurrentCustomers.Count; i++)
             {
                 customersListBox.Items.Add(ListBoxCustomerName(i));
             }
 
-            if (_customers.Count > selected) customersListBox.SelectedIndex = selected;
+            int index = CurrentCustomers.IndexOf(selectedCustomer);
+            if (index >= 0) customersListBox.SelectedIndex = index;
+
+            else if (selectedIndex < CurrentCustomers.Count - 1) customersListBox.SelectedIndex = selectedIndex;
+
+            else customersListBox.SelectedIndex = CurrentCustomers.Count - 1;
+        }
+
+        /// <summary>
+        /// Фильтрует список покупателей в соответствии с поиском.
+        /// </summary>
+        /// <returns>Отфильтрованный список товаров.</returns>
+        private List<Customer> GetDesired()
+        {
+            if (string.IsNullOrWhiteSpace(textBoxFind.Text)) return Customers;
+            return DataTools.Filter(Customers, c => c.FullName.Contains(textBoxFind.Text, StringComparison.CurrentCultureIgnoreCase));
         }
 
         /// <summary>
@@ -134,7 +183,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <returns>Название.</returns>
         private string ListBoxCustomerName(int index)
         {
-            return $"{index + 1}. {_customers[index].FullName}";
+            return $"{index + 1}. {CurrentCustomers[index].FullName}";
         }
 
         /// <summary>
@@ -142,9 +191,9 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void UpdateListBoxDiscount()
         {
-            if (CurrentCustomer == null) return;
-
             listBoxDiscounts.Items.Clear();
+
+            if (CurrentCustomer == null) return;
 
             for (int i = 0; i < CurrentCustomer.Discounts.Count; i++)
             {
@@ -157,7 +206,17 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void customersListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (customersListBox.SelectedIndex < 0) CurrentCustomer = null;
+            if (customersListBox.SelectedIndex < 0)
+            {
+                CurrentCustomer = null;
+
+                textBoxID.Text = string.Empty;
+                textBoxFullName.Text = string.Empty;
+                textBoxBirthday.Text = string.Empty;
+                addressControl.Address = null;
+
+                checkBoxPriority.Checked = false;
+            }
             else
             {
                 CurrentIndex = customersListBox.SelectedIndex;
@@ -168,9 +227,9 @@ namespace ObjectOrientedPractics.View.Tabs
                 addressControl.Address = CurrentCustomer.Address;
 
                 checkBoxPriority.Checked = CurrentCustomer.IsPriority;
-
-                UpdateListBoxDiscount();
             }
+
+            UpdateListBoxDiscount();
         }
 
         /// <summary>
@@ -226,6 +285,25 @@ namespace ObjectOrientedPractics.View.Tabs
             CurrentCustomer.Discounts.RemoveAt(listBoxDiscounts.SelectedIndex);
 
             UpdateListBoxDiscount();
+        }
+
+        /// <summary>
+        /// Событие 'TextChanged' элемента <see cref="textBoxFind"/>.
+        /// </summary>
+        private void textBoxFind_TextChanged(object sender, EventArgs e)
+        {
+            UpdateListBox();
+        }
+
+        /// <summary>
+        /// Событие 'SelectedIndexChanged' элемента <see cref="comboBoxOrderBy"/>.
+        /// </summary>
+        private void comboBoxOrderBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxOrderBy.SelectedIndex < 0) return;
+
+            SortingMethod = SortingMethods.ElementAt(comboBoxOrderBy.SelectedIndex).Value;
+            UpdateListBox();
         }
     }
 }

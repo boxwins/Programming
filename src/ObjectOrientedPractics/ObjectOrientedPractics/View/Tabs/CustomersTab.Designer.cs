@@ -29,11 +29,16 @@
         private void InitializeComponent()
         {
             splitContainer = new SplitContainer();
+            comboBoxOrderBy = new ComboBox();
+            labelOrderBy = new Label();
+            textBoxFind = new TextBox();
             buttonGenerate = new Button();
             buttonRemove = new Button();
             buttonAdd = new Button();
             labelCustomers = new Label();
             customersListBox = new ListBox();
+            textBoxBirthday = new TextBox();
+            labelBirthday = new Label();
             buttonRemoveDiscount = new Button();
             buttonAddDiscount = new Button();
             labelDiscounts = new Label();
@@ -46,8 +51,6 @@
             labelAddress = new Label();
             labelID = new Label();
             labelFullName = new Label();
-            textBoxBirthday = new TextBox();
-            labelBirthday = new Label();
             ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
             splitContainer.Panel1.SuspendLayout();
             splitContainer.Panel2.SuspendLayout();
@@ -62,6 +65,9 @@
             // 
             // splitContainer.Panel1
             // 
+            splitContainer.Panel1.Controls.Add(comboBoxOrderBy);
+            splitContainer.Panel1.Controls.Add(labelOrderBy);
+            splitContainer.Panel1.Controls.Add(textBoxFind);
             splitContainer.Panel1.Controls.Add(buttonGenerate);
             splitContainer.Panel1.Controls.Add(buttonRemove);
             splitContainer.Panel1.Controls.Add(buttonAdd);
@@ -88,13 +94,49 @@
             splitContainer.SplitterDistance = 414;
             splitContainer.TabIndex = 1;
             // 
+            // comboBoxOrderBy
+            // 
+            comboBoxOrderBy.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            comboBoxOrderBy.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxOrderBy.Font = new Font("Segoe UI", 10F);
+            comboBoxOrderBy.FormattingEnabled = true;
+            comboBoxOrderBy.Location = new Point(90, 581);
+            comboBoxOrderBy.Name = "comboBoxOrderBy";
+            comboBoxOrderBy.Size = new Size(224, 25);
+            comboBoxOrderBy.TabIndex = 15;
+            comboBoxOrderBy.SelectedIndexChanged += comboBoxOrderBy_SelectedIndexChanged;
+            // 
+            // labelOrderBy
+            // 
+            labelOrderBy.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelOrderBy.AutoSize = true;
+            labelOrderBy.Font = new Font("Segoe UI", 10F);
+            labelOrderBy.Location = new Point(10, 584);
+            labelOrderBy.Margin = new Padding(10);
+            labelOrderBy.Name = "labelOrderBy";
+            labelOrderBy.Size = new Size(67, 19);
+            labelOrderBy.TabIndex = 14;
+            labelOrderBy.Text = "Order By:";
+            // 
+            // textBoxFind
+            // 
+            textBoxFind.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxFind.BorderStyle = BorderStyle.FixedSingle;
+            textBoxFind.Font = new Font("Segoe UI", 10F);
+            textBoxFind.Location = new Point(3, 28);
+            textBoxFind.Name = "textBoxFind";
+            textBoxFind.PlaceholderText = "Search";
+            textBoxFind.Size = new Size(408, 25);
+            textBoxFind.TabIndex = 11;
+            textBoxFind.TextChanged += textBoxFind_TextChanged;
+            // 
             // buttonGenerate
             // 
             buttonGenerate.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             buttonGenerate.FlatStyle = FlatStyle.Flat;
-            buttonGenerate.Location = new Point(215, 600);
+            buttonGenerate.Location = new Point(215, 616);
             buttonGenerate.Name = "buttonGenerate";
-            buttonGenerate.Size = new Size(100, 52);
+            buttonGenerate.Size = new Size(100, 36);
             buttonGenerate.TabIndex = 4;
             buttonGenerate.Text = "Generate";
             buttonGenerate.UseVisualStyleBackColor = true;
@@ -104,9 +146,9 @@
             // 
             buttonRemove.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             buttonRemove.FlatStyle = FlatStyle.Flat;
-            buttonRemove.Location = new Point(109, 600);
+            buttonRemove.Location = new Point(109, 616);
             buttonRemove.Name = "buttonRemove";
-            buttonRemove.Size = new Size(100, 52);
+            buttonRemove.Size = new Size(100, 36);
             buttonRemove.TabIndex = 3;
             buttonRemove.Text = "Remove";
             buttonRemove.UseVisualStyleBackColor = true;
@@ -116,9 +158,9 @@
             // 
             buttonAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             buttonAdd.FlatStyle = FlatStyle.Flat;
-            buttonAdd.Location = new Point(3, 600);
+            buttonAdd.Location = new Point(3, 616);
             buttonAdd.Name = "buttonAdd";
-            buttonAdd.Size = new Size(100, 52);
+            buttonAdd.Size = new Size(100, 36);
             buttonAdd.TabIndex = 2;
             buttonAdd.Text = "Add";
             buttonAdd.UseVisualStyleBackColor = true;
@@ -141,11 +183,34 @@
             customersListBox.Font = new Font("Segoe UI", 10F);
             customersListBox.FormattingEnabled = true;
             customersListBox.ItemHeight = 17;
-            customersListBox.Location = new Point(3, 28);
+            customersListBox.Location = new Point(3, 59);
             customersListBox.Name = "customersListBox";
-            customersListBox.Size = new Size(408, 563);
+            customersListBox.Size = new Size(408, 512);
             customersListBox.TabIndex = 0;
             customersListBox.SelectedIndexChanged += customersListBox_SelectedIndexChanged;
+            // 
+            // textBoxBirthday
+            // 
+            textBoxBirthday.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxBirthday.BorderStyle = BorderStyle.FixedSingle;
+            textBoxBirthday.Font = new Font("Segoe UI", 10F);
+            textBoxBirthday.Location = new Point(99, 72);
+            textBoxBirthday.Margin = new Padding(10);
+            textBoxBirthday.Name = "textBoxBirthday";
+            textBoxBirthday.ReadOnly = true;
+            textBoxBirthday.Size = new Size(506, 25);
+            textBoxBirthday.TabIndex = 19;
+            // 
+            // labelBirthday
+            // 
+            labelBirthday.AutoSize = true;
+            labelBirthday.Font = new Font("Segoe UI", 10F);
+            labelBirthday.Location = new Point(10, 74);
+            labelBirthday.Margin = new Padding(10);
+            labelBirthday.Name = "labelBirthday";
+            labelBirthday.Size = new Size(63, 19);
+            labelBirthday.TabIndex = 18;
+            labelBirthday.Text = "Birthday:";
             // 
             // buttonRemoveDiscount
             // 
@@ -288,29 +353,6 @@
             labelFullName.TabIndex = 4;
             labelFullName.Text = "FullName:";
             // 
-            // textBoxBirthday
-            // 
-            textBoxBirthday.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            textBoxBirthday.BorderStyle = BorderStyle.FixedSingle;
-            textBoxBirthday.Font = new Font("Segoe UI", 10F);
-            textBoxBirthday.Location = new Point(99, 72);
-            textBoxBirthday.Margin = new Padding(10);
-            textBoxBirthday.Name = "textBoxBirthday";
-            textBoxBirthday.ReadOnly = true;
-            textBoxBirthday.Size = new Size(506, 25);
-            textBoxBirthday.TabIndex = 19;
-            // 
-            // labelBirthday
-            // 
-            labelBirthday.AutoSize = true;
-            labelBirthday.Font = new Font("Segoe UI", 10F);
-            labelBirthday.Location = new Point(10, 74);
-            labelBirthday.Margin = new Padding(10);
-            labelBirthday.Name = "labelBirthday";
-            labelBirthday.Size = new Size(63, 19);
-            labelBirthday.TabIndex = 18;
-            labelBirthday.Text = "Birthday:";
-            // 
             // CustomersTab
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -349,5 +391,8 @@
         private Button buttonAddDiscount;
         private TextBox textBoxBirthday;
         private Label labelBirthday;
+        private TextBox textBoxFind;
+        private ComboBox comboBoxOrderBy;
+        private Label labelOrderBy;
     }
 }

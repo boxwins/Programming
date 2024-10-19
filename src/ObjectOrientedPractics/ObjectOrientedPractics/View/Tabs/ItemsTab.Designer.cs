@@ -90,10 +90,11 @@
             // 
             // comboBoxOrderBy
             // 
+            comboBoxOrderBy.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             comboBoxOrderBy.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxOrderBy.Font = new Font("Segoe UI", 10F);
             comboBoxOrderBy.FormattingEnabled = true;
-            comboBoxOrderBy.Location = new Point(90, 526);
+            comboBoxOrderBy.Location = new Point(90, 524);
             comboBoxOrderBy.Name = "comboBoxOrderBy";
             comboBoxOrderBy.Size = new Size(224, 25);
             comboBoxOrderBy.TabIndex = 13;
@@ -101,9 +102,10 @@
             // 
             // labelOrderBy
             // 
+            labelOrderBy.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             labelOrderBy.AutoSize = true;
             labelOrderBy.Font = new Font("Segoe UI", 10F);
-            labelOrderBy.Location = new Point(10, 529);
+            labelOrderBy.Location = new Point(10, 527);
             labelOrderBy.Margin = new Padding(10);
             labelOrderBy.Name = "labelOrderBy";
             labelOrderBy.Size = new Size(67, 19);
