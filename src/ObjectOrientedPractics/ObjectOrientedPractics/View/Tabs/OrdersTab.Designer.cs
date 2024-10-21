@@ -264,7 +264,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // textBoxTotal
             // 
-            textBoxTotal.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxTotal.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             textBoxTotal.BackColor = Color.FromArgb(249, 249, 249);
             textBoxTotal.BorderStyle = BorderStyle.None;
             textBoxTotal.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
@@ -334,7 +334,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // textBoxAmount
             // 
-            textBoxAmount.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxAmount.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             textBoxAmount.BackColor = Color.FromArgb(249, 249, 249);
             textBoxAmount.BorderStyle = BorderStyle.None;
             textBoxAmount.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
