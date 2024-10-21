@@ -325,6 +325,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(splitContainer);
+            DoubleBuffered = true;
             Name = "CartsTab";
             Size = new Size(922, 689);
             splitContainer.Panel1.ResumeLayout(false);

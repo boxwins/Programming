@@ -314,6 +314,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(splitContainer);
+            DoubleBuffered = true;
             Name = "ItemsTab";
             Size = new Size(840, 598);
             splitContainer.Panel1.ResumeLayout(false);

@@ -439,6 +439,7 @@ namespace ObjectOrientedPractics.View.Tabs
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(splitContainer1);
+            DoubleBuffered = true;
             Name = "OrdersTab";
             Size = new Size(1043, 686);
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();

@@ -141,6 +141,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(943, 642);
             Controls.Add(tabControl);
+            DoubleBuffered = true;
             Name = "MainForm";
             Text = "Object Oriented Practics";
             tabControl.ResumeLayout(false);

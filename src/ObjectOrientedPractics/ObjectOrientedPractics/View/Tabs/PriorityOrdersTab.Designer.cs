@@ -281,6 +281,7 @@
             Controls.Add(textBoxID);
             Controls.Add(listBoxOrderItems);
             Controls.Add(comboBoxStatus);
+            DoubleBuffered = true;
             Name = "PriorityOrdersTab";
             Size = new Size(711, 686);
             ResumeLayout(false);

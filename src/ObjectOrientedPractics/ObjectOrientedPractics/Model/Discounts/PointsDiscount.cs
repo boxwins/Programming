@@ -19,7 +19,7 @@ namespace ObjectOrientedPractics.Model.Discounts
         public int Points
         {
             get { return _points; }
-            private set
+            set
             {
                 Validator.BottomLimit(0, value);
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 
 using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Model.Discounts;
 using ObjectOrientedPractics.Model.Enums;
 using ObjectOrientedPractics.Model.Orders;
 
@@ -91,6 +92,8 @@ namespace ObjectOrientedPractics.Services
                 Order[] orders = customer.IsPriority ? GeneratePriorityOrders(1) : GenerateOrders(1);
                 customer.Orders.AddRange(orders);
 
+                if (customer.Discounts[0] is PointsDiscount pointsDiscount) 
+                    pointsDiscount.Points = random.Next(4000);
 
                 result[i] = customer;
             }

@@ -206,6 +206,7 @@
             Controls.Add(labelCountry);
             Controls.Add(labelPostIndex);
             Controls.Add(labelMain);
+            DoubleBuffered = true;
             Name = "AddressControl";
             Size = new Size(526, 157);
             ResumeLayout(false);

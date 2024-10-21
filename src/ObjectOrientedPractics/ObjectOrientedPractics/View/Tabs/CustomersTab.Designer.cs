@@ -358,6 +358,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(splitContainer);
+            DoubleBuffered = true;
             Name = "CustomersTab";
             Size = new Size(1033, 655);
             splitContainer.Panel1.ResumeLayout(false);

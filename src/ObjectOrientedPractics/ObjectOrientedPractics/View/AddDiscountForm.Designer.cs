@@ -94,7 +94,7 @@
             buttonCancel.UseVisualStyleBackColor = true;
             buttonCancel.Click += buttonCancel_Click;
             // 
-            // AddDiscountForm
+            // AddPercentDiscountForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -104,7 +104,8 @@
             Controls.Add(comboBoxCategory);
             Controls.Add(labelCategory);
             Controls.Add(labelDiscount);
-            Name = "AddDiscountForm";
+            DoubleBuffered = true;
+            Name = "AddPercentDiscountForm";
             Text = "AddDiscountForm";
             ResumeLayout(false);
             PerformLayout();
