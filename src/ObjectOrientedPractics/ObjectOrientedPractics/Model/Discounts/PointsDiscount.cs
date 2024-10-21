@@ -35,14 +35,14 @@ namespace ObjectOrientedPractics.Model.Discounts
             }
         }
 
-        public double Calculate(List<Item> items)
+        public double Calculate(IEnumerable<Item> items)
         {
             double maxDiscount = (int)Math.Round(GetCost(items) * DISCOUNT_MAX, MidpointRounding.AwayFromZero);
 
             return Points > maxDiscount ? maxDiscount : Points;
         }
 
-        public double Apply(List<Item> items)
+        public double Apply(IEnumerable<Item> items)
         {
             int discount = (int)Math.Round(Calculate(items) - 0.5d, MidpointRounding.AwayFromZero);
 
@@ -51,7 +51,7 @@ namespace ObjectOrientedPractics.Model.Discounts
             return discount;
         }
 
-        public void Update(List<Item> items)
+        public void Update(IEnumerable<Item> items)
         {
             Points += (int)Math.Round(GetCost(items) * DISCOUNT_INCREASE, MidpointRounding.AwayFromZero);
         }
@@ -61,10 +61,10 @@ namespace ObjectOrientedPractics.Model.Discounts
         /// </summary>
         /// <param name="items">Товары.</param>
         /// <returns>Стоимость товаров.</returns>
-        private double GetCost(List<Item> items)
+        private double GetCost(IEnumerable<Item> items)
         {
             double cost = 0;
-            for (int i = 0; i < items.Count; i++) cost += items[i].Cost;
+            for (int i = 0; i < items.Count(); i++) cost += items.ElementAt(i).Cost;
             return cost;
         }
 

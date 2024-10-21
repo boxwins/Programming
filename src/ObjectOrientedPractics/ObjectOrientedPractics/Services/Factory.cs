@@ -1,4 +1,6 @@
-﻿using ObjectOrientedPractics.Model;
+﻿using System.Collections.ObjectModel;
+
+using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Model.Enums;
 using ObjectOrientedPractics.Model.Orders;
 
@@ -164,7 +166,7 @@ namespace ObjectOrientedPractics.Services
             {
                 Order order = new Order();
 
-                order.Items = GenerateItems(4).ToList();
+                order.Items = new ObservableCollection<Item>(GenerateItems(4));
                 order.Address = addresses[i];
 
                 result[i] = order;

@@ -1,4 +1,6 @@
-﻿using ObjectOrientedPractics.Model;
+﻿using System.Collections.ObjectModel;
+
+using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Model.Enums;
 using ObjectOrientedPractics.Services;
 
@@ -10,7 +12,7 @@ namespace ObjectOrientedPractics.View.Tabs
     public partial class ItemsTab : UserControl
     {
         private int _currentIndex = -1;
-        private List<Item> _items = new List<Item>();
+        private ObservableCollection<Item> _items = new ObservableCollection<Item>();
 
         /// <summary>
         /// Событие изменения своиства <see cref="Items"/>.
@@ -26,17 +28,17 @@ namespace ObjectOrientedPractics.View.Tabs
             { "Name", 
                 (List<Item> items) => DataTools.Sort(
                 items, i => i.Name, 
-                (string str1, string str2) => string.Compare(str1, str2)) },
+                (string str1, string str2) => string.Compare(str1, str2)).ToList() },
             
             { "Cost (Ascending)", 
                 (List<Item> items) => DataTools.Sort(
                 items, i => i.Cost,
-                (double cost1, double cost2) => cost1.CompareTo(cost2)) },
+                (double cost1, double cost2) => cost1.CompareTo(cost2)).ToList() },
 
             { "Cost (Descending)", 
                 (List<Item> items) => DataTools.Sort(
                 items, i => i.Cost,
-                (double cost1, double cost2) => cost2.CompareTo(cost1)) },
+                (double cost1, double cost2) => cost2.CompareTo(cost1)).ToList() },
         };
 
         /// <summary>
@@ -88,7 +90,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// [GET / SET] Товары.
         /// </summary>
-        public List<Item> Items
+        public ObservableCollection<Item> Items
         {
             get { return _items; }
             set
@@ -180,8 +182,8 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <returns>Отфильтрованный список товаров.</returns>
         private List<Item> GetDesired()
         {
-            if (string.IsNullOrWhiteSpace(textBoxFind.Text)) return Items;
-            return DataTools.Filter(Items, i => i.Name.Contains(textBoxFind.Text, StringComparison.CurrentCultureIgnoreCase));
+            if (string.IsNullOrWhiteSpace(textBoxFind.Text)) return Items.ToList();
+            return DataTools.Filter(Items, i => i.Name.Contains(textBoxFind.Text, StringComparison.CurrentCultureIgnoreCase)).ToList();
         }
 
         /// <summary>

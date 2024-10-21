@@ -57,12 +57,12 @@ namespace ObjectOrientedPractics.Model.Discounts
             }
         }
 
-        public double Calculate(List<Item> items)
+        public double Calculate(IEnumerable<Item> items)
         {
             return GetCost(SelectDiscounted(items)) * DiscountRelative;
         }
 
-        public double Apply(List<Item> items)
+        public double Apply(IEnumerable<Item> items)
         {
             int discount = (int)Calculate(items);
 
@@ -71,7 +71,7 @@ namespace ObjectOrientedPractics.Model.Discounts
             return discount;
         }
 
-        public void Update(List<Item> items)
+        public void Update(IEnumerable<Item> items)
         {
             double cost = GetCost(SelectDiscounted(items));
 
@@ -86,10 +86,10 @@ namespace ObjectOrientedPractics.Model.Discounts
         /// </summary>
         /// <param name="items">Товары.</param>
         /// <returns>Стоимость товаров.</returns>
-        private double GetCost(List<Item> items)
+        private double GetCost(IEnumerable<Item> items)
         {
             double cost = 0;
-            for (int i = 0; i < items.Count; i++) cost += items[i].Cost;
+            for (int i = 0; i < items.Count(); i++) cost += items.ElementAt(i).Cost;
             return cost;
         }
 
@@ -98,7 +98,7 @@ namespace ObjectOrientedPractics.Model.Discounts
         /// </summary>
         /// <param name="items">Товары.</param>
         /// <returns>Подходящие товары.</returns>
-        private List<Item> SelectDiscounted(List<Item> items)
+        private IEnumerable<Item> SelectDiscounted(IEnumerable<Item> items)
         {
             return items.Where(i => i.Category == Category).ToList();
         }

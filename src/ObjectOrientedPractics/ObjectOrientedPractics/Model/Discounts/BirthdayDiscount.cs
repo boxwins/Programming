@@ -24,18 +24,18 @@
             get { return $"Ко дню рождения {GetCurrentBirthday()}"; }
         }
 
-        public double Calculate(List<Item> items)
+        public double Calculate(IEnumerable<Item> items)
         {
             if (!Available()) return 0.0d;
             return GetCost(items) * DISCOUNT;
         }
 
-        public double Apply(List<Item> items)
+        public double Apply(IEnumerable<Item> items)
         {
             return Calculate(items);
         }
 
-        public void Update(List<Item> items)
+        public void Update(IEnumerable<Item> items)
         {
 
         }
@@ -54,10 +54,10 @@
         /// </summary>
         /// <param name="items">Товары.</param>
         /// <returns>Стоимость товаров.</returns>
-        private double GetCost(List<Item> items)
+        private double GetCost(IEnumerable<Item> items)
         {
             double cost = 0;
-            for (int i = 0; i < items.Count; i++) cost += items[i].Cost;
+            for (int i = 0; i < items.Count(); i++) cost += items.ElementAt(i).Cost;
             return cost;
         }
 

@@ -1,4 +1,6 @@
-﻿using ObjectOrientedPractics.Model;
+﻿using System.Collections.ObjectModel;
+
+using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Model.Enums;
 using ObjectOrientedPractics.Model.Orders;
 using ObjectOrientedPractics.View.Data;
@@ -10,8 +12,8 @@ namespace ObjectOrientedPractics.View.Tabs
     /// </summary>
     public partial class OrdersTab : UserControl
     {
-        private List<Customer> _customers = new List<Customer>();
-        private List<OrderData> _ordersData = new List<OrderData>();
+        private ObservableCollection<Customer> _customers = new ObservableCollection<Customer>();
+        private ObservableCollection<OrderData> _ordersData = new ObservableCollection<OrderData>();
 
         private Order _selectedOrder = null;
         private PriorityOrder _selectedPriorityOrder = null;
@@ -23,7 +25,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// [GET / SET] Список покупателей.
         /// </summary>
-        public List<Customer> Customers
+        public ObservableCollection<Customer> Customers
         {
             get { return _customers; }
             set
@@ -36,7 +38,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// [GET] Список всех данных заказов.
         /// </summary>
-        private List<OrderData> OrdersData
+        private ObservableCollection<OrderData> OrdersData
         {
             get { return _ordersData; }
             set { _ordersData = value; }
@@ -84,7 +86,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             Order selected = SelectedOrder;
 
-            OrdersData.Clear();
+            OrdersData.Clear();            
 
             for (int c = 0; c < Customers.Count; c++)
             {
@@ -107,18 +109,21 @@ namespace ObjectOrientedPractics.View.Tabs
                     if (!DesiredOrderPriority(orderData)) continue;
 
                     OrdersData.Add(orderData);
+                    orderDataBindingSource.Add(orderData);
                 }
             }
 
             SortOrdersData();
-
-            dataGridView.DataSource = OrdersData;
+            UpdateGridSource();
 
             if (selected != null)
             {
-                int selectedIndex = OrdersData.FindIndex(o => o.Order.ID == selected.ID);
-                if (selectedIndex >= 0)
+                OrderData selectedData = OrdersData.Where(o => o.Order.ID == selected.ID).FirstOrDefault();
+                
+                if (selectedData != null)
                 {
+                    int selectedIndex = OrdersData.IndexOf(selectedData);
+
                     DataGridViewRow row = dataGridView.Rows[selectedIndex];
                     row.Selected = true;
                     dataGridView.CurrentCell = row.Cells[0];
@@ -171,7 +176,8 @@ namespace ObjectOrientedPractics.View.Tabs
                 { 3, () => SortOrdersKey(o => o.Name) },
                 { 4, () => SortOrdersKey(o => o.Address) },
                 { 5, () => SortOrdersKey(o => o.Order.Amount) },
-                { 6, () => SortOrdersKey(o => o.Status) },
+                { 6, () => SortOrdersKey(o => o.Total) },
+                { 7, () => SortOrdersKey(o => o.Status) },
             };
 
             if (sortMethods.TryGetValue(_sortIndex, out Action method)) method.Invoke();
@@ -183,9 +189,24 @@ namespace ObjectOrientedPractics.View.Tabs
         private void SortOrdersKey<T>(Func<OrderData, T> key)
         {
             if (_sortDescending)
-                OrdersData = OrdersData.OrderByDescending(key).ToList();
+                OrdersData = new ObservableCollection<OrderData>(OrdersData.OrderByDescending(key));
             else
-                OrdersData = OrdersData.OrderBy(key).ToList();
+                OrdersData = new ObservableCollection<OrderData>(OrdersData.OrderBy(key));
+        }
+
+        /// <summary>
+        /// Обновляет таблицу.
+        /// </summary>
+        private void UpdateGridSource()
+        {
+            orderDataBindingSource.Clear();
+
+            for (int i = 0; i < OrdersData.Count; i++)
+            {
+                orderDataBindingSource.Add(OrdersData[i]);
+            }
+
+            dataGridView.DataSource = orderDataBindingSource;
         }
 
         /// <summary>

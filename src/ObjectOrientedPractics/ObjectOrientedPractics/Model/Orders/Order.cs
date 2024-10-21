@@ -1,4 +1,6 @@
-﻿using ObjectOrientedPractics.Model.Enums;
+﻿using System.Collections.ObjectModel;
+
+using ObjectOrientedPractics.Model.Enums;
 using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.Model.Orders
@@ -11,7 +13,7 @@ namespace ObjectOrientedPractics.Model.Orders
         private readonly int _id = IdGenerator.GetNextId<Order>();
 
         private Address _address = null;
-        private List<Item> _items = new List<Item>();
+        private ObservableCollection<Item> _items = new ObservableCollection<Item>();
         private Dictionary<DateTime, OrderStatus> _statusLog = new Dictionary<DateTime, OrderStatus>();
 
         /// <summary>
@@ -34,7 +36,7 @@ namespace ObjectOrientedPractics.Model.Orders
         /// <summary>
         /// [GET / SET] Товары в заказе.
         /// </summary>
-        public List<Item> Items
+        public ObservableCollection<Item> Items
         {
             get { return _items; }
             set { _items = value; }

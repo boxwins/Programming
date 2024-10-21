@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.ObjectModel;
+
+using Newtonsoft.Json;
 
 namespace ObjectOrientedPractics.Model
 {
@@ -7,13 +9,13 @@ namespace ObjectOrientedPractics.Model
     /// </summary>
     public class Cart : ICloneable, IEquatable<Cart>
     {
-        private List<Item> _items = new List<Item>();
+        private ObservableCollection<Item> _items = new ObservableCollection<Item>();
 
         /// <summary>
         /// [GET] Товары в корзине.
         /// </summary>
         [JsonProperty]
-        public List<Item> Items
+        public ObservableCollection<Item> Items
         {
             get { return _items; }
             private set { _items = value; }
@@ -40,7 +42,7 @@ namespace ObjectOrientedPractics.Model
         public object Clone()
         {
             Cart cart = new Cart();
-            cart.Items = new List<Item>(Items);
+            cart.Items = new ObservableCollection<Item>(Items);
 
             return cart;
         }

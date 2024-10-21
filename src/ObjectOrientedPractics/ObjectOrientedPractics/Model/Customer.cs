@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.ObjectModel;
+
+using Newtonsoft.Json;
 
 using ObjectOrientedPractics.Model.Discounts;
 using ObjectOrientedPractics.Model.Orders;
@@ -18,9 +20,9 @@ namespace ObjectOrientedPractics.Model
         private DateTime _birthday = DateTime.Today;
 
         private Cart _cart = new Cart();
-        private List<Order> _orders = new List<Order>();
+        private ObservableCollection<Order> _orders = new ObservableCollection<Order>();
 
-        private List<IDiscount> _discounts = new List<IDiscount>();
+        private ObservableCollection<IDiscount> _discounts = new ObservableCollection<IDiscount>();
 
         private bool _isPriority = false;
 
@@ -84,7 +86,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// [GET] Список заказов.
         /// </summary>
-        public List<Order> Orders
+        public ObservableCollection<Order> Orders
         {
             get { return _orders; }
             private set { _orders = value; }
@@ -94,7 +96,7 @@ namespace ObjectOrientedPractics.Model
         /// [GET] Список скидок.
         /// </summary>
         [JsonProperty]
-        public List<IDiscount> Discounts
+        public ObservableCollection<IDiscount> Discounts
         {
             get { return _discounts; }
             private set { _discounts = value; }
@@ -129,8 +131,8 @@ namespace ObjectOrientedPractics.Model
             return new Customer(FullName, (Address)Address.Clone(), Birthday)
             {
                 IsPriority = IsPriority,
-                Discounts = new List<IDiscount>(Discounts),
-                Orders = new List<Order>(Orders),
+                Discounts = new ObservableCollection<IDiscount>(Discounts),
+                Orders = new ObservableCollection<Order>(Orders),
                 Cart = (Cart)Cart.Clone()
             };
         }

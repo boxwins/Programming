@@ -1,4 +1,6 @@
-﻿using ObjectOrientedPractics.Model;
+﻿using System.Collections.ObjectModel;
+
+using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.View.Tabs
@@ -9,7 +11,12 @@ namespace ObjectOrientedPractics.View.Tabs
     public partial class CustomersTab : UserControl
     {
         private int _currentIndex = -1;
-        private List<Customer> _customers = new List<Customer>();
+        private ObservableCollection<Customer> _customers = new ObservableCollection<Customer>();
+
+        /// <summary>
+        /// Событие изменения своиства <see cref="Customers"/>.
+        /// </summary>
+        public event EventHandler CustomersChanged;
 
         /// <summary>
         /// Алгоритмы сортировки списка покупателей.
@@ -20,12 +27,12 @@ namespace ObjectOrientedPractics.View.Tabs
             { "Name",
                 (List<Customer> customers) => DataTools.Sort(
                 customers, c => c.FullName,
-                (string str1, string str2) => string.Compare(str1, str2)) },
+                (string str1, string str2) => string.Compare(str1, str2)).ToList() },
 
             { "Priority",
                 (List<Customer> customers) => DataTools.Sort(
                 customers, c => c.IsPriority,
-                (bool bl1, bool bl2) => bl2.CompareTo(bl1)) }
+                (bool bl1, bool bl2) => bl2.CompareTo(bl1)).ToList() }
         };
 
         /// <summary>
@@ -77,13 +84,15 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// [GET / SET] Покупатели.
         /// </summary>
-        public List<Customer> Customers
+        public ObservableCollection<Customer> Customers
         {
             get { return _customers; }
             set
             {
                 _customers = value;
                 UpdateListBox();
+
+                CustomersChanged?.Invoke(this, new EventArgs());
             }
         }
 
@@ -101,6 +110,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             _customers.Add(Customer.Empty);
+            CustomersChanged?.Invoke(this, new EventArgs());
 
             UpdateListBox();
         }
@@ -113,6 +123,7 @@ namespace ObjectOrientedPractics.View.Tabs
             if (CurrentCustomer == null) return;
 
             _customers.RemoveAt(CurrentIndex);
+            CustomersChanged?.Invoke(this, new EventArgs());
 
             UpdateListBox();
         }
@@ -124,6 +135,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             Customers.Clear();
             Customers.AddRange(Factory.GenerateCustomers(10));
+            CustomersChanged?.Invoke(this, new EventArgs());
 
             UpdateListBox();
         }
@@ -161,8 +173,8 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <returns>Отфильтрованный список товаров.</returns>
         private List<Customer> GetDesired()
         {
-            if (string.IsNullOrWhiteSpace(textBoxFind.Text)) return Customers;
-            return DataTools.Filter(Customers, c => c.FullName.Contains(textBoxFind.Text, StringComparison.CurrentCultureIgnoreCase));
+            if (string.IsNullOrWhiteSpace(textBoxFind.Text)) return Customers.ToList();
+            return DataTools.Filter(Customers, c => c.FullName.Contains(textBoxFind.Text, StringComparison.CurrentCultureIgnoreCase)).ToList();
         }
 
         /// <summary>

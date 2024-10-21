@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Reflection;
 
 using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Model.Enums;
 using ObjectOrientedPractics.Model.Orders;
+using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
@@ -12,10 +14,10 @@ namespace ObjectOrientedPractics.View.Tabs
     /// </summary>
     public partial class CartsTab : UserControl
     {
-        private List<Item> _items = new List<Item>();
-        private List<Customer> _customers = new List<Customer>();
+        private ObservableCollection<Item> _items = new ObservableCollection<Item>();
+        private ObservableCollection<Customer> _customers = new ObservableCollection<Customer>();
 
-        private List<IDiscount> _selectedDisounts = new List<IDiscount>();
+        private ObservableCollection<IDiscount> _selectedDisounts = new ObservableCollection<IDiscount>();
 
         /// <summary>
         /// Выбранный товар.
@@ -57,7 +59,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Список выбранных скидок.
         /// </summary>
-        public List<IDiscount> SelectedDisounts
+        public ObservableCollection<IDiscount> SelectedDisounts
         {
             get { return _selectedDisounts; }
             set { _selectedDisounts = value; }
@@ -66,7 +68,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// [GET / SET] Список товаров.
         /// </summary>
-        public List<Item> Items
+        public ObservableCollection<Item> Items
         {
             get { return _items; }
             set
@@ -79,7 +81,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// [GET / SET] Список покупателей.
         /// </summary>
-        public List<Customer> Customers
+        public ObservableCollection<Customer> Customers
         {
             get { return _customers; }
             set
@@ -334,7 +336,7 @@ namespace ObjectOrientedPractics.View.Tabs
             Order order = CurrentCustomer.IsPriority ? new PriorityOrder(DateTime.Today, 0) : new Order();
 
             order.Status = OrderStatus.New;
-            order.Items = new List<Item>(CurrentCustomer.Cart.Items);
+            order.Items = new ObservableCollection<Item>(CurrentCustomer.Cart.Items);
             order.Address = CurrentCustomer.Address;
 
             double discountAmount = GetDiscountAmount();

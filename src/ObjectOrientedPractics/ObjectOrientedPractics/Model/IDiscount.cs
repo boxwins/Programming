@@ -12,19 +12,19 @@
         /// </summary>
         /// <param name="items">Товары.</param>
         /// <returns>Расмер скидки.</returns>
-        double Calculate(List<Item> items);
+        double Calculate(IEnumerable<Item> items);
 
         /// <summary>
         /// Применяет скидку к товарам.
         /// </summary>
         /// <param name="items">Товары.</param>
         /// <returns>Размер скидки.</returns>
-        double Apply(List<Item> items);
+        double Apply(IEnumerable<Item> items);
 
         /// <summary>
         /// Обновляет скидку.
         /// </summary>
         /// <param name="items">Товары.</param>
-        void Update(List<Item> items);
+        void Update(IEnumerable<Item> items);
     }
 }

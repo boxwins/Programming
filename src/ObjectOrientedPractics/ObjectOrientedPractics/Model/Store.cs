@@ -1,17 +1,19 @@
-﻿namespace ObjectOrientedPractics.Model
+﻿using System.Collections.ObjectModel;
+
+namespace ObjectOrientedPractics.Model
 {
     /// <summary>
     /// Магазин.
     /// </summary>
     public class Store : ICloneable, IEquatable<Store>
     {
-        private List<Item> _items = new List<Item>();
-        private List<Customer> _customers = new List<Customer>();
+        private ObservableCollection<Item> _items = new ObservableCollection<Item>();
+        private ObservableCollection<Customer> _customers = new ObservableCollection<Customer>();
 
         /// <summary>
         /// [GET / SET] Товары.
         /// </summary>
-        public List<Item> Items
+        public ObservableCollection<Item> Items
         {
             get { return _items; }
             set { _items = value; }
@@ -20,7 +22,7 @@
         /// <summary>
         /// [GET / SET] Товары.
         /// </summary>
-        public List<Customer> Сustomers
+        public ObservableCollection<Customer> Сustomers
         {
             get { return _customers; }
             set { _customers = value; }
