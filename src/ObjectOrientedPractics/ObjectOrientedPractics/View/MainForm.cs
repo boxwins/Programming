@@ -23,11 +23,19 @@ namespace ObjectOrientedPractics.View
 
             cartsTab.Items = _store.Items;
             cartsTab.Customers = _store.Сustomers;
-
             ordersTab.Customers = _store.Сustomers;
 
             itemsTab.ItemsChanged += ItemsTab_ItemsChanged;
             customersTab.CustomersChanged += CustomersTab_CustomersChanged;
+            cartsTab.OrderCreated += CartsTab_OrderCreated;
+        }
+
+        /// <summary>
+        /// Событие 'OrderCreated' элемента <see cref="CartsTab"/>.
+        /// </summary>
+        private void CartsTab_OrderCreated(object sender, EventArgs e)
+        {
+            ordersTab.RefreshData();
         }
 
         /// <summary>

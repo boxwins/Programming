@@ -20,6 +20,11 @@ namespace ObjectOrientedPractics.View.Tabs
         private ObservableCollection<IDiscount> _selectedDisounts = new ObservableCollection<IDiscount>();
 
         /// <summary>
+        /// Событие создания заказа.
+        /// </summary>
+        public event EventHandler OrderCreated;
+
+        /// <summary>
         /// Выбранный товар.
         /// </summary>
         private Item SelectedItem
@@ -358,6 +363,8 @@ namespace ObjectOrientedPractics.View.Tabs
             UpdateAmount();
             UpdateDiscountAmount();
             UpdateTotal();
+
+            OrderCreated?.Invoke(this, new EventArgs());
         }
 
         /// <summary>
