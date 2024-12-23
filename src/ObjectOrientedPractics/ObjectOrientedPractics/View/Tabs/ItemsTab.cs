@@ -52,7 +52,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private List<Item> CurrentItems { get; set; }
 
         /// <summary>
-        /// [GET] Текущий индекс товара.
+        /// Текущий индекс товара.
         /// </summary>
         private int CurrentIndex
         {
@@ -65,7 +65,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// [GET] Текущий товар.
+        /// Текущий товар.
         /// </summary>
         private Item CurrentItem
         {
@@ -88,7 +88,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// [GET / SET] Товары.
+        /// Товары.
         /// </summary>
         public ObservableCollection<Item> Items
         {

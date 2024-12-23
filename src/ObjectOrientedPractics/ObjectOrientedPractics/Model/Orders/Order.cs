@@ -17,7 +17,7 @@ namespace ObjectOrientedPractics.Model.Orders
         private Dictionary<DateTime, OrderStatus> _statusLog = new Dictionary<DateTime, OrderStatus>();
 
         /// <summary>
-        /// [GET] ID заказа.
+        /// ID заказа.
         /// </summary>
         public int ID
         {
@@ -25,7 +25,7 @@ namespace ObjectOrientedPractics.Model.Orders
         }
 
         /// <summary>
-        /// [GET / SET] Адрес заказа.
+        /// Адрес заказа.
         /// </summary>
         public Address Address
         {
@@ -34,7 +34,7 @@ namespace ObjectOrientedPractics.Model.Orders
         }
 
         /// <summary>
-        /// [GET / SET] Товары в заказе.
+        /// Товары в заказе.
         /// </summary>
         public ObservableCollection<Item> Items
         {
@@ -43,7 +43,7 @@ namespace ObjectOrientedPractics.Model.Orders
         }
 
         /// <summary>
-        /// [GET / SET] История изменения статуса заказа.
+        /// История изменения статуса заказа.
         /// </summary>
         public Dictionary<DateTime, OrderStatus> StatusLog
         {
@@ -52,7 +52,7 @@ namespace ObjectOrientedPractics.Model.Orders
         }
 
         /// <summary>
-        /// [GET / SET] Текущий статус заказа.
+        /// Текущий статус заказа.
         /// </summary>
         public OrderStatus Status
         {
@@ -67,7 +67,7 @@ namespace ObjectOrientedPractics.Model.Orders
         }
 
         /// <summary>
-        /// [GET] Время последнего изменения статуса.
+        /// Время последнего изменения статуса.
         /// </summary>
         public DateTime DateTime
         {
@@ -78,7 +78,7 @@ namespace ObjectOrientedPractics.Model.Orders
         }
 
         /// <summary>
-        /// [GET] Стоимость товаров в заказе.
+        /// Стоимость товаров в заказе.
         /// </summary>
         public double Amount
         {
@@ -96,12 +96,12 @@ namespace ObjectOrientedPractics.Model.Orders
         }
 
         /// <summary>
-        /// [GET / SET] Размер скидки.
+        /// Размер скидки.
         /// </summary>
         public double DiscountAmount { get; set; }
 
         /// <summary>
-        /// [GET] Стоимость товаров с учетом скидки.
+        /// Стоимость товаров с учетом скидки.
         /// </summary>
         public double Total
         {

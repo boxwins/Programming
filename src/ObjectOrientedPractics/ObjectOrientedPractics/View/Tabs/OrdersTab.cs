@@ -23,7 +23,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private bool _showOnlyPriority = false;
 
         /// <summary>
-        /// [GET / SET] Список покупателей.
+        /// Список покупателей.
         /// </summary>
         public ObservableCollection<Customer> Customers
         {
@@ -36,7 +36,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// [GET] Список всех данных заказов.
+        /// Список всех данных заказов.
         /// </summary>
         private ObservableCollection<OrderData> OrdersData
         {
@@ -45,7 +45,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// [GET / SET] Выбранный заказ.
+        /// Выбранный заказ.
         /// </summary>
         private Order SelectedOrder
         {
@@ -54,7 +54,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// [GET / SET] Выбранный приоритетный заказ.
+        /// Выбранный приоритетный заказ.
         /// </summary>
         private PriorityOrder SelectedPriorityOrder
         {

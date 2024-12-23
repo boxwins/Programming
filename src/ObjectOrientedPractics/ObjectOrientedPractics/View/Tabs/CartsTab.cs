@@ -71,7 +71,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// [GET / SET] Список товаров.
+        /// Список товаров.
         /// </summary>
         public ObservableCollection<Item> Items
         {
@@ -84,7 +84,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// [GET / SET] Список покупателей.
+        /// Список покупателей.
         /// </summary>
         public ObservableCollection<Customer> Customers
         {

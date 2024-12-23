@@ -15,7 +15,7 @@ namespace ObjectOrientedPractics.Model.Discounts
         private Category _category = Category.None;
 
         /// <summary>
-        /// [GET] Текущая скидка в процентах.
+        /// Текущая скидка в процентах.
         /// </summary>
         public int Discount
         {
@@ -24,7 +24,7 @@ namespace ObjectOrientedPractics.Model.Discounts
         }
 
         /// <summary>
-        /// [GET] Текущая скидка в отношении.
+        /// Текущая скидка в отношении.
         /// </summary>
         public double DiscountRelative
         {
@@ -32,7 +32,7 @@ namespace ObjectOrientedPractics.Model.Discounts
         }
 
         /// <summary>
-        /// [GET / SET] Стоимость купленных товаров после изменения скидки.
+        /// Стоимость купленных товаров после изменения скидки.
         /// </summary>
         public double PurchaseValue
         {
@@ -41,7 +41,7 @@ namespace ObjectOrientedPractics.Model.Discounts
         }
 
         /// <summary>
-        /// [GET / SET] Категория товаров для скидки.
+        /// Категория товаров для скидки.
         /// </summary>
         public Category Category
         {

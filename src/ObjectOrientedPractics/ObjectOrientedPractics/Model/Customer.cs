@@ -27,7 +27,7 @@ namespace ObjectOrientedPractics.Model
         private bool _isPriority = false;
 
         /// <summary>
-        /// [GET] Пустой покупатель.
+        /// Пустой покупатель.
         /// </summary>
         public static Customer Empty
         {
@@ -35,7 +35,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// [GET] ID покупателя.
+        /// ID покупателя.
         /// </summary>
         public double ID
         {
@@ -43,7 +43,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// [GET / SET] Имя покупателя.
+        /// Имя покупателя.
         /// </summary>
         public string FullName
         {
@@ -56,7 +56,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// [GET / SET] Адрес покупателя.
+        /// Адрес покупателя.
         /// </summary>
         public Address Address
         {
@@ -65,7 +65,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// [GET] День рождения покупателя.
+        /// День рождения покупателя.
         /// </summary>
         public DateTime Birthday
         {
@@ -74,7 +74,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// [GET] Корзина покупателя.
+        /// Корзина покупателя.
         /// </summary>
         [JsonProperty]
         public Cart Cart
@@ -84,7 +84,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// [GET] Список заказов.
+        /// Список заказов.
         /// </summary>
         public ObservableCollection<Order> Orders
         {
@@ -93,7 +93,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// [GET] Список скидок.
+        /// Список скидок.
         /// </summary>
         [JsonProperty]
         public ObservableCollection<IDiscount> Discounts
@@ -103,7 +103,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// [GET / SET] Является ли покупатель приоритетным.
+        /// Является ли покупатель приоритетным.
         /// </summary>
         public bool IsPriority
         {

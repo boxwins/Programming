@@ -14,7 +14,7 @@ namespace ObjectOrientedPractics.Model.Discounts
         private int _points = 0;
 
         /// <summary>
-        /// [GET] Накопительные баллы.
+        /// Накопительные баллы.
         /// </summary>
         public int Points
         {

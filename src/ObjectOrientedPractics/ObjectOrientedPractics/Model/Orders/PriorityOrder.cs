@@ -11,7 +11,7 @@ namespace ObjectOrientedPractics.Model.Orders
         private DateTime _desiredDate = DateTime.Now;
 
         /// <summary>
-        /// [GET] Список доступного для выбора времени заказа.
+        /// Список доступного для выбора времени заказа.
         /// </summary>
         public static DeliveryTime[] DeliveryTimes { get; } =
         [
@@ -24,7 +24,7 @@ namespace ObjectOrientedPractics.Model.Orders
         ];
 
         /// <summary>
-        /// [GET] Желаемое время доставки заказа.
+        /// Желаемое время доставки заказа.
         /// </summary>
         public DeliveryTime DesiredTime
         {
@@ -32,7 +32,7 @@ namespace ObjectOrientedPractics.Model.Orders
         }
 
         /// <summary>
-        /// [GET / SET] Желаемое время доставки заказа (индекс).
+        /// Желаемое время доставки заказа (индекс).
         /// </summary>
         public int DesiredTimeIndex
         {
@@ -46,7 +46,7 @@ namespace ObjectOrientedPractics.Model.Orders
         }
 
         /// <summary>
-        /// [GET / SET] Желаемая дата доставки заказа.
+        /// Желаемая дата доставки заказа.
         /// </summary>
         public DateTime DesiredDate
         {

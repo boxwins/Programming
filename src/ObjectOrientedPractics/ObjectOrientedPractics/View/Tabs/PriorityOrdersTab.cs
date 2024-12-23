@@ -13,7 +13,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private PriorityOrder _order = new PriorityOrder(DateTime.Today, 0) { };
 
         /// <summary>
-        /// [GET / SET] Текущий заказ.
+        /// Текущий заказ.
         /// </summary>
         private PriorityOrder Order
         {

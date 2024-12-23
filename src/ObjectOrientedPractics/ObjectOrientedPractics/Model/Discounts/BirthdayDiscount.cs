@@ -12,7 +12,7 @@
         /// <summary>
         /// Дата дня рождения.
         /// </summary>
-        public DateTime Birthday{ get; set; }
+        public DateTime Birthday { get; set; }
 
         public BirthdayDiscount(DateTime birthday)
         {

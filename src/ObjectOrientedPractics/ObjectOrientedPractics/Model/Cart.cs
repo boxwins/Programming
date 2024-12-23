@@ -12,7 +12,7 @@ namespace ObjectOrientedPractics.Model
         private ObservableCollection<Item> _items = new ObservableCollection<Item>();
 
         /// <summary>
-        /// [GET] Товары в корзине.
+        /// Товары в корзине.
         /// </summary>
         [JsonProperty]
         public ObservableCollection<Item> Items
@@ -22,7 +22,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// [GET] Общая стоимость товаров в корзине.
+        /// Общая стоимость товаров в корзине.
         /// </summary>
         public double Amount
         {

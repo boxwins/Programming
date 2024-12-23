@@ -31,7 +31,7 @@ namespace ObjectOrientedPractics.Model
         public event EventHandler InfoChanged;
 
         /// <summary>
-        /// [GET] Пустой товар.
+        /// Пустой товар.
         /// </summary>
         public static Item Empty
         {
@@ -39,15 +39,15 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// [GET] ID товара.
+        /// ID товара.
         /// </summary>
-        public double ID
+        public int ID
         {
             get { return _id; }
         }
 
         /// <summary>
-        /// [GET / SET] Цена товара.
+        /// Цена товара.
         /// </summary>
         public double Cost
         {
@@ -62,7 +62,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// [GET / SET] Название товара.
+        /// Название товара.
         /// </summary>
         public string Name
         {
@@ -77,7 +77,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// [GET / SET] Описание товара.
+        /// Описание товара.
         /// </summary>
         public string Info
         {
@@ -92,7 +92,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// [GET / SET] Категория товара.
+        /// Категория товара.
         /// </summary>
         public Category Category { get; set; }
 

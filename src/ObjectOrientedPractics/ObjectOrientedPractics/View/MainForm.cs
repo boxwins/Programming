@@ -14,7 +14,7 @@ namespace ObjectOrientedPractics.View
 
         public MainForm()
         {
-            _store = Serializer.Deserialize<Store>(PATH);
+            //_store = Serializer.Deserialize<Store>(PATH);
 
             InitializeComponent();
 

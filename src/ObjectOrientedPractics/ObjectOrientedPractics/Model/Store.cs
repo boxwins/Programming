@@ -11,7 +11,7 @@ namespace ObjectOrientedPractics.Model
         private ObservableCollection<Customer> _customers = new ObservableCollection<Customer>();
 
         /// <summary>
-        /// [GET / SET] Товары.
+        /// Товары.
         /// </summary>
         public ObservableCollection<Item> Items
         {
@@ -20,7 +20,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// [GET / SET] Товары.
+        /// Товары.
         /// </summary>
         public ObservableCollection<Customer> Сustomers
         {

@@ -3,7 +3,7 @@
     public interface IDiscount : IEquatable<IDiscount>
     {
         /// <summary>
-        /// [GET] Информация о скидке.
+        /// Информация о скидке.
         /// </summary>
         string Info { get; }
 

@@ -17,7 +17,7 @@ namespace ObjectOrientedPractics.Model
         public event EventHandler AddressChanged;
 
         /// <summary>
-        /// [GET / SET] Почтовый индекс.
+        /// Почтовый индекс.
         /// </summary>
         public int Index
         {
@@ -32,7 +32,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// [GET / SET] Страна.
+        /// Страна.
         /// </summary>
         public string Country
         {
@@ -47,7 +47,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// [GET / SET] Город.
+        /// Город.
         /// </summary>
         public string City
         {
@@ -62,7 +62,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// [GET / SET] Улица.
+        /// Улица.
         /// </summary>
         public string Street
         {
@@ -77,7 +77,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// [GET / SET] Дом.
+        /// Дом.
         /// </summary>
         public string Building
         {
@@ -92,7 +92,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// [GET / SET] Квартира.
+        /// Квартира.
         /// </summary>
         public string Apartment
         {

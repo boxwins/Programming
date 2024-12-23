@@ -46,7 +46,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private List<Customer> CurrentCustomers { get; set; }
 
         /// <summary>
-        /// [GET] Текущий индекс покупателя.
+        /// Текущий индекс покупателя.
         /// </summary>
         private int CurrentIndex
         {
@@ -59,7 +59,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// [GET] Текущий покупатель.
+        /// Текущий покупатель.
         /// </summary>
         private Customer CurrentCustomer
         {
@@ -82,7 +82,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// [GET / SET] Покупатели.
+        /// Покупатели.
         /// </summary>
         public ObservableCollection<Customer> Customers
         {

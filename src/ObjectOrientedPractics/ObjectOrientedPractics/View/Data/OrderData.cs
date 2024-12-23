@@ -13,47 +13,47 @@ namespace ObjectOrientedPractics.View.Data
         private static Image Star { get; }
 
         /// <summary>
-        /// [GET] Заказ.
+        /// Заказ.
         /// </summary>
         public Order Order { get; }
 
         /// <summary>
-        /// [GET / SET] ID заказа.
+        /// ID заказа.
         /// </summary>
         public string ID { get; set; }
 
         /// <summary>
-        /// [GET / SET] Время заказа.
+        /// Время заказа.
         /// </summary>
         public string Date { get; set; }
 
         /// <summary>
-        /// [GET / SET] Имя покупателя.
+        /// Имя покупателя.
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// [GET / SET] Адрес заказа.
+        /// Адрес заказа.
         /// </summary>
         public string Address { get; set; }
 
         /// <summary>
-        /// [GET / SET] Стоимость товаров в заказе.
+        /// Стоимость товаров в заказе.
         /// </summary>
         public string Amount { get; set; }
 
         /// <summary>
-        /// [GET / SET] Статус заказа.
+        /// Статус заказа.
         /// </summary>
         public string Status { get; set; }
 
         /// <summary>
-        /// [GET / SET] Общая стоимость заказа.
+        /// Общая стоимость заказа.
         /// </summary>
         public string Total { get; set; }
 
         /// <summary>
-        /// [GET] Изображение приоритета.
+        /// Изображение приоритета.
         /// </summary>
         public Image PriorityImage
         {

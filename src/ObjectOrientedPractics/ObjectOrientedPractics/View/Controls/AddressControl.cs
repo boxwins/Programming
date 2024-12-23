@@ -12,7 +12,7 @@ namespace ObjectOrientedPractics.View.Controls
         private bool _readonly = false;
 
         /// <summary>
-        /// [GET / SET] Адрес.
+        /// Адрес.
         /// </summary>
         public Address Address
         {
@@ -25,7 +25,7 @@ namespace ObjectOrientedPractics.View.Controls
         }
 
         /// <summary>
-        /// [GET / SET] Доступен ли элемент только для чтения.
+        /// Доступен ли элемент только для чтения.
         /// </summary>
         public bool Readonly
         {

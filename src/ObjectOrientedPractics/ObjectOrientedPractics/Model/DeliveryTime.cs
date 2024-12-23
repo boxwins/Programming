@@ -6,12 +6,12 @@
     public class DeliveryTime
     {
         /// <summary>
-        /// [GET / SET] Время доставки ОТ.
+        /// Время доставки ОТ.
         /// </summary>
         public TimeOnly From { get; set; }
 
         /// <summary>
-        /// [GET / SET] Время доставки ДО.
+        /// Время доставки ДО.
         /// </summary>
         public TimeOnly To { get; set; }
 
